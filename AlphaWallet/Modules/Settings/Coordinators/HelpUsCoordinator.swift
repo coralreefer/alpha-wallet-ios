@@ -106,9 +106,9 @@ extension HelpUsCoordinator: WellDoneViewControllerDelegate {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension HelpUsCoordinator {
     private func logEmailNewsletterSubscription(isSubscribed: Bool) {
-        analyticsCoordinator.log(action: Analytics.Action.subscribeToEmailNewsletter, properties: [Analytics.Properties.isAccepted.rawValue: isSubscribed])
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.subscribeToEmailNewsletter, properties: [AlphaAnalytics.Properties.isAccepted.rawValue: isSubscribed])
     }
 }

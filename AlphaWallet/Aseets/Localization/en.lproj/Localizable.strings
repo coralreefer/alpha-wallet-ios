@@ -112,7 +112,7 @@
 "settings.advanced.title" = "Advanced";
 "settings.contactUs.title" = "Contact Us";
 "settings.changeCurrency.title" = "Change Currency";
-"settings.analitycs.title" = "Analytics";
+"settings.analitycs.title" = "AlphaAnalytics";
 "settings.pingInfura.title" = "Ping Infura";
 "settings.pingInfura.successful" = "Infura looks OK";
 "settings.pingInfura.fail" = "Infura Error";
@@ -830,7 +830,7 @@
 "emptyTableView.wallet.title" = "You don't have any %@ yet";
 "emptyTableView.search.title" = "No results";
 "emptyTableView.all.title" = "Items";
-"analytics.navigationTitle" = "Analytics";
+"analytics.navigationTitle" = "AlphaAnalytics";
 "analytics.description" = "Help us to improve AlphaWallet by sharing anonymous data with us. This does not include any financial information.";
 "analytics.shareAnonymousData" = "Share Anonymous Data?";
 "email.not.configured" = "Your device isn't configured to send email";

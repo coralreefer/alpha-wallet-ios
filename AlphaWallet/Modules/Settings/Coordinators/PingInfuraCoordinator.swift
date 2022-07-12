@@ -70,9 +70,9 @@ class PingInfuraCoordinator: AlphaCoordinator {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension PingInfuraCoordinator {
     private func logUse() {
-        analyticsCoordinator.log(action: Analytics.Action.pingInfura)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.pingInfura)
     }
 }

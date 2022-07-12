@@ -23,7 +23,7 @@ class SignMessageCoordinator: AlphaCoordinator {
     private let keystore: Keystore
     private let account: AlphaWallet.Address
     private var message: SignMessageType
-    private let source: Analytics.SignMessageRequestSource
+    private let source: AlphaAnalytics.SignMessageRequestSource
     private weak var signatureConfirmationDetailsViewController: SignatureConfirmationDetailsViewController?
     private var canBeDismissed = true
     private let walletConnectDappRequesterViewModel: WalletConnectDappRequesterViewModel?
@@ -36,7 +36,7 @@ class SignMessageCoordinator: AlphaCoordinator {
     var coordinators: [AlphaCoordinator] = []
     weak var delegate: SignMessageCoordinatorDelegate?
     
-    init(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, keystore: Keystore, account: AlphaWallet.Address, message: SignMessageType, source: Analytics.SignMessageRequestSource, walletConnectDappRequesterViewModel: WalletConnectDappRequesterViewModel?) {
+    init(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, keystore: Keystore, account: AlphaWallet.Address, message: SignMessageType, source: AlphaAnalytics.SignMessageRequestSource, walletConnectDappRequesterViewModel: WalletConnectDappRequesterViewModel?) {
         self.analyticsCoordinator = analyticsCoordinator
         self.navigationController = navigationController
         self.walletConnectDappRequesterViewModel = walletConnectDappRequesterViewModel
@@ -57,7 +57,7 @@ class SignMessageCoordinator: AlphaCoordinator {
     }()
 
     func start() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.signMessageRequest, properties: [Analytics.Properties.source.rawValue: source.rawValue, Analytics.Properties.messageType.rawValue: mapMessageToAnalyticsType(message).rawValue])
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.signMessageRequest, properties: [AlphaAnalytics.Properties.source.rawValue: source.rawValue, AlphaAnalytics.Properties.messageType.rawValue: mapMessageToAnalyticsType(message).rawValue])
 
         let presenter = UIApplication.shared.presentedViewController(or: navigationController)
         presenter.present(hostViewController, animated: true)
@@ -65,7 +65,7 @@ class SignMessageCoordinator: AlphaCoordinator {
         rootViewController.reloadView()
     }
 
-    private func mapMessageToAnalyticsType(_ message: SignMessageType) -> Analytics.SignMessageRequestType {
+    private func mapMessageToAnalyticsType(_ message: SignMessageType) -> AlphaAnalytics.SignMessageRequestType {
         switch message {
         case .message:
             return .message
@@ -124,7 +124,7 @@ extension SignMessageCoordinator: FloatingPanelControllerDelegate {
 extension SignMessageCoordinator: SignatureConfirmationViewControllerDelegate {
 
     func controller(_ controller: SignatureConfirmationViewController, continueButtonTapped sender: UIButton) {
-        analyticsCoordinator.log(action: Analytics.Action.signMessageRequest)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.signMessageRequest)
         signMessage(with: message)
     }
 
@@ -140,7 +140,7 @@ extension SignMessageCoordinator: SignatureConfirmationViewControllerDelegate {
     }
 
     func didClose(in controller: SignatureConfirmationViewController) {
-        analyticsCoordinator.log(action: Analytics.Action.cancelSignMessageRequest)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.cancelSignMessageRequest)
         rootViewController.dismiss(animated: true) {
             self.delegate?.didCancel(in: self)
         }

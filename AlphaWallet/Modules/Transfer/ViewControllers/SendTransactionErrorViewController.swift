@@ -85,7 +85,7 @@ class SendTransactionErrorViewController: UIViewController {
         if let url = viewModel.linkUrl {
             switch viewModel.error {
             case .insufficientFunds:
-                analyticsCoordinator.log(navigation: Analytics.Navigation.openHelpUrl, properties: [Analytics.Properties.type.rawValue: Analytics.HelpUrl.insufficientFunds.rawValue])
+                analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.openHelpUrl, properties: [AlphaAnalytics.Properties.type.rawValue: AlphaAnalytics.HelpUrl.insufficientFunds.rawValue])
             case .nonceTooLow, .gasPriceTooLow, .gasLimitTooLow, .gasLimitTooHigh, .possibleChainIdMismatch, .executionReverted:
                 break
             }

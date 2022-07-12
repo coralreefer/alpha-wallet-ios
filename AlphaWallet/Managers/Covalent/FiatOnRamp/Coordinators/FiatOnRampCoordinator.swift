@@ -9,13 +9,13 @@ class FiatOnRampCoordinator: AlphaCoordinator {
     private let wallet: Wallet
     private let server: RPCServer
     private let sourceViewController: UIViewController
-    private let source: Analytics.FiatOnRampSource
+    private let source: AlphaAnalytics.FiatOnRampSource
     private let analyticsCoordinator: AnalyticsCoordinator
 
     var coordinators: [AlphaCoordinator] = []
     weak var delegate: FiatOnRampCoordinatorDelegate?
 
-    init(wallet: Wallet, server: RPCServer, viewController: UIViewController, source: Analytics.FiatOnRampSource, analyticsCoordinator: AnalyticsCoordinator) {
+    init(wallet: Wallet, server: RPCServer, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource, analyticsCoordinator: AnalyticsCoordinator) {
         self.wallet = wallet
         self.server = server
         self.sourceViewController = viewController
@@ -34,7 +34,7 @@ class FiatOnRampCoordinator: AlphaCoordinator {
         }
     }
 
-    static func logStartOnRamp(name: String, source: Analytics.FiatOnRampSource, analyticsCoordinator: AnalyticsCoordinator) {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.onRamp, properties: [Analytics.Properties.name.rawValue: name, Analytics.Properties.source.rawValue: source.rawValue])
+    static func logStartOnRamp(name: String, source: AlphaAnalytics.FiatOnRampSource, analyticsCoordinator: AnalyticsCoordinator) {
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.onRamp, properties: [AlphaAnalytics.Properties.name.rawValue: name, AlphaAnalytics.Properties.source.rawValue: source.rawValue])
     }
 }

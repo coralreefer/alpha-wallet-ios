@@ -12,7 +12,7 @@ import Combine
 
 protocol TokenScriptCoordinatorDelegate: CanOpenURL, SendTransactionDelegate {
     func didFinish(_ result: ConfirmResult, in coordinator: TokenScriptCoordinator)
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TokenScriptCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TokenScriptCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource)
     func didCancel(in coordinator: TokenScriptCoordinator)
 }
 

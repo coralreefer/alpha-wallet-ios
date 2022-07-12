@@ -33,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
 
             register(addressStorage: addressStorage)
-            //NOTE: we move AnalyticsService creation from AppCoordinator.init method to allow easily replace
-            let analyticsService = AnalyticsService()
+            //NOTE: we move AlphaAnalyticsService creation from AppCoordinator.init method to allow easily replace
+            let analyticsService = AlphaAnalyticsService()
             let walletAddressesStore: WalletAddressesStore = EtherKeystore.migratedWalletAddressesStore(userDefaults: .standardOrForTests)
             let keystore: Keystore = try EtherKeystore(walletAddressesStore: walletAddressesStore, analyticsCoordinator: analyticsService)
             let navigationController = UINavigationController()

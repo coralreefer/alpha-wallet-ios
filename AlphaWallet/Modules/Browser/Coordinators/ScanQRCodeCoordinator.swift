@@ -53,7 +53,7 @@ final class ScanQRCodeCoordinator: NSObject, AlphaCoordinator {
         self.parentNavigationController = navigationController
     }
 
-    func start(fromSource source: Analytics.ScanQRCodeSource) {
+    func start(fromSource source: AlphaAnalytics.ScanQRCodeSource) {
         logStartScan(source: source)
         navigationController.makePresentationFullScreenForiOS13Migration()
         parentNavigationController.present(navigationController, animated: true)
@@ -61,7 +61,7 @@ final class ScanQRCodeCoordinator: NSObject, AlphaCoordinator {
 
     @objc private func dismiss() {
         stopScannerAndDismiss {
-            self.analyticsCoordinator.log(action: Analytics.Action.cancelScanQrCode)
+            self.analyticsCoordinator.log(action: AlphaAnalytics.Action.cancelScanQrCode)
             self.delegate?.didCancel(in: self)
         }
     }
@@ -76,7 +76,7 @@ extension ScanQRCodeCoordinator: QRCodeReaderDelegate {
 
     func readerDidCancel(_ reader: QRCodeReaderViewController!) {
         stopScannerAndDismiss {
-            self.analyticsCoordinator.log(action: Analytics.Action.cancelScanQrCode)
+            self.analyticsCoordinator.log(action: AlphaAnalytics.Action.cancelScanQrCode)
             self.delegate?.didCancel(in: self)
         }
     }
@@ -108,14 +108,14 @@ extension ScanQRCodeCoordinator: RequestCoordinatorDelegate {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension ScanQRCodeCoordinator {
     private func logCompleteScan(result: String) {
         let resultType = convertToAnalyticsResultType(value: result)
-        analyticsCoordinator.log(action: Analytics.Action.completeScanQrCode, properties: [Analytics.Properties.resultType.rawValue: resultType.rawValue])
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.completeScanQrCode, properties: [AlphaAnalytics.Properties.resultType.rawValue: resultType.rawValue])
     }
 
-    private func convertToAnalyticsResultType(value: String!) -> Analytics.ScanQRCodeResultType {
+    private func convertToAnalyticsResultType(value: String!) -> AlphaAnalytics.ScanQRCodeResultType {
         if let resultType = QRCodeValueParser.from(string: value) {
             switch resultType {
             case .address:
@@ -143,7 +143,7 @@ extension ScanQRCodeCoordinator {
         }
     }
 
-    private func logStartScan(source: Analytics.ScanQRCodeSource) {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.scanQrCode, properties: [Analytics.Properties.source.rawValue: source.rawValue])
+    private func logStartScan(source: AlphaAnalytics.ScanQRCodeSource) {
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.scanQrCode, properties: [AlphaAnalytics.Properties.source.rawValue: source.rawValue])
     }
 }

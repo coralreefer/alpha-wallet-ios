@@ -6,7 +6,7 @@ import Result
 
 protocol TransferNFTCoordinatorDelegate: CanOpenURL, SendTransactionDelegate {
     func didFinish(_ result: ConfirmResult, in coordinator: TransferNFTCoordinator)
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TransferNFTCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TransferNFTCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource)
     func didCancel(in coordinator: TransferNFTCoordinator)
 }
 

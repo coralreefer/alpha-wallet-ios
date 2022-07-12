@@ -93,7 +93,7 @@ class TransactionConfirmationCoordinator: AlphaCoordinator {
         self.navigationController = presentingViewController
     }
 
-    func start(fromSource source: Analytics.TransactionConfirmationSource) {
+    func start(fromSource source: AlphaAnalytics.TransactionConfirmationSource) {
         let presenter = UIApplication.shared.presentedViewController(or: navigationController)
         presenter.present(hostViewController, animated: true)
 
@@ -113,7 +113,7 @@ class TransactionConfirmationCoordinator: AlphaCoordinator {
     }
 
     private func rectifyTransactionError(error: SendTransactionNotRetryableError) {
-        analyticsCoordinator.log(action: Analytics.Action.rectifySendTransactionErrorInActionSheet, properties: [Analytics.Properties.type.rawValue: error.analyticsName])
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.rectifySendTransactionErrorInActionSheet, properties: [AlphaAnalytics.Properties.type.rawValue: error.analyticsName])
         switch error {
         case .insufficientFunds:
             delegate?.openFiatOnRamp(wallet: configurator.session.account, server: server, inCoordinator: self, viewController: rootViewController)
@@ -148,7 +148,7 @@ extension TransactionConfirmationCoordinator: TransactionConfirmationViewControl
     func didClose(in controller: TransactionConfirmationViewController) {
         guard canBeDismissed else { return }
 
-        analyticsCoordinator.log(action: Analytics.Action.cancelsTransactionInActionSheet)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.cancelsTransactionInActionSheet)
         rootViewController.dismiss(animated: true) {
             self.delegate?.didClose(in: self)
         }
@@ -276,10 +276,10 @@ extension TransactionConfirmationCoordinator: TransactionConfiguratorDelegate {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension TransactionConfirmationCoordinator {
     private func logCompleteActionSheetForTransactionConfirmationSuccessfully() {
-        let speedType: Analytics.TransactionConfirmationSpeedType
+        let speedType: AlphaAnalytics.TransactionConfirmationSpeedType
         switch configurator.selectedConfigurationType {
         case .slow:
             speedType = .slow
@@ -293,7 +293,7 @@ extension TransactionConfirmationCoordinator {
             speedType = .custom
         }
 
-        let transactionType: Analytics.TransactionType = functional.analyticsTransactionType(fromConfiguration: configuration, data: configurator.currentConfiguration.data)
+        let transactionType: AlphaAnalytics.TransactionType = functional.analyticsTransactionType(fromConfiguration: configuration, data: configurator.currentConfiguration.data)
         let overridingRpcUrl: URL? = configurator.session.config.sendPrivateTransactionsProvider?.rpcUrl(forServer: configurator.session.server)
         let privateNetworkProvider: SendPrivateTransactionsProvider?
         if overridingRpcUrl == nil {
@@ -302,14 +302,14 @@ extension TransactionConfirmationCoordinator {
             privateNetworkProvider = configurator.session.config.sendPrivateTransactionsProvider
         }
         var analyticsProperties: [String: AnalyticsEventPropertyValue] = [
-            Analytics.Properties.speedType.rawValue: speedType.rawValue,
-            Analytics.Properties.chain.rawValue: server.chainID,
-            Analytics.Properties.transactionType.rawValue: transactionType.rawValue,
+            AlphaAnalytics.Properties.speedType.rawValue: speedType.rawValue,
+            AlphaAnalytics.Properties.chain.rawValue: server.chainID,
+            AlphaAnalytics.Properties.transactionType.rawValue: transactionType.rawValue,
             //This is around for legacy reasons as we already send the provider if it's used
-            Analytics.Properties.isPrivateNetworkEnabled.rawValue: privateNetworkProvider != nil,
+            AlphaAnalytics.Properties.isPrivateNetworkEnabled.rawValue: privateNetworkProvider != nil,
         ]
         if let provider = privateNetworkProvider {
-            analyticsProperties[Analytics.Properties.sendPrivateTransactionsProvider.rawValue] = provider.rawValue
+            analyticsProperties[AlphaAnalytics.Properties.sendPrivateTransactionsProvider.rawValue] = provider.rawValue
             infoLog("Sent transaction with send private transactions provider: \(provider.rawValue)")
         } else {
             //no-op
@@ -317,38 +317,38 @@ extension TransactionConfirmationCoordinator {
         }
         switch configuration {
         case .sendFungiblesTransaction(_, _, _, amount: let amount):
-            analyticsProperties[Analytics.Properties.isAllFunds.rawValue] = amount.isAllFunds
+            analyticsProperties[AlphaAnalytics.Properties.isAllFunds.rawValue] = amount.isAllFunds
         case .tokenScriptTransaction, .dappTransaction, .walletConnect, .sendNftTransaction, .claimPaidErc875MagicLink, .speedupTransaction, .cancelTransaction, .swapTransaction, .approve:
             break
         }
 
-        analyticsCoordinator.log(navigation: Analytics.Navigation.actionSheetForTransactionConfirmationSuccessful, properties: analyticsProperties)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.actionSheetForTransactionConfirmationSuccessful, properties: analyticsProperties)
         if server.isTestnet {
-            analyticsCoordinator.incrementUser(property: Analytics.UserProperties.testnetTransactionCount, by: 1)
+            analyticsCoordinator.incrementUser(property: AlphaAnalytics.UserProperties.testnetTransactionCount, by: 1)
         } else {
-            analyticsCoordinator.incrementUser(property: Analytics.UserProperties.transactionCount, by: 1)
+            analyticsCoordinator.incrementUser(property: AlphaAnalytics.UserProperties.transactionCount, by: 1)
         }
     }
 
     //TODO log a finite list of error types
     private func logActionSheetForTransactionConfirmationFailed() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.actionSheetForTransactionConfirmationFailed)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.actionSheetForTransactionConfirmationFailed)
     }
 
-    private func logStartActionSheetForTransactionConfirmation(source: Analytics.TransactionConfirmationSource) {
-        let transactionType: Analytics.TransactionType = functional.analyticsTransactionType(fromConfiguration: configuration, data: configurator.currentConfiguration.data)
+    private func logStartActionSheetForTransactionConfirmation(source: AlphaAnalytics.TransactionConfirmationSource) {
+        let transactionType: AlphaAnalytics.TransactionType = functional.analyticsTransactionType(fromConfiguration: configuration, data: configurator.currentConfiguration.data)
         var analyticsProperties: [String: AnalyticsEventPropertyValue] = [
-            Analytics.Properties.source.rawValue: source.rawValue,
-            Analytics.Properties.chain.rawValue: server.chainID,
-            Analytics.Properties.transactionType.rawValue: transactionType.rawValue,
+            AlphaAnalytics.Properties.source.rawValue: source.rawValue,
+            AlphaAnalytics.Properties.chain.rawValue: server.chainID,
+            AlphaAnalytics.Properties.transactionType.rawValue: transactionType.rawValue,
         ]
         switch configuration {
         case .sendFungiblesTransaction(_, _, _, amount: let amount):
-            analyticsProperties[Analytics.Properties.isAllFunds.rawValue] = amount.isAllFunds
+            analyticsProperties[AlphaAnalytics.Properties.isAllFunds.rawValue] = amount.isAllFunds
         case .tokenScriptTransaction, .dappTransaction, .walletConnect, .sendNftTransaction, .claimPaidErc875MagicLink, .speedupTransaction, .cancelTransaction, .swapTransaction, .approve:
             break
         }
-        analyticsCoordinator.log(navigation: Analytics.Navigation.actionSheetForTransactionConfirmation, properties: analyticsProperties)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.actionSheetForTransactionConfirmation, properties: analyticsProperties)
     }
 }
 
@@ -405,7 +405,7 @@ fileprivate extension TransactionConfirmationCoordinator.functional {
         }
     }
 
-    static func analyticsTransactionType(fromConfiguration configuration: TransactionConfirmationConfiguration, data: Data) -> Analytics.TransactionType {
+    static func analyticsTransactionType(fromConfiguration configuration: TransactionConfirmationConfiguration, data: Data) -> AlphaAnalytics.TransactionType {
         if let functionCallMetaData = DecodedFunctionCall(data: data) {
             switch functionCallMetaData.type {
             case .erc1155SafeTransfer:

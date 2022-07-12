@@ -112,7 +112,7 @@ class SendTransactionCoordinator {
         guard let error = error as? SendTransactionNotRetryableError else { return }
         switch error {
         case .nonceTooLow:
-            analyticsCoordinator.log(error: Analytics.Error.sendTransactionNonceTooLow)
+            analyticsCoordinator.log(error: AlphaAnalytics.Error.sendTransactionNonceTooLow)
         case .insufficientFunds, .gasPriceTooLow, .gasLimitTooLow, .gasLimitTooHigh, .possibleChainIdMismatch, .executionReverted:
             break
         }

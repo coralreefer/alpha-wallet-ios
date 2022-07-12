@@ -139,9 +139,9 @@ extension SaveCustomRpcCoordinator: AddCustomChainDelegate {
     func notifyAddCustomChainQueuedSuccessfully(in addCustomChain: AddCustomChain) {
         switch operation {
         case .add:
-            analyticsCoordinator.log(action: Analytics.Action.addCustomChain, properties: [Analytics.Properties.addCustomChainType.rawValue: "user"])
+            analyticsCoordinator.log(action: AlphaAnalytics.Action.addCustomChain, properties: [AlphaAnalytics.Properties.addCustomChainType.rawValue: "user"])
         case .edit:
-            analyticsCoordinator.log(action: Analytics.Action.editCustomChain, properties: [Analytics.Properties.addCustomChainType.rawValue: "user"])
+            analyticsCoordinator.log(action: AlphaAnalytics.Action.editCustomChain, properties: [AlphaAnalytics.Properties.addCustomChainType.rawValue: "user"])
         }
         delegate?.restartToEdit(in: self)
     }

@@ -28,7 +28,7 @@ class AppCoordinator: NSObject, AlphaCoordinator {
         return coordinator
     }()
 
-    private var analyticsService: AnalyticsServiceType
+    private var analyticsService: AlphaAnalyticsServiceType
     lazy private var openSea: OpenSea = OpenSea(analyticsCoordinator: analyticsService, queue: .global())
     private let restartQueue = RestartTaskQueue()
     let navigationController: UINavigationController
@@ -106,7 +106,7 @@ class AppCoordinator: NSObject, AlphaCoordinator {
         return NotificationService(sources: [], walletBalanceService: walletBalanceService)
     }()
 
-    init(window: UIWindow, analyticsService: AnalyticsServiceType, keystore: Keystore, walletAddressesStore: WalletAddressesStore, navigationController: UINavigationController = .withOverridenBarAppearence()) throws {
+    init(window: UIWindow, analyticsService: AlphaAnalyticsServiceType, keystore: Keystore, walletAddressesStore: WalletAddressesStore, navigationController: UINavigationController = .withOverridenBarAppearence()) throws {
         self.navigationController = navigationController
         self.window = window
         self.analyticsService = analyticsService
@@ -300,8 +300,8 @@ class AppCoordinator: NSObject, AlphaCoordinator {
 
     func handleIntent(userActivity: NSUserActivity) -> Bool {
         if let type = userActivity.userInfo?[WalletQrCodeDonation.userInfoType.key] as? String, type == WalletQrCodeDonation.userInfoType.value {
-            analyticsService.log(navigation: Analytics.Navigation.openShortcut, properties: [
-                Analytics.Properties.type.rawValue: Analytics.ShortcutType.walletQrCode.rawValue
+            analyticsService.log(navigation: AlphaAnalytics.Navigation.openShortcut, properties: [
+                AlphaAnalytics.Properties.type.rawValue: AlphaAnalytics.ShortcutType.walletQrCode.rawValue
             ])
             activeWalletCoordinator?.showWalletQrCode()
             return true
@@ -457,8 +457,8 @@ extension AppCoordinator: UniversalLinkCoordinatorDelegate {
         case .walletConnect(let url, let source):
             switch source {
             case .safariExtension:
-                analyticsService.log(action: Analytics.Action.tapSafariExtensionRewrittenUrl, properties: [
-                    Analytics.Properties.type.rawValue: "walletConnect"
+                analyticsService.log(action: AlphaAnalytics.Action.tapSafariExtensionRewrittenUrl, properties: [
+                    AlphaAnalytics.Properties.type.rawValue: "walletConnect"
                 ])
             case .mobileLinking:
                 break

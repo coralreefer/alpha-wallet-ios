@@ -150,7 +150,7 @@ extension DappRequestSwitchCustomChainCoordinator: AddCustomChainDelegate {
 
     //Don't need to notify browser/dapp since we are restarting UI
     func notifyAddCustomChainQueuedSuccessfully(in addCustomChain: AddCustomChain) {
-        analyticsCoordinator.log(action: Analytics.Action.addCustomChain, properties: [Analytics.Properties.addCustomChainType.rawValue: "dapp"])
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.addCustomChain, properties: [AlphaAnalytics.Properties.addCustomChainType.rawValue: "dapp"])
         guard self.addCustomChain != nil else {
             delegate?.cleanup(coordinator: self)
             return

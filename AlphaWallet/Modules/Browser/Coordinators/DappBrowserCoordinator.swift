@@ -14,7 +14,7 @@ protocol DappBrowserCoordinatorDelegate: CanOpenURL, RequestAddCustomChainProvid
 // swiftlint:enable class_delegate_protocol
     func didSentTransaction(transaction: SentTransaction, inCoordinator coordinator: DappBrowserCoordinator)
     func handleUniversalLink(_ url: URL, forCoordinator coordinator: DappBrowserCoordinator)
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: DappBrowserCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: DappBrowserCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource)
 }
 
 final class DappBrowserCoordinator: NSObject, AlphaCoordinator {
@@ -875,37 +875,37 @@ extension DappBrowserCoordinator: CanOpenURL {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension DappBrowserCoordinator {
     private func logReload() {
-        analyticsCoordinator.log(action: Analytics.Action.reloadBrowser)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.reloadBrowser)
     }
 
     private func logShare() {
-        analyticsCoordinator.log(action: Analytics.Action.shareUrl, properties: [Analytics.Properties.source.rawValue: "browser"])
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.shareUrl, properties: [AlphaAnalytics.Properties.source.rawValue: "browser"])
     }
 
     private func logAddDapp() {
-        analyticsCoordinator.log(action: Analytics.Action.addDapp)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.addDapp)
     }
 
     private func logSwitchServer() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.switchServers, properties: [Analytics.Properties.source.rawValue: "browser"])
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.switchServers, properties: [AlphaAnalytics.Properties.source.rawValue: "browser"])
     }
 
     private func logShowDapps() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.showDapps)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.showDapps)
     }
 
     private func logShowHistory() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.showHistory)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.showHistory)
     }
 
     private func logTapMore() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.tapBrowserMore)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.tapBrowserMore)
     }
 
     private func logEnterUrl() {
-        analyticsCoordinator.log(action: Analytics.Action.enterUrl)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.enterUrl)
     }
 }

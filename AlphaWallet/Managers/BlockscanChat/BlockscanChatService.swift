@@ -60,9 +60,9 @@ class BlockscanChatService {
         }.done { [weak self] unreadCount in
            guard let strongSelf = self else { return }
             if unreadCount > 0 {
-                strongSelf.logUnreadAnalytics(resultType: Analytics.BlockscanChatResultType.nonZero)
+                strongSelf.logUnreadAnalytics(resultType: AlphaAnalytics.BlockscanChatResultType.nonZero)
             } else {
-                strongSelf.logUnreadAnalytics(resultType: Analytics.BlockscanChatResultType.zero)
+                strongSelf.logUnreadAnalytics(resultType: AlphaAnalytics.BlockscanChatResultType.zero)
             }
             if isCurrentRealAccount {
                 strongSelf.delegate?.showBlockscanUnreadCount(unreadCount, for: strongSelf)
@@ -70,9 +70,9 @@ class BlockscanChatService {
         }.catch { [weak self] error in
             guard let strongSelf = self else { return }
             if let error = error as? AFError, let code = error.responseCode, code == 429 {
-                strongSelf.logUnreadAnalytics(resultType: Analytics.BlockscanChatResultType.error429)
+                strongSelf.logUnreadAnalytics(resultType: AlphaAnalytics.BlockscanChatResultType.error429)
             } else {
-                strongSelf.logUnreadAnalytics(resultType: Analytics.BlockscanChatResultType.errorOthers)
+                strongSelf.logUnreadAnalytics(resultType: AlphaAnalytics.BlockscanChatResultType.errorOthers)
             }
             if isCurrentRealAccount {
                 strongSelf.delegate?.showBlockscanUnreadCount(nil, for: strongSelf)
@@ -135,9 +135,9 @@ extension BlockscanChatService {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension BlockscanChatService {
-    private func logUnreadAnalytics(resultType: Analytics.BlockscanChatResultType) {
-        analyticsCoordinator.log(stat: Analytics.Stat.blockscanChatFetchUnread, properties: [Analytics.Properties.resultType.rawValue: resultType.rawValue])
+    private func logUnreadAnalytics(resultType: AlphaAnalytics.BlockscanChatResultType) {
+        analyticsCoordinator.log(stat: AlphaAnalytics.Stat.blockscanChatFetchUnread, properties: [AlphaAnalytics.Properties.resultType.rawValue: resultType.rawValue])
     }
 }

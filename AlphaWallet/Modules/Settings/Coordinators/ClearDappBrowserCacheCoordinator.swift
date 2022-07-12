@@ -38,9 +38,9 @@ class ClearDappBrowserCacheCoordinator: AlphaCoordinator {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension ClearDappBrowserCacheCoordinator {
     private func logUse() {
-        analyticsCoordinator.log(action: Analytics.Action.clearBrowserCache)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.clearBrowserCache)
     }
 }

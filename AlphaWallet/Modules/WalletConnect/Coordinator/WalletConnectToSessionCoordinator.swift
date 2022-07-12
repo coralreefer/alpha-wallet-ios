@@ -51,7 +51,7 @@ class WalletConnectToSessionCoordinator: AlphaCoordinator {
     }
 
     func start() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.walletConnect)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.walletConnect)
 
         let presenter = UIApplication.shared.presentedViewController(or: navigationController)
         presenter.present(hostViewController, animated: true)
@@ -76,8 +76,8 @@ extension WalletConnectToSessionCoordinator: ServersCoordinatorDelegate {
     func didSelectServer(selection: ServerSelection, in coordinator: ServersCoordinator) {
         removeCoordinator(coordinator)
         serversViewController?.navigationController?.dismiss(animated: true)
-        analyticsCoordinator.log(action: Analytics.Action.switchedServer, properties: [
-            Analytics.Properties.source.rawValue: "walletConnect"
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.switchedServer, properties: [
+            AlphaAnalytics.Properties.source.rawValue: "walletConnect"
         ])
 
         serversToConnect = selection.asServersArray
@@ -89,8 +89,8 @@ extension WalletConnectToSessionCoordinator: ServersCoordinatorDelegate {
     func didSelectDismiss(in coordinator: ServersCoordinator) {
         removeCoordinator(coordinator)
         serversViewController?.navigationController?.dismiss(animated: true)
-        analyticsCoordinator.log(action: Analytics.Action.cancelsSwitchServer, properties: [
-            Analytics.Properties.source.rawValue: "walletConnect"
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.cancelsSwitchServer, properties: [
+            AlphaAnalytics.Properties.source.rawValue: "walletConnect"
         ])
     }
 }
@@ -102,8 +102,8 @@ extension WalletConnectToSessionCoordinator: WalletConnectToSessionViewControlle
     }
 
     func changeConnectionServerSelected(in controller: WalletConnectToSessionViewController) {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.switchServers, properties: [
-            Analytics.Properties.source.rawValue: "walletConnect"
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.switchServers, properties: [
+            AlphaAnalytics.Properties.source.rawValue: "walletConnect"
         ])
 
         let servers = serverChoices.filter { config.enabledServers.contains($0) } .compactMap { RPCServerOrAuto.server($0) }
@@ -142,8 +142,8 @@ extension WalletConnectToSessionCoordinator: WalletConnectToSessionViewControlle
         do {
             try validateEnabledServers(serversToConnect: serversToConnect)
 
-            analyticsCoordinator.log(action: Analytics.Action.walletConnectConnect, properties: [
-                Analytics.Properties.chains.rawValue: serversToConnect.map({ $0.chainID })
+            analyticsCoordinator.log(action: AlphaAnalytics.Action.walletConnectConnect, properties: [
+                AlphaAnalytics.Properties.chains.rawValue: serversToConnect.map({ $0.chainID })
             ])
 
             close(completion: {
@@ -152,9 +152,9 @@ extension WalletConnectToSessionCoordinator: WalletConnectToSessionViewControlle
                 self.delegate?.coordinator(self, didCompleteWithConnection: .connect(server))
             })
         } catch {
-            analyticsCoordinator.log(action: Analytics.Action.walletConnectConnectionFailed, properties: [
-                Analytics.Properties.chains.rawValue: serversToConnect.map({ $0.chainID }),
-                Analytics.Properties.reason.rawValue: "Chain Disabled"
+            analyticsCoordinator.log(action: AlphaAnalytics.Action.walletConnectConnectionFailed, properties: [
+                AlphaAnalytics.Properties.chains.rawValue: serversToConnect.map({ $0.chainID }),
+                AlphaAnalytics.Properties.reason.rawValue: "Chain Disabled"
             ])
 
             let coordinator = ServerUnavailableCoordinator(navigationController: navigationController, servers: serversToConnect, coordinator: self)
@@ -165,7 +165,7 @@ extension WalletConnectToSessionCoordinator: WalletConnectToSessionViewControlle
     }
 
     func didClose(in controller: WalletConnectToSessionViewController) {
-        analyticsCoordinator.log(action: Analytics.Action.walletConnectCancel)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.walletConnectCancel)
         close(completion: {
             self.delegate?.coordinator(self, didCompleteWithConnection: .cancel)
         })

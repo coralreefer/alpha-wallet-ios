@@ -13,7 +13,7 @@ typealias AWResult = Result
 
 protocol TransferCollectiblesCoordinatorDelegate: CanOpenURL, SendTransactionDelegate {
     func didFinish(_ result: ConfirmResult, in coordinator: TransferCollectiblesCoordinator)
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TransferCollectiblesCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TransferCollectiblesCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource)
     func didSelectTokenHolder(tokenHolder: TokenHolder, in coordinator: TransferCollectiblesCoordinator)
     func didCancel(in coordinator: TransferCollectiblesCoordinator)
 }

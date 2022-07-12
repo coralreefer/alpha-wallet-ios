@@ -124,7 +124,7 @@ class RenameWalletViewController: UIViewController {
             config.deleteWalletName(forAccount: viewModel.account)
         } else {
             config.saveWalletName(name, forAddress: viewModel.account)
-            analyticsCoordinator.log(action: Analytics.Action.nameWallet)
+            analyticsCoordinator.log(action: AlphaAnalytics.Action.nameWallet)
         }
 
         delegate?.didFinish(in: self)

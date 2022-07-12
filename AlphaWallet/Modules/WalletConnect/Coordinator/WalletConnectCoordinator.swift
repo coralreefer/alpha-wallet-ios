@@ -442,8 +442,8 @@ extension WalletConnectCoordinator: WalletConnectServerDelegate {
     func server(_ server: WalletConnectServer, tookTooLongToConnectToUrl url: AlphaWallet.WalletConnect.ConnectionUrl) {
         if Features.default.isAvailable(.isUsingAppEnforcedTimeoutForMakingWalletConnectConnections) {
             infoLog("[WalletConnect] app-enforced timeout for waiting for new connection")
-            analyticsCoordinator.log(action: Analytics.Action.walletConnectConnectionTimeout, properties: [
-                Analytics.WalletConnectAction.connectionUrl.rawValue: url.absoluteString
+            analyticsCoordinator.log(action: AlphaAnalytics.Action.walletConnectConnectionTimeout, properties: [
+                AlphaAnalytics.WalletConnectAction.connectionUrl.rawValue: url.absoluteString
             ])
             let errorMessage = R.string.localizable.walletConnectErrorConnectionTimeoutErrorMessage()
             displayConnectionTimeout(errorMessage)
@@ -540,7 +540,7 @@ extension WalletConnectCoordinator: WalletConnectSessionsViewControllerDelegate 
 
     func didDisconnectSelected(session: AlphaWallet.WalletConnect.Session, in viewController: WalletConnectSessionsViewController) {
         infoLog("[WalletConnect] didDisconnect session: \(session.topicOrUrl.description)")
-        analyticsCoordinator.log(action: Analytics.Action.walletConnectDisconnect)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.walletConnectDisconnect)
         do {
             try provider.disconnect(session.topicOrUrl)
         } catch {

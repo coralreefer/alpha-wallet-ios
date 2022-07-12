@@ -231,9 +231,9 @@ extension WalletCoordinator: WalletCoordinatorDelegate {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension WalletCoordinator {
-    private func logInitialAction(_ action: Analytics.FirstWalletAction) {
-        analyticsCoordinator.log(action: Analytics.Action.firstWalletAction, properties: [Analytics.Properties.type.rawValue: action.rawValue])
+    private func logInitialAction(_ action: AlphaAnalytics.FirstWalletAction) {
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.firstWalletAction, properties: [AlphaAnalytics.Properties.type.rawValue: action.rawValue])
     }
 }

@@ -16,7 +16,7 @@ protocol TokensCoordinatorDelegate: CanOpenURL, SendTransactionDelegate {
     func openConsole(inCoordinator coordinator: TokensCoordinator)
     func didPostTokenScriptTransaction(_ transaction: SentTransaction, in coordinator: TokensCoordinator)
     func blockieSelected(in coordinator: TokensCoordinator)
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TokensCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TokensCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource)
     func didSentTransaction(transaction: SentTransaction, in coordinator: TokensCoordinator)
 
     func whereAreMyTokensSelected(in coordinator: TokensCoordinator)
@@ -214,7 +214,7 @@ class TokensCoordinator: AlphaCoordinator {
         tokensViewController.listOfBadTokenScriptFiles = fileNames
     }
 
-    func launchUniversalScanner(fromSource source: Analytics.ScanQRCodeSource) {
+    func launchUniversalScanner(fromSource source: AlphaAnalytics.ScanQRCodeSource) {
         let account = sessions.anyValue.account
         let scanQRCodeCoordinator = ScanQRCodeCoordinator(analyticsCoordinator: analyticsCoordinator, navigationController: navigationController, account: account, domainResolutionService: domainResolutionService)
 
@@ -598,7 +598,7 @@ extension TokensCoordinator: SingleChainTokenCoordinatorDelegate {
         delegate?.didPostTokenScriptTransaction(transaction, in: self)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: SingleChainTokenCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: SingleChainTokenCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         delegate?.openFiatOnRamp(wallet: wallet, server: server, inCoordinator: self, viewController: viewController, source: source)
     }
 }

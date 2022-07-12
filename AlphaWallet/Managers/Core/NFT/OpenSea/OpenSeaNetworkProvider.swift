@@ -53,7 +53,7 @@ final class OpenSeaNetworkProvider {
 
 extension OpenSeaNetworkProvider: OpenSeaDelegate {
     func openSeaError(error: OpenSeaApiError) {
-        let e: Analytics.WebApiErrors
+        let e: AlphaAnalytics.WebApiErrors
         switch error {
         case .rateLimited:
             e = .openSeaRateLimited

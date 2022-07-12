@@ -22,7 +22,7 @@ protocol AnalyticsUserProperty {
     var rawValue: String { get }
 }
 
-enum Analytics {
+enum AlphaAnalytics {
     enum Navigation: String, AnalyticsNavigation {
         case actionSheetForTransactionConfirmation = "Screen: Txn Confirmation"
         case actionSheetForTransactionConfirmationSuccessful = "Screen: Txn Confirmation Successful"

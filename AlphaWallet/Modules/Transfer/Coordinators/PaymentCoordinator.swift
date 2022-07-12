@@ -8,7 +8,7 @@ protocol PaymentCoordinatorDelegate: class, CanOpenURL {
     func didSendTransaction(_ transaction: SentTransaction, inCoordinator coordinator: PaymentCoordinator)
     func didFinish(_ result: ConfirmResult, in coordinator: PaymentCoordinator)
     func didCancel(in coordinator: PaymentCoordinator)
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: PaymentCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: PaymentCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource)
     func didSelectTokenHolder(tokenHolder: TokenHolder, in coordinator: PaymentCoordinator)
 }
 
@@ -189,7 +189,7 @@ extension PaymentCoordinator: SwapTokensCoordinatorDelegate {
         delegate?.didSendTransaction(transaction, inCoordinator: self)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, coordinator: SwapTokensCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, coordinator: SwapTokensCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         delegate?.openFiatOnRamp(wallet: wallet, server: server, inCoordinator: self, viewController: viewController, source: source)
     }
 
@@ -204,7 +204,7 @@ extension PaymentCoordinator: TransferNFTCoordinatorDelegate {
         delegate?.didFinish(result, in: self)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TransferNFTCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TransferNFTCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         delegate?.openFiatOnRamp(wallet: wallet, server: server, inCoordinator: self, viewController: viewController, source: source)
     }
 
@@ -218,7 +218,7 @@ extension PaymentCoordinator: TokenScriptCoordinatorDelegate {
         delegate?.didFinish(result, in: self)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TokenScriptCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TokenScriptCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         delegate?.openFiatOnRamp(wallet: wallet, server: server, inCoordinator: self, viewController: viewController, source: source)
     }
 
@@ -232,7 +232,7 @@ extension PaymentCoordinator: TransferCollectiblesCoordinatorDelegate {
         delegate?.didSendTransaction(transaction, inCoordinator: self)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TransferCollectiblesCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TransferCollectiblesCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         delegate?.openFiatOnRamp(wallet: wallet, server: server, inCoordinator: self, viewController: viewController, source: source)
     }
 
@@ -262,7 +262,7 @@ extension PaymentCoordinator: SendCoordinatorDelegate {
         delegate?.didCancel(in: self)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: SendCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: SendCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         delegate?.openFiatOnRamp(wallet: wallet, server: server, inCoordinator: self, viewController: viewController, source: source)
     }
 }

@@ -16,7 +16,7 @@ protocol SwapTokensCoordinatorDelegate: class, CanOpenURL {
     func didFinish(_ result: ConfirmResult, in coordinator: SwapTokensCoordinator)
     func didCancel(in coordinator: SwapTokensCoordinator)
     func didSendTransaction(_ transaction: SentTransaction, in coordinator: SwapTokensCoordinator)
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, coordinator: SwapTokensCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, coordinator: SwapTokensCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource)
 }
 
 final class SwapTokensCoordinator: AlphaCoordinator {

@@ -149,33 +149,33 @@ extension SupportViewController: UITableViewDelegate {
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension SupportViewController {
     private func logAccessFaq() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.faq)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.faq)
     }
 
     private func logAccessDiscord() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.discord)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.discord)
     }
 
     private func logAccessTelegramCustomerSupport() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.telegramCustomerSupport)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.telegramCustomerSupport)
     }
 
     private func logAccessTwitter() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.twitter)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.twitter)
     }
 
     private func logAccessReddit() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.reddit)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.reddit)
     }
 
     private func logAccessFacebook() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.facebook)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.facebook)
     }
 
     private func logAccessGithub() {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.github)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.github)
     }
 }

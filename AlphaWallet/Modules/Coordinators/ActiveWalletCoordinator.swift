@@ -574,7 +574,7 @@ class ActiveWalletCoordinator: NSObject, AlphaCoordinator, DappRequestHandlerDel
         }
     }
 
-    private func openFiatOnRamp(wallet: Wallet, server: RPCServer, inViewController viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    private func openFiatOnRamp(wallet: Wallet, server: RPCServer, inViewController viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         let coordinator = FiatOnRampCoordinator(wallet: wallet, server: server, viewController: viewController, source: source, analyticsCoordinator: analyticsCoordinator)
         coordinator.delegate = self
         coordinator.start()
@@ -915,7 +915,7 @@ extension ActiveWalletCoordinator: TokensCoordinatorDelegate {
         handlePendingTransaction(transaction: transaction)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TokensCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: TokensCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         openFiatOnRamp(wallet: wallet, server: server, inViewController: viewController, source: source)
     }
 
@@ -960,7 +960,7 @@ extension ActiveWalletCoordinator: PaymentCoordinatorDelegate {
         removeCoordinator(coordinator)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: PaymentCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: PaymentCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         openFiatOnRamp(wallet: wallet, server: server, inViewController: viewController, source: source)
     }
 }
@@ -985,7 +985,7 @@ extension ActiveWalletCoordinator: DappBrowserCoordinatorDelegate {
         processRestartQueueAndRestartUI()
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: DappBrowserCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: DappBrowserCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         openFiatOnRamp(wallet: wallet, server: server, inViewController: viewController, source: source)
     }
 }
@@ -1026,16 +1026,16 @@ extension ActiveWalletCoordinator: ClaimOrderCoordinatorDelegate {
         removeCoordinator(coordinator)
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: ClaimPaidOrderCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: ClaimPaidOrderCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         openFiatOnRamp(wallet: wallet, server: server, inViewController: viewController, source: source)
     }
 }
 
-// MARK: Analytics
+// MARK: AlphaAnalytics
 extension ActiveWalletCoordinator {
     private func logEnabledChains() {
         let list = config.enabledServers.map(\.chainID).sorted()
-        analyticsCoordinator.setUser(property: Analytics.UserProperties.enabledChains, value: list)
+        analyticsCoordinator.setUser(property: AlphaAnalytics.UserProperties.enabledChains, value: list)
     }
 
     private func logWallets() {
@@ -1043,23 +1043,23 @@ extension ActiveWalletCoordinator {
         let hdWalletsCount = keystore.wallets.filter { keystore.isHdWallet(wallet: $0) }.count
         let keystoreWalletsCount = keystore.wallets.filter { keystore.isKeystore(wallet: $0) }.count
         let watchedWalletsCount = keystore.wallets.filter { keystore.isWatched(wallet: $0) }.count
-        analyticsCoordinator.setUser(property: Analytics.UserProperties.walletsCount, value: totalCount)
-        analyticsCoordinator.setUser(property: Analytics.UserProperties.hdWalletsCount, value: hdWalletsCount)
-        analyticsCoordinator.setUser(property: Analytics.UserProperties.keystoreWalletsCount, value: keystoreWalletsCount)
-        analyticsCoordinator.setUser(property: Analytics.UserProperties.watchedWalletsCount, value: watchedWalletsCount)
+        analyticsCoordinator.setUser(property: AlphaAnalytics.UserProperties.walletsCount, value: totalCount)
+        analyticsCoordinator.setUser(property: AlphaAnalytics.UserProperties.hdWalletsCount, value: hdWalletsCount)
+        analyticsCoordinator.setUser(property: AlphaAnalytics.UserProperties.keystoreWalletsCount, value: keystoreWalletsCount)
+        analyticsCoordinator.setUser(property: AlphaAnalytics.UserProperties.watchedWalletsCount, value: watchedWalletsCount)
     }
 
     private func logDynamicTypeSetting() {
         let setting = UIApplication.shared.preferredContentSizeCategory.rawValue
-        analyticsCoordinator.setUser(property: Analytics.UserProperties.dynamicTypeSetting, value: setting)
+        analyticsCoordinator.setUser(property: AlphaAnalytics.UserProperties.dynamicTypeSetting, value: setting)
     }
 
     private func logTappedSwap(service: SwapTokenViaUrlProvider) {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.tokenSwap, properties: [Analytics.Properties.name.rawValue: service.analyticsName])
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.tokenSwap, properties: [AlphaAnalytics.Properties.name.rawValue: service.analyticsName])
     }
 
-    private func logExplorerUse(type: Analytics.ExplorerType) {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.explorer, properties: [Analytics.Properties.type.rawValue: type.rawValue])
+    private func logExplorerUse(type: AlphaAnalytics.ExplorerType) {
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.explorer, properties: [AlphaAnalytics.Properties.type.rawValue: type.rawValue])
     }
 
     private func logStartOnRamp(name: String) {
@@ -1077,7 +1077,7 @@ extension ActiveWalletCoordinator: ReplaceTransactionCoordinatorDelegate {
         askUserToRateAppOrSubscribeToNewsletter()
     }
 
-    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: ReplaceTransactionCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource) {
+    func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: ReplaceTransactionCoordinator, viewController: UIViewController, source: AlphaAnalytics.FiatOnRampSource) {
         openFiatOnRamp(wallet: wallet, server: server, inViewController: viewController, source: source)
     }
 }
@@ -1097,7 +1097,7 @@ extension ActiveWalletCoordinator: LoadUrlInDappBrowserProvider {
 
 extension ActiveWalletCoordinator: BlockscanChatServiceDelegate {
     func openBlockscanChat(url: URL, for: BlockscanChatService) {
-        analyticsCoordinator.log(navigation: Analytics.Navigation.blockscanChat)
+        analyticsCoordinator.log(navigation: AlphaAnalytics.Navigation.blockscanChat)
         open(for: url)
     }
 

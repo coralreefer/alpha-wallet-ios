@@ -149,7 +149,7 @@ class AppCoordinatorTests: XCTestCase {
     }
 }
 
-class FakeAnalyticsService: AnalyticsServiceType {
+class FakeAnalyticsService: AlphaAnalyticsServiceType {
     func log(action: AnalyticsAction, properties: [String: AnalyticsEventPropertyValue]?) { }
     func log(error: AnalyticsError, properties: [String: AnalyticsEventPropertyValue]?) { }
     func log(stat: AnalyticsStat, properties: [String: AnalyticsEventPropertyValue]?) {}

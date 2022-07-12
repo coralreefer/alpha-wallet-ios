@@ -37,7 +37,7 @@ class AccountViewModel {
         return blockiesGenerator.getBlockie(address: wallet.address)
             .handleEvents(receiveOutput: { [weak self] value in
                 guard value.isEnsAvatar else { return }
-                self?.analyticsCoordinator.setUser(property: Analytics.UserProperties.hasEnsAvatar, value: true)
+                self?.analyticsCoordinator.setUser(property: AlphaAnalytics.UserProperties.hasEnsAvatar, value: true)
             })
             .eraseToAnyPublisher()
     }()

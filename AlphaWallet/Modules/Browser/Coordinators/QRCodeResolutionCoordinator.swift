@@ -108,7 +108,7 @@ final class QRCodeResolutionCoordinator: AlphaCoordinator {
         self.account = account
     }
 
-    func start(fromSource source: Analytics.ScanQRCodeSource) {
+    func start(fromSource source: AlphaAnalytics.ScanQRCodeSource) {
         scanQRCodeCoordinator.delegate = self
         addCoordinator(scanQRCodeCoordinator)
 

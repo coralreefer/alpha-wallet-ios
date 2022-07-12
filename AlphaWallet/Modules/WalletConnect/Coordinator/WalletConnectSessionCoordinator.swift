@@ -53,7 +53,7 @@ extension WalletConnectSessionCoordinator: WalletConnectSessionViewControllerDel
     }
 
     func controller(_ controller: WalletConnectSessionViewController, switchNetworkSelected sender: UIButton) {
-        analyticsCoordinator.log(action: Analytics.Action.walletConnectSwitchNetwork)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.walletConnectSwitchNetwork)
 
         let selectedServers: [RPCServerOrAuto] = controller.rpcServers.map { return .server($0) }
         let servers = serverChoices.filter { config.enabledServers.contains($0) } .compactMap { RPCServerOrAuto.server($0) }
@@ -64,19 +64,19 @@ extension WalletConnectSessionCoordinator: WalletConnectSessionViewControllerDel
             ServersCoordinator.promise(navigationController, viewModel: viewModel, coordinator: self)
         }.done { selection in
             let servers = selection.asServersArray
-            self.analyticsCoordinator.log(action: Analytics.Action.switchedServer, properties: [
-                Analytics.Properties.source.rawValue: "walletConnect"
+            self.analyticsCoordinator.log(action: AlphaAnalytics.Action.switchedServer, properties: [
+                AlphaAnalytics.Properties.source.rawValue: "walletConnect"
             ])
             try? self.provider.update(self.session.topicOrUrl, servers: servers)
         }.catch { _ in
-            self.analyticsCoordinator.log(action: Analytics.Action.cancelsSwitchServer, properties: [
-                Analytics.Properties.source.rawValue: "walletConnect"
+            self.analyticsCoordinator.log(action: AlphaAnalytics.Action.cancelsSwitchServer, properties: [
+                AlphaAnalytics.Properties.source.rawValue: "walletConnect"
             ])
         }
     }
 
     func controller(_ controller: WalletConnectSessionViewController, disconnectSelected sender: UIButton) {
-        analyticsCoordinator.log(action: Analytics.Action.walletConnectDisconnect)
+        analyticsCoordinator.log(action: AlphaAnalytics.Action.walletConnectDisconnect)
 
         try? provider.disconnect(session.topicOrUrl)
         navigationController.popViewController(animated: true)
