@@ -1319,7 +1319,7 @@
 		2912CCF51F6A830700C6CBE3 /* AlphaWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlphaWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2912CCF81F6A830700C6CBE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2912CD011F6A830700C6CBE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2912CD061F6A830700C6CBE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		2912CD061F6A830700C6CBE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2912CD0B1F6A830700C6CBE3 /* AlphaWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlphaWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2912CD111F6A830700C6CBE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		2912CD2A1F6A833E00C6CBE3 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
@@ -1931,7 +1931,7 @@
 		5E7C7FE30D58E4022AF04E48 /* AssetDefinitionStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDefinitionStoreTests.swift; sourceTree = "<group>"; };
 		5E7C7FE5EEC96A7CDF62213F /* DappsHomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DappsHomeHeaderView.swift; sourceTree = "<group>"; };
 		5E7C7FF2EF77D5004A600DDB /* SuccessOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessOverlayView.swift; sourceTree = "<group>"; };
-		613D04881FDE15F8008DE72E /* COMODO ECC Domain Validation Secure Server CA 2.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = "COMODO ECC Domain Validation Secure Server CA 2.cer"; sourceTree = "<group>"; };
+		613D04881FDE15F8008DE72E /* COMODO ECC Domain Validation Secure Server CA 2.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "COMODO ECC Domain Validation Secure Server CA 2.cer"; sourceTree = "<group>"; };
 		613D048A1FDE162B008DE72E /* AlphaWalletProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaWalletProviderFactory.swift; sourceTree = "<group>"; };
 		61C359DF2002AA590097B04D /* TransactionSigning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionSigning.swift; sourceTree = "<group>"; };
 		61C359E12002AC9D0097B04D /* TransactionSigningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSigningTests.swift; sourceTree = "<group>"; };
@@ -2654,70 +2654,13 @@
 		2912CCF71F6A830700C6CBE3 /* AlphaWallet */ = {
 			isa = PBXGroup;
 			children = (
-				87FBF2B628056B8E00616B7D /* GoogleService-Info.plist */,
-				87F15B1327F45B2B00EB9787 /* Covalent */,
-				87D7D66227D75AD400202861 /* Swap */,
-				87741F1B2770C3AD007F4604 /* WhereAreMyTokens */,
-				87D5BBD82727D9B20053E6D2 /* API.swift */,
-				87D5BBCA2727D2910053E6D2 /* schema.json */,
-				02C91C80277013B100EB10FB /* Rpc Network */,
-				02FA3F632818E11F005EDD63 /* Features */,
-				8712A37A26F314EF0009C376 /* Alerts */,
-				87BBF9682563DD7500FF4846 /* WalletConnect */,
-				878EE942255BC352000210DE /* Share */,
-				C80DC77C22AB7FAD009CFA1C /* TokenScriptFiles */,
-				C8803302205436EE00D73D6F /* ImagesOutsideAssetCatalog */,
-				C876FF69204A77B400B7D0EA /* Fonts */,
-				73ACEEF620163B4E003DD71D /* Lock */,
-				732086B2201506AA0047F605 /* Protection */,
-				29E6E0681FE897BB0079265A /* Browser */,
-				29AD8A0A1F93FBB7008E10E7 /* Foundation */,
-				290B2B511F8F4F840053C83E /* Localization */,
-				29FC9BC31F830880000209CD /* Core */,
-				291ED0901F6FA5C800E7E93A /* Transfer */,
-				2996F14E1F6CA802005C33AE /* Export */,
-				2996F1441F6C9875005C33AE /* Settings */,
-				023286DE277D78E9007D33C5 /* AddMultipleCustomRpc */,
-				291F52BD1F6C873600B369AB /* Accounts */,
-				291F52BA1F6B8CAF00B369AB /* Models */,
-				2912CD301F6A83E100C6CBE3 /* Welcome */,
-				296106C01F7640240006164B /* Tokens */,
-				2912CD291F6A831D00C6CBE3 /* Transactions */,
-				2912CD281F6A831700C6CBE3 /* Wallet */,
-				022CED7A277B01E10043287F /* ScrollableSegmentedControl */,
-				291F52A01F6B6DBC00B369AB /* EtherClient */,
-				291F52AA1F6B805400B369AB /* Vendors */,
-				291EC9E01F7053C80004EDD0 /* UI */,
-				29A13E311F6B1B6C00E432A2 /* Style */,
-				2996F14B1F6CA725005C33AE /* Extensions */,
 				2912CCF81F6A830700C6CBE3 /* AppDelegate.swift */,
-				29D72A291F6A8D1500CE9209 /* AppCoordinator.swift */,
-				293E626E1FA2ED1400CB0A66 /* ActiveWalletCoordinator.swift */,
-				29850D241F6B27A800791A49 /* R.generated.swift */,
-				2912CD011F6A830700C6CBE3 /* Assets.xcassets */,
-				2912CD061F6A830700C6CBE3 /* Info.plist */,
-				29AD8A071F93E1F0008E10E7 /* AlphaWallet.entitlements */,
-				613D04881FDE15F8008DE72E /* COMODO ECC Domain Validation Secure Server CA 2.cer */,
-				C868C5282053BDE00059672B /* LaunchScreen.storyboard */,
-				021C56272841A31200A5C987 /* LaunchScreen.xcassets */,
-				76F1D1936604D6A022E9AE90 /* Market */,
-				76F1D47A29573DA8BD3E4979 /* Redeem */,
-				5E7C7ACB32FB112CD7D92977 /* AlphaWalletHelp */,
-				5E7C7C37B4E80BA2E0DC7FA4 /* Marketplace */,
-				5E7C71698FE1429F1AC0777D /* Sell */,
-				5E7C7CE9D3BEED5AA1FC1599 /* RPC */,
-				879702F527EE47380056CA71 /* Notifications */,
-				5E7C75F7FC107AE3CF396331 /* TokenScriptClient */,
-				5E7C7429614BD6865E3C63C5 /* KeyManagement */,
-				5E7C7493B40E287B7FDF9317 /* Analytics */,
-				5E7C7EF382294C8C3357E9EC /* Activities */,
-				5E7C72373620D0B5825AA69C /* Gas */,
-				5E7C7651253551EB14A26F7C /* Donations */,
-				5E7C7F1CC5699A58ED5D4E74 /* WhatsNew */,
-				5E7C74F0A1BB877A6FE35F37 /* FiatOnRamp */,
-				5E7C76487E444E00B78BAA14 /* BlockscanChat */,
-				5E7C72AB43EC4939E6C7D46B /* Lists */,
-				5E7C72F803CD9A3A6A8D0839 /* Swaps */,
+				29AD8A0A1F93FBB7008E10E7 /* Foundation */,
+				CD8C0EB0287DA28C00548162 /* Managers */,
+				CD8C0EAF287DA26B00548162 /* Modules */,
+				CD8C0EB2287DA2BA00548162 /* Aseets */,
+				CD8C0EB1287DA29E00548162 /* Generated */,
+				CD8C0EAE287DA1EC00548162 /* SupportingFiles */,
 			);
 			path = AlphaWallet;
 			sourceTree = "<group>";
@@ -2809,6 +2752,8 @@
 		291EC9E01F7053C80004EDD0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				29A13E311F6B1B6C00E432A2 /* Style */,
+				022CED7A277B01E10043287F /* ScrollableSegmentedControl */,
 				879F184B26E73D58000602F2 /* ContainerTableViewCell.swift */,
 				8736214C264D3AFF00AAF794 /* BalloonMarker.swift */,
 				8736214B264D3AFF00AAF794 /* XYMarkerView.swift */,
@@ -2894,17 +2839,11 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		291F52AA1F6B805400B369AB /* Vendors */ = {
-			isa = PBXGroup;
-			children = (
-				5E7C7D05CF5206E7F9573D5F /* TrustCore */,
-			);
-			path = Vendors;
-			sourceTree = "<group>";
-		};
 		291F52BA1F6B8CAF00B369AB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5E7C72F803CD9A3A6A8D0839 /* Swaps */,
+				5E7C72373620D0B5825AA69C /* Gas */,
 				29CA4B781F6FBFD50032313D /* Balance.swift */,
 				29BB94941F6FC54C009B09CC /* EthereumUnit.swift */,
 				29282B521F7630970067F88D /* TokenUpdate.swift */,
@@ -3422,6 +3361,10 @@
 		29AD8A0A1F93FBB7008E10E7 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				2996F14B1F6CA725005C33AE /* Extensions */,
+				C876FF69204A77B400B7D0EA /* Fonts */,
+				291EC9E01F7053C80004EDD0 /* UI */,
+				291F52BA1F6B8CAF00B369AB /* Models */,
 				29FC0CB71F8299510036089F /* Coordinator.swift */,
 				29AD8A0B1F93FBBF008E10E7 /* Subscribable.swift */,
 				2995739E1FA1F294006F17FD /* QRCodeValueParser.swift */,
@@ -3894,13 +3837,6 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		442FC8E0B13CA90882F8BBA6 /* Rest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Rest;
-			sourceTree = "<group>";
-		};
 		442FCAD9E5D2114DA20B834B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -4051,12 +3987,12 @@
 			path = OpenSea;
 			sourceTree = "<group>";
 		};
-		5E7C72AB43EC4939E6C7D46B /* Lists */ = {
+		5E7C72AB43EC4939E6C7D46B /* SpamTokens */ = {
 			isa = PBXGroup;
 			children = (
 				5E7C756B103348BA67AA0C1A /* SpamTokens.swift */,
 			);
-			path = Lists;
+			path = SpamTokens;
 			sourceTree = "<group>";
 		};
 		5E7C72C3D9C939508F8EBFAC /* Models */ = {
@@ -4472,13 +4408,13 @@
 			path = Commands;
 			sourceTree = "<group>";
 		};
-		5E7C7ACB32FB112CD7D92977 /* AlphaWalletHelp */ = {
+		5E7C7ACB32FB112CD7D92977 /* Help */ = {
 			isa = PBXGroup;
 			children = (
 				5E7C70333A8A3616EDE068D7 /* ViewControllers */,
 				5E7C74128421DCAC6BCC2354 /* Views */,
 			);
-			path = AlphaWalletHelp;
+			path = Help;
 			sourceTree = "<group>";
 		};
 		5E7C7AD07E232C7A32564731 /* ViewModels */ = {
@@ -4894,7 +4830,6 @@
 				AAEF2CA92050A64F0038BE0D /* Helpers */,
 				442FC7C7CCBFDDE6B395C64B /* ViewControllers */,
 				442FC5CFFC1E1126C7E6C682 /* ViewModels */,
-				442FC8E0B13CA90882F8BBA6 /* Rest */,
 				442FCAD9E5D2114DA20B834B /* Models */,
 			);
 			path = Redeem;
@@ -5816,6 +5751,7 @@
 		87F15B1327F45B2B00EB9787 /* Covalent */ = {
 			isa = PBXGroup;
 			children = (
+				5E7C74F0A1BB877A6FE35F37 /* FiatOnRamp */,
 				87F15B2227F6E96200EB9787 /* TransactionProviders */,
 			);
 			path = Covalent;
@@ -5875,7 +5811,8 @@
 				5E7C7B211FF0FE5BE98BB7D0 /* aETH.tsml */,
 				5E7C7676A744239C4880A3ED /* ERC721-TokenScript.tsml */,
 			);
-			path = TokenScriptFiles;
+			name = TokenScriptFiles;
+			path = AlphaWallet/Aseets/TokenScriptFiles;
 			sourceTree = SOURCE_ROOT;
 		};
 		C876FF69204A77B400B7D0EA /* Fonts */ = {
@@ -5960,6 +5897,102 @@
 				5E7C7BF7C9B44B3C2D5330CE /* PaymentFlowFromEip681UrlResolver.swift */,
 				8782035C2431E66600792F12 /* TokensFilter.swift */,
 				87C650C225F2408E007B02CB /* ServerUnavailableCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		CD8C0EAE287DA1EC00548162 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2912CD061F6A830700C6CBE3 /* Info.plist */,
+				29AD8A071F93E1F0008E10E7 /* AlphaWallet.entitlements */,
+				613D04881FDE15F8008DE72E /* COMODO ECC Domain Validation Secure Server CA 2.cer */,
+				87FBF2B628056B8E00616B7D /* GoogleService-Info.plist */,
+				87D5BBCA2727D2910053E6D2 /* schema.json */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		CD8C0EAF287DA26B00548162 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5E7C71698FE1429F1AC0777D /* Sell */,
+				5E7C7C37B4E80BA2E0DC7FA4 /* Marketplace */,
+				5E7C7ACB32FB112CD7D92977 /* Help */,
+				76F1D47A29573DA8BD3E4979 /* Redeem */,
+				76F1D1936604D6A022E9AE90 /* Market */,
+				2912CD281F6A831700C6CBE3 /* Wallet */,
+				2912CD291F6A831D00C6CBE3 /* Transactions */,
+				296106C01F7640240006164B /* Tokens */,
+				2912CD301F6A83E100C6CBE3 /* Welcome */,
+				291F52BD1F6C873600B369AB /* Accounts */,
+				023286DE277D78E9007D33C5 /* AddMultipleCustomRpc */,
+				2996F1441F6C9875005C33AE /* Settings */,
+				2996F14E1F6CA802005C33AE /* Export */,
+				291ED0901F6FA5C800E7E93A /* Transfer */,
+				732086B2201506AA0047F605 /* Protection */,
+				73ACEEF620163B4E003DD71D /* Lock */,
+				29E6E0681FE897BB0079265A /* Browser */,
+				878EE942255BC352000210DE /* Share */,
+				87BBF9682563DD7500FF4846 /* WalletConnect */,
+				CD8C0EB3287DA31600548162 /* Coordinators */,
+				5E7C75F7FC107AE3CF396331 /* TokenScriptClient */,
+				5E7C7EF382294C8C3357E9EC /* Activities */,
+				87741F1B2770C3AD007F4604 /* WhereAreMyTokens */,
+				5E7C7F1CC5699A58ED5D4E74 /* WhatsNew */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CD8C0EB0287DA28C00548162 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5E7C7651253551EB14A26F7C /* Donations */,
+				5E7C7493B40E287B7FDF9317 /* Analytics */,
+				5E7C7429614BD6865E3C63C5 /* KeyManagement */,
+				879702F527EE47380056CA71 /* Notifications */,
+				5E7C7CE9D3BEED5AA1FC1599 /* RPC */,
+				5E7C7D05CF5206E7F9573D5F /* TrustCore */,
+				291F52A01F6B6DBC00B369AB /* EtherClient */,
+				29FC9BC31F830880000209CD /* Core */,
+				02FA3F632818E11F005EDD63 /* Features */,
+				02C91C80277013B100EB10FB /* Rpc Network */,
+				87D7D66227D75AD400202861 /* Swap */,
+				5E7C76487E444E00B78BAA14 /* BlockscanChat */,
+				5E7C72AB43EC4939E6C7D46B /* SpamTokens */,
+				87F15B1327F45B2B00EB9787 /* Covalent */,
+				87D5BBD82727D9B20053E6D2 /* API.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CD8C0EB1287DA29E00548162 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				8712A37A26F314EF0009C376 /* Alerts */,
+				29850D241F6B27A800791A49 /* R.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		CD8C0EB2287DA2BA00548162 /* Aseets */ = {
+			isa = PBXGroup;
+			children = (
+				C868C5282053BDE00059672B /* LaunchScreen.storyboard */,
+				021C56272841A31200A5C987 /* LaunchScreen.xcassets */,
+				2912CD011F6A830700C6CBE3 /* Assets.xcassets */,
+				C8803302205436EE00D73D6F /* ImagesOutsideAssetCatalog */,
+				290B2B511F8F4F840053C83E /* Localization */,
+				C80DC77C22AB7FAD009CFA1C /* TokenScriptFiles */,
+			);
+			path = Aseets;
+			sourceTree = "<group>";
+		};
+		CD8C0EB3287DA31600548162 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				29D72A291F6A8D1500CE9209 /* AppCoordinator.swift */,
+				293E626E1FA2ED1400CB0A66 /* ActiveWalletCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -6321,7 +6354,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n#Download graphql scheme \n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://cloud.enjin.io/graphql/default\" API.swift\n";
+			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"SupportingFiles/schema.json\" Managers/API.swift\n#Download graphql scheme \n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://cloud.enjin.io/graphql/default\" API.swift\n";
 		};
 		87FBF2B828056D8600616B7D /* Upload debug symbols to Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
