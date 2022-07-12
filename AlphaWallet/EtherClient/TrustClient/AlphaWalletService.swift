@@ -26,7 +26,7 @@ extension AlphaWalletService: TargetType {
         case .pricesOfTokens:
             return Constants.Coingecko.baseUrl
         case .getTransactions(let server, _, _, _, _):
-            if let url = server.transactionInfoEndpoints {
+            if let url = server.transactionInfoEndpoints {  
                 return url
             } else {
                 //HACK: we intentionally return an invalid, but non-nil URL because that's what the function needs to return. Keeps the code simple, yet still harmless
