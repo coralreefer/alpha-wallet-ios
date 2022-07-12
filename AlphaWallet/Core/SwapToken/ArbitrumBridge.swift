@@ -44,7 +44,7 @@ final class ArbitrumBridge: SupportedTokenActionsProvider, BridgeTokenURLProvide
     }
 
     func url(token: TokenActionsServiceKey) -> URL? {
-        return Constants.arbitrumBridge
+        return AlphaConstants.arbitrumBridge
     }
 
     func start() {

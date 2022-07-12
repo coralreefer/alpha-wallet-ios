@@ -86,7 +86,7 @@ struct QuickSwap: SupportedTokenActionsProvider, SwapTokenViaUrlProvider {
 
         class functional {
             static func rewriteContractInput(_ address: AlphaWallet.Address) -> String {
-                if address.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
+                if address.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
                     //QuickSwap (forked from Uniswap) likes it this way
                     return "ETH"
                 } else {

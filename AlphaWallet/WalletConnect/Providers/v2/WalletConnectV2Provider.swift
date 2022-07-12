@@ -14,7 +14,7 @@ class WalletConnectV2Provider: WalletConnectServer {
 
     private var currentProposal: WalletConnectSign.Session.Proposal?
     private var pendingProposals: [WalletConnectSign.Session.Proposal] = []
-    private let metadata = AppMetadata(name: Constants.WalletConnect.server, description: "", url: Constants.WalletConnect.websiteUrl.absoluteString, icons: Constants.WalletConnect.icons)
+    private let metadata = AppMetadata(name: AlphaConstants.WalletConnect.server, description: "", url: AlphaConstants.WalletConnect.websiteUrl.absoluteString, icons: AlphaConstants.WalletConnect.icons)
     private let storage = WalletConnectV2Storage()
     private let config: Config = Config()
     //NOTE: Since the connection url doesn't we are getting in `func connect(url: AlphaWallet.WalletConnect.ConnectionUrl) throws` isn't the same of what we got in
@@ -30,7 +30,7 @@ class WalletConnectV2Provider: WalletConnectServer {
             .eraseToAnyPublisher()
     }()
     private lazy var client: Sign = {
-        Sign.configure(Sign.Config(metadata: metadata, projectId: Constants.Credentials.walletConnectProjectId))
+        Sign.configure(Sign.Config(metadata: metadata, projectId: AlphaConstants.Credentials.walletConnectProjectId))
         return .instance
     }()
 

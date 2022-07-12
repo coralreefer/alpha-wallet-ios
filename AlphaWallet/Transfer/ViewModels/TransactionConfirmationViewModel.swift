@@ -118,7 +118,7 @@ extension TransactionConfirmationViewModel {
         let estimatedProcessingTime = configurator.selectedConfigurationType.estimatedProcessingTime
         let symbol = configurator.session.server.symbol
         let feeString = EtherNumberFormatter.short.string(from: fee)
-        let cryptoToDollarSymbol = Constants.Currency.usd
+        let cryptoToDollarSymbol = AlphaConstants.Currency.usd
         let costs: String
         if let cryptoToDollarRate = cryptoToDollarRate {
             let cryptoToDollarValue = StringFormatter().currency(with: Double(fee) * cryptoToDollarRate / Double(EthereumUnit.ether.rawValue), and: cryptoToDollarSymbol)
@@ -229,7 +229,7 @@ extension TransactionConfirmationViewModel {
             switch transactionType {
             case .nativeCryptocurrency(let token, _, _):
                 if let cryptoToDollarRate = cryptoToDollarRate {
-                    let cryptoToDollarSymbol = Constants.Currency.usd
+                    let cryptoToDollarSymbol = AlphaConstants.Currency.usd
                     let double = amount.value.optionalDecimalValue ?? 0
                     let value = double.multiplying(by: NSDecimalNumber(value: cryptoToDollarRate))
                     let cryptoToDollarValue = StringFormatter().currency(with: value, and: cryptoToDollarSymbol)
@@ -252,7 +252,7 @@ extension TransactionConfirmationViewModel {
         var gasFee: String {
             let fee: BigInt = configurator.currentConfiguration.gasPrice * configurator.currentConfiguration.gasLimit
             let feeString = EtherNumberFormatter.short.string(from: fee)
-            let cryptoToDollarSymbol = Constants.Currency.usd
+            let cryptoToDollarSymbol = AlphaConstants.Currency.usd
             if let cryptoToDollarRate = cryptoToDollarRate {
                 let cryptoToDollarValue = StringFormatter().currency(with: Double(fee) * cryptoToDollarRate / Double(EthereumUnit.ether.rawValue), and: cryptoToDollarSymbol)
                 return "< ~\(feeString) \(session.server.symbol) (\(cryptoToDollarValue) \(cryptoToDollarSymbol))"
@@ -344,7 +344,7 @@ extension TransactionConfirmationViewModel {
         }
         let session: WalletSession
         private var formattedAmountValue: String {
-            let cryptoToDollarSymbol = Constants.Currency.usd
+            let cryptoToDollarSymbol = AlphaConstants.Currency.usd
             let amount = Double(configurator.transaction.value) / Double(EthereumUnit.ether.rawValue)
             let amountString = EtherNumberFormatter.short.string(from: configurator.transaction.value)
             let symbol = configurator.session.server.symbol
@@ -442,7 +442,7 @@ extension TransactionConfirmationViewModel {
             configurator.selectedConfigurationType.title
         }
         private var formattedAmountValue: String {
-            let cryptoToDollarSymbol = Constants.Currency.usd
+            let cryptoToDollarSymbol = AlphaConstants.Currency.usd
             let amount = Double(configurator.transaction.value) / Double(EthereumUnit.ether.rawValue)
             let amountString = EtherNumberFormatter.short.string(from: configurator.transaction.value)
             let symbol = configurator.session.server.symbol
@@ -707,7 +707,7 @@ extension TransactionConfirmationViewModel {
                     return .init(title: .normal(configurationTitle), headerName: headerName, configuration: configuration)
                 }
             case .amount:
-                let cryptoToDollarSymbol = Constants.Currency.usd
+                let cryptoToDollarSymbol = AlphaConstants.Currency.usd
                 let nativeCryptoSymbol = configurator.session.server.symbol
                 let formattedAmountValue: String
                 let nativeCryptoPrice = EtherNumberFormatter.short.string(from: BigInt(price))

@@ -18,7 +18,7 @@ extension Covalent {
     }
 
     final class NetworkProvider {
-        private let key = Constants.Credentials.covalentApiKey
+        private let key = AlphaConstants.Credentials.covalentApiKey
 
         func transactions(walletAddress: AlphaWallet.Address, server: RPCServer, page: Int? = nil, pageSize: Int = 5, blockSignedAtAsc: Bool = false) -> AnyPublisher<TransactionsResponse, CovalentError> {
             return Alamofire

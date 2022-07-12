@@ -74,7 +74,7 @@ class TokenGroupIdentifierTest: XCTestCase {
         let t2 = Token(contract: AlphaWallet.Address(string: "0x3b42fd538597fd049648c9f017208bf712195b73")!, server: RPCServer.custom(chainId: 250))
         XCTAssertEqual(tokenGroupIdentifier!.identify(tokenObject: t2), TokenGroup.assets)
         // match contact and chain id not in json file
-        let t3 = Token(contract: Constants.nullAddress, server: RPCServer.custom(chainId: 555))
+        let t3 = Token(contract: AlphaConstants.nullAddress, server: RPCServer.custom(chainId: 555))
         XCTAssertEqual(tokenGroupIdentifier!.identify(tokenObject: t3), TokenGroup.assets)
     }
 

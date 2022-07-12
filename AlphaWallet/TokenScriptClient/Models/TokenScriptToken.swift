@@ -47,7 +47,7 @@ extension TokenScript {
 
         static var empty: Token {
             return Token(
-                    tokenIdOrEvent: .tokenId(tokenId: Constants.nullTokenIdBigUInt),
+                    tokenIdOrEvent: .tokenId(tokenId: AlphaConstants.nullTokenIdBigUInt),
                     tokenType: TokenType.erc875,
                     index: 0,
                     name: R.string.localizable.tokensTitlecase(),

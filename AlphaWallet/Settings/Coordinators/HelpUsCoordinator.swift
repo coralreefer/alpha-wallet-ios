@@ -89,7 +89,7 @@ extension HelpUsCoordinator: CollectUsersEmailViewControllerDelegate {
         if email.isEmpty {
             logEmailNewsletterSubscription(isSubscribed: false)
         } else {
-            EmailList(listSpecificKey: Constants.Credentials.mailChimpListSpecificKey).subscribe(email: email)
+            EmailList(listSpecificKey: AlphaConstants.Credentials.mailChimpListSpecificKey).subscribe(email: email)
             logEmailNewsletterSubscription(isSubscribed: true)
         }
     }

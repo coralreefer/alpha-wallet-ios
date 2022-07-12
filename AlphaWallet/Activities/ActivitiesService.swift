@@ -234,7 +234,7 @@ class ActivitiesService: NSObject, ActivitiesServiceType {
             if let h = tokensAndTokenHolders[token.addressAndRPCServer] {
                 tokenHolders = h
             } else {
-                if token.contractAddress.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
+                if token.contractAddress.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
                     let _token = TokenScript.Token(tokenIdOrEvent: .tokenId(tokenId: .init(1)), tokenType: .nativeCryptocurrency, index: 0, name: "", symbol: "", status: .available, values: .init())
 
                     tokenHolders = [TokenHolder(tokens: [_token], contractAddress: token.contractAddress, hasAssetDefinition: true)]
@@ -246,7 +246,7 @@ class ActivitiesService: NSObject, ActivitiesServiceType {
             //NOTE: using `tokenHolders[0]` i received crash with out of range exception
             guard let tokenHolder = tokenHolders.first else { return nil }
             //TODO fix for activities: special fix to filter out the event we don't want - need to doc this and have to handle with TokenScript design
-            let isNativeCryptoAddress = token.contractAddress.sameContract(as: Constants.nativeCryptoAddressInDatabase)
+            let isNativeCryptoAddress = token.contractAddress.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase)
             if card.name == "aETHMinted" && isNativeCryptoAddress && cardAttributes["amount"]?.uintValue == 0 {
                 return nil
             } else {

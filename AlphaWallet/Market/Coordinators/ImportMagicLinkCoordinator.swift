@@ -85,7 +85,7 @@ class ImportMagicLinkCoordinator: Coordinator {
     ) -> (Parameters, String) {
         let signature = signedOrder.signature.drop0x
         let parameters: Parameters = [
-            "prefix": Constants.xdaiDropPrefix,
+            "prefix": AlphaConstants.xdaiDropPrefix,
             "recipient": recipient.eip55String,
             "amount": signedOrder.order.count.description,
             "expiry": signedOrder.order.expiry.description,
@@ -97,7 +97,7 @@ class ImportMagicLinkCoordinator: Coordinator {
             "networkId": server.chainID.description,
             "contractAddress": signedOrder.order.contractAddress
         ]
-        return (parameters, Constants.currencyDropServer)
+        return (parameters, AlphaConstants.currencyDropServer)
     }
 
     private func createHTTPParametersForNormalLinksToPaymentServer(
@@ -128,10 +128,10 @@ class ImportMagicLinkCoordinator: Coordinator {
 
         if signedOrder.order.spawnable {
             parameters.removeValue(forKey: "indices")
-            query = Constants.paymentServerSpawnable
+            query = AlphaConstants.paymentServerSpawnable
         } else {
             parameters.removeValue(forKey: "tokenIds")
-            query = Constants.paymentServer
+            query = AlphaConstants.paymentServer
         }
 
         return (parameters, query)
@@ -302,10 +302,10 @@ class ImportMagicLinkCoordinator: Coordinator {
 
     private func handleMagicLink(url: URL) -> Bool {
         preparingToImportUniversalLink()
-        let isLegacyLink = url.description.hasPrefix(Constants.legacyMagicLinkPrefix)
+        let isLegacyLink = url.description.hasPrefix(AlphaConstants.legacyMagicLinkPrefix)
         let prefix: String
         if isLegacyLink {
-            prefix = Constants.legacyMagicLinkPrefix
+            prefix = AlphaConstants.legacyMagicLinkPrefix
         } else {
             prefix = server.magicLinkPrefix.description
         }
@@ -348,7 +348,7 @@ class ImportMagicLinkCoordinator: Coordinator {
             "contractAddress": contractAddress.eip55String
         ]
         Alamofire.request(
-                Constants.paymentServerSupportsContractEndPoint,
+                AlphaConstants.paymentServerSupportsContractEndPoint,
                 method: .get,
                 parameters: parameters
         ).responseJSON { result in
@@ -364,7 +364,7 @@ class ImportMagicLinkCoordinator: Coordinator {
     private func checkIfLinkClaimed(r: String, completionHandler: @escaping (Bool) -> Void) {
         let parameters: Parameters = [ "r": r ]
         Alamofire.request(
-                Constants.paymentServerClaimedToken,
+                AlphaConstants.paymentServerClaimedToken,
                 method: .get,
                 parameters: parameters
         ).responseJSON { result in

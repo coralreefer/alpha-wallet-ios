@@ -42,7 +42,7 @@ class RPCServerTests: XCTestCase {
     }
 
     func testDefaultMainnetServers() {
-        let all = Constants.defaultEnabledServers
+        let all = AlphaConstants.defaultEnabledServers
         XCTAssertTrue(all.contains(.main))
     }
 }

@@ -61,7 +61,7 @@ class MigrationInitializerForOneChainPerDatabase: Initializer {
                 migration.enumerateObjects(ofType: TokenObject.className()) { oldObject, newObject in
                     guard let oldObject = oldObject else { return }
                     guard let newObject = newObject else { return }
-                    if let contract = oldObject["contract"] as? String, Constants.nativeCryptoAddressInDatabase.sameContract(as: contract) {
+                    if let contract = oldObject["contract"] as? String, AlphaConstants.nativeCryptoAddressInDatabase.sameContract(as: contract) {
                         newObject["rawType"] = TokenType.nativeCryptocurrency.rawValue
                     }
                 }

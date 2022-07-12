@@ -2,7 +2,7 @@
 
 import Foundation
 
-extension Constants {
+extension AlphaConstants {
     enum Credentials {
         static let infuraKey = "ad6d834b7a1e4d03a7fde92020616149"
         static let etherscanKey = "1PX7RG8H4HTDY8X55YRMCAKPZK476M23ZR"

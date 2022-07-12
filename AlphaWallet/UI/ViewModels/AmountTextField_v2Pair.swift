@@ -86,7 +86,7 @@ extension AmountTextField_v2 {
         var symbol: String {
             switch left {
             case .cryptoCurrency(let token): return token.symbol
-            case .fiatCurrency: return Constants.Currency.usd
+            case .fiatCurrency: return AlphaConstants.Currency.usd
             }
         }
 

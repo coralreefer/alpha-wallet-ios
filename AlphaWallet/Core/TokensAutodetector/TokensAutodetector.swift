@@ -137,15 +137,15 @@ class SingleChainTokensAutodetector: NSObject, TokensAutodetector {
     }
 
     private func autoDetectMainnetPartnerTokens() {
-        autoDetectTokens(withContracts: Constants.partnerContracts)
+        autoDetectTokens(withContracts: AlphaConstants.partnerContracts)
     }
 
     private func autoDetectXDaiPartnerTokens() {
-        autoDetectTokens(withContracts: Constants.ethDenverXDaiPartnerContracts)
+        autoDetectTokens(withContracts: AlphaConstants.ethDenverXDaiPartnerContracts)
     }
 
     private func autoDetectRinkebyPartnerTokens() {
-        autoDetectTokens(withContracts: Constants.rinkebyPartnerContracts)
+        autoDetectTokens(withContracts: AlphaConstants.rinkebyPartnerContracts)
     }
 
     private func autoDetectTokens(withContracts contractsToDetect: [(name: String, contract: AlphaWallet.Address)]) {

@@ -54,7 +54,7 @@ class BlockscanChatService {
         let isCurrentRealAccount = account.address == blockscanChat.address
 
         guard Features.default.isAvailable(.isBlockscanChatEnabled) else { return }
-        guard !Constants.Credentials.blockscanChatProxyKey.isEmpty else { return }
+        guard !AlphaConstants.Credentials.blockscanChatProxyKey.isEmpty else { return }
         firstly {
             blockscanChat.fetchUnreadCount()
         }.done { [weak self] unreadCount in
@@ -83,7 +83,7 @@ class BlockscanChatService {
     func openBlockscanChat(forAddress address: AlphaWallet.Address) {
         let isCurrentRealAccount = account.address == address
         guard isCurrentRealAccount else { return }
-        delegate?.openBlockscanChat(url: Constants.BlockscanChat.blockscanChatWebUrl.appendingPathComponent(address.eip55String), for: self)
+        delegate?.openBlockscanChat(url: AlphaConstants.BlockscanChat.blockscanChatWebUrl.appendingPathComponent(address.eip55String), for: self)
         let delayForUserToClearChats: Double = 10
         DispatchQueue.main.asyncAfter(deadline: .now() + delayForUserToClearChats) { [weak self] in
             self?.refreshUnreadCountForCurrentWallet()

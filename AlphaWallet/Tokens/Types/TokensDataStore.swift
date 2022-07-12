@@ -630,7 +630,7 @@ extension MultipleChainsTokensDataStore.functional {
 
     static func etherTokenObject(forServer server: RPCServer) -> TokenObject {
         return TokenObject(
-                contract: Constants.nativeCryptoAddressInDatabase,
+                contract: AlphaConstants.nativeCryptoAddressInDatabase,
                 server: server,
                 name: server.name,
                 symbol: server.symbol,
@@ -643,7 +643,7 @@ extension MultipleChainsTokensDataStore.functional {
 
     static func etherToken(forServer server: RPCServer) -> Token {
         return Token(
-                contract: Constants.nativeCryptoAddressInDatabase,
+                contract: AlphaConstants.nativeCryptoAddressInDatabase,
                 server: server,
                 name: server.name,
                 symbol: server.symbol,
@@ -692,7 +692,7 @@ extension MultipleChainsTokensDataStore.functional {
         var result = tokens
         for server in servers {
             if let address = server.erc20AddressForNativeToken, result.contains(where: { $0.contractAddress.sameContract(as: address) }) {
-                result = result.filter { !$0.contractAddress.sameContract(as: Constants.nativeCryptoAddressInDatabase) && $0.server == server }
+                result = result.filter { !$0.contractAddress.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) && $0.server == server }
             } else {
                 continue
             }

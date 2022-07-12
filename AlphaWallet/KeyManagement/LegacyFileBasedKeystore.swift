@@ -18,7 +18,7 @@ class LegacyFileBasedKeystore {
     private let etherkeystore: Keystore
     let keystoreDirectory: URL
 
-    public init(keychain: KeychainSwift = KeychainSwift(keyPrefix: Constants.keychainKeyPrefix), keyStoreSubfolder: String = "/keystore", keystore: Keystore) throws {
+    public init(keychain: KeychainSwift = KeychainSwift(keyPrefix: AlphaConstants.keychainKeyPrefix), keyStoreSubfolder: String = "/keystore", keystore: Keystore) throws {
         if !UIApplication.shared.isProtectedDataAvailable {
             throw FileBasedKeystoreError.protectionDisabled
         }

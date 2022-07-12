@@ -251,7 +251,7 @@ private class PrivateXMLHandler {
     }()
 
     lazy var labelInSingularForm: String? = {
-        if contractAddress.sameContract(as: Constants.katContractAddress) {
+        if contractAddress.sameContract(as: AlphaConstants.katContractAddress) {
             return R.string.localizable.katTitlecase()
         }
 
@@ -263,7 +263,7 @@ private class PrivateXMLHandler {
     }()
 
     lazy var labelInPluralForm: String? = {
-        if contractAddress.sameContract(as: Constants.katContractAddress) {
+        if contractAddress.sameContract(as: AlphaConstants.katContractAddress) {
             return R.string.localizable.katTitlecase()
         }
 
@@ -615,7 +615,7 @@ private class PrivateXMLHandler {
                 }
         let fromActionAsTopLevel: [(AlphaWallet.Address, Int)]
         if let server = XMLHandler.getServerForNativeCurrencyAction(fromRoot: xml, xmlContext: xmlContext) {
-            fromActionAsTopLevel = [(Constants.nativeCryptoAddressInDatabase, server.chainID)]
+            fromActionAsTopLevel = [(AlphaConstants.nativeCryptoAddressInDatabase, server.chainID)]
         } else {
             fromActionAsTopLevel = []
         }

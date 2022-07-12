@@ -11,18 +11,18 @@ struct Formatter {
 
     static let currency: NumberFormatter = {
         let formatter = basicCurrencyFormatter()
-        formatter.minimumFractionDigits = Constants.formatterFractionDigits
-        formatter.maximumFractionDigits = Constants.formatterFractionDigits
+        formatter.minimumFractionDigits = AlphaConstants.formatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.formatterFractionDigits
         formatter.currencySymbol = "$"
         return formatter
     }()
 
     static let usd: NumberFormatter = {
         let formatter = basicCurrencyFormatter()
-        formatter.positiveFormat = ",###.# " + Constants.Currency.usd
-        formatter.negativeFormat = "-,###.# " + Constants.Currency.usd
-        formatter.minimumFractionDigits = Constants.formatterFractionDigits
-        formatter.maximumFractionDigits = Constants.formatterFractionDigits
+        formatter.positiveFormat = ",###.# " + AlphaConstants.Currency.usd
+        formatter.negativeFormat = "-,###.# " + AlphaConstants.Currency.usd
+        formatter.minimumFractionDigits = AlphaConstants.formatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.formatterFractionDigits
         return formatter
     }()
 
@@ -30,8 +30,8 @@ struct Formatter {
         let formatter = basicCurrencyFormatter()
         formatter.positiveFormat = ",###.#"
         formatter.negativeFormat = "-,###.#"
-        formatter.minimumFractionDigits = Constants.formatterFractionDigits
-        formatter.maximumFractionDigits = Constants.formatterFractionDigits
+        formatter.minimumFractionDigits = AlphaConstants.formatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.formatterFractionDigits
         formatter.numberStyle = .percent
         return formatter
     }()
@@ -40,8 +40,8 @@ struct Formatter {
         let formatter = basicCurrencyFormatter()
         formatter.positiveFormat = ",###.#"
         formatter.negativeFormat = "-,###.#"
-        formatter.minimumFractionDigits = Constants.etherFormatterFractionDigits
-        formatter.maximumFractionDigits = Constants.etherFormatterFractionDigits
+        formatter.minimumFractionDigits = AlphaConstants.etherFormatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.etherFormatterFractionDigits
         formatter.numberStyle = .none
         return formatter
     }()
@@ -50,8 +50,8 @@ struct Formatter {
         let formatter = basicCurrencyFormatter()
         formatter.positiveFormat = ",###.#" + " " + symbol
         formatter.negativeFormat = "-,###.#" + " " + symbol
-        formatter.minimumFractionDigits = Constants.etherFormatterFractionDigits
-        formatter.maximumFractionDigits = Constants.etherFormatterFractionDigits
+        formatter.minimumFractionDigits = AlphaConstants.etherFormatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.etherFormatterFractionDigits
         formatter.numberStyle = .none
         return formatter
     }
@@ -60,8 +60,8 @@ struct Formatter {
         let formatter = basicCurrencyFormatter()
         formatter.positiveFormat = "+$,###.#"
         formatter.negativeFormat = "-$,###.#"
-        formatter.minimumFractionDigits = Constants.formatterFractionDigits
-        formatter.maximumFractionDigits = Constants.formatterFractionDigits
+        formatter.minimumFractionDigits = AlphaConstants.formatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.formatterFractionDigits
         return formatter
     }()
 
@@ -69,8 +69,8 @@ struct Formatter {
         let formatter = basicCurrencyFormatter()
         formatter.positiveFormat = "$,###.#"
         formatter.negativeFormat = "-$,###.#"
-        formatter.minimumFractionDigits = Constants.formatterFractionDigits
-        formatter.maximumFractionDigits = Constants.formatterFractionDigits
+        formatter.minimumFractionDigits = AlphaConstants.formatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.formatterFractionDigits
         return formatter
     }()
 
@@ -90,8 +90,8 @@ struct Formatter {
     static let currencyAccounting: NumberFormatter = {
         let formatter = basicCurrencyFormatter()
         formatter.currencySymbol = ""
-        formatter.minimumFractionDigits = Constants.formatterFractionDigits
-        formatter.maximumFractionDigits = Constants.formatterFractionDigits
+        formatter.minimumFractionDigits = AlphaConstants.formatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.formatterFractionDigits
         formatter.numberStyle = .currencyAccounting
         formatter.isLenient = true
         return formatter
@@ -100,8 +100,8 @@ struct Formatter {
     static let alternateAmount: NumberFormatter = {
         let formatter = basicCurrencyFormatter()
         formatter.currencySymbol = ""
-        formatter.minimumFractionDigits = Constants.etherFormatterFractionDigits
-        formatter.maximumFractionDigits = Constants.etherFormatterFractionDigits
+        formatter.minimumFractionDigits = AlphaConstants.etherFormatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.etherFormatterFractionDigits
         return formatter
     }()
 }

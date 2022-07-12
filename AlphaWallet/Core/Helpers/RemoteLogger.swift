@@ -47,18 +47,18 @@ class RemoteLogger {
     private let logger = DDLog()
 
     private init() {
-        guard !Constants.Credentials.paperTrail.host.isEmpty else {
+        guard !AlphaConstants.Credentials.paperTrail.host.isEmpty else {
             isActive = false
             return
         }
-        guard Constants.Credentials.paperTrail.port > 0 else {
+        guard AlphaConstants.Credentials.paperTrail.port > 0 else {
             isActive = false
             return
         }
         isActive = true
         let paperTrailLogger: RMPaperTrailLogger = RMPaperTrailLogger.sharedInstance()!
-        paperTrailLogger.host = Constants.Credentials.paperTrail.host
-        paperTrailLogger.port = Constants.Credentials.paperTrail.port
+        paperTrailLogger.host = AlphaConstants.Credentials.paperTrail.host
+        paperTrailLogger.port = AlphaConstants.Credentials.paperTrail.port
         logger.add(paperTrailLogger)
     }
 

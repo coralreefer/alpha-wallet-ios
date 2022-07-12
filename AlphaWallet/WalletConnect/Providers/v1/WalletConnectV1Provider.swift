@@ -19,10 +19,10 @@ class WalletConnectV1Provider: WalletConnectServer {
 
     private let walletMeta: Session.ClientMeta = {
         let client = Session.ClientMeta(
-            name: Constants.WalletConnect.server,
+            name: AlphaConstants.WalletConnect.server,
             description: nil,
-            icons: Constants.WalletConnect.icons.compactMap { URL(string: $0) },
-            url: Constants.WalletConnect.websiteUrl
+            icons: AlphaConstants.WalletConnect.icons.compactMap { URL(string: $0) },
+            url: AlphaConstants.WalletConnect.websiteUrl
         )
         return client
     }()
@@ -75,7 +75,7 @@ class WalletConnectV1Provider: WalletConnectServer {
 
     func connect(url: AlphaWallet.WalletConnect.ConnectionUrl) throws {
         guard case .v1(let wcUrl) = url else { return }
-        let timer = Timer.scheduledTimer(withTimeInterval: Constants.WalletConnect.connectionTimeout, repeats: false) { _ in
+        let timer = Timer.scheduledTimer(withTimeInterval: AlphaConstants.WalletConnect.connectionTimeout, repeats: false) { _ in
             let isStillWatching = self.connectionTimeoutTimers[wcUrl] != nil
             debugLog("WalletConnect app-enforced connection timer is up for: \(wcUrl.absoluteString) isStillWatching: \(isStillWatching)")
             if isStillWatching {

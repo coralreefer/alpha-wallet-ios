@@ -32,7 +32,7 @@ struct TickerIdFilter {
                 let rawValue = str.trimmed
                 if rawValue.isEmpty {
                     //CoinGecko returns nullAddress as the value (contract) in `platforms` for tokens is sometimes an empty string: `"platforms" : { "ethereum" : "" }`, so we use the 0x0..0 address to represent them
-                    return Constants.nullAddress
+                    return AlphaConstants.nullAddress
                 } else if let value = AlphaWallet.Address(string: rawValue) {
                     //NOTE: trimmed to avoid values like `"0xFbdd194376de19a88118e84E279b977f165d01b8 "`
                     return value
@@ -44,11 +44,11 @@ struct TickerIdFilter {
                 return false
             }
 
-            if contract.sameContract(as: Constants.nullAddress) {
+            if contract.sameContract(as: AlphaConstants.nullAddress) {
                 return tickerId.symbol.localizedLowercase == token.symbol.localizedLowercase
             } else if contract.sameContract(as: token.contractAddress) {
                 return true
-            } else if token.server == .polygon && token.contractAddress == Constants.nativeCryptoAddressInDatabase && contract.sameContract(as: Self.polygonMaticContract) {
+            } else if token.server == .polygon && token.contractAddress == AlphaConstants.nativeCryptoAddressInDatabase && contract.sameContract(as: Self.polygonMaticContract) {
                 return true
             } else {
                 return token.canPassFiltering

@@ -34,7 +34,7 @@ private class EnjinUserManager {
     private var config = Config()
     private let graphqlClient: ApolloClient = {
         let provider = InterceptorProviderForAuthorization(client: EnjinNetworkProvider.client, store: EnjinNetworkProvider.store)
-        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: Constants.Enjin.apiUrl)
+        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: AlphaConstants.Enjin.apiUrl)
 
         return ApolloClient(networkTransport: transport, store: EnjinNetworkProvider.store)
     }()
@@ -45,8 +45,8 @@ private class EnjinUserManager {
 
     var accessToken: AccessToken? { config.accessToken }
 
-    private let email: String = Constants.Credentials.enjinUserName
-    private let password: String = Constants.Credentials.enjinUserPassword
+    private let email: String = AlphaConstants.Credentials.enjinUserName
+    private let password: String = AlphaConstants.Credentials.enjinUserPassword
 
     func enjinAuthorize() -> Promise<AccessToken> {
         enjinAuthorize(email: email, password: password)

@@ -17,7 +17,7 @@ private func programmaticallyGeneratedIconImage(for contractAddress: AlphaWallet
 }
 
 private func symbolBackgroundColor(for contractAddress: AlphaWallet.Address, server: RPCServer) -> UIColor {
-    if contractAddress.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
+    if contractAddress.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
         return server.blockChainNameColor
     } else {
         let colors = [R.color.radical()!, R.color.cerulean()!, R.color.emerald()!, R.color.indigo()!, R.color.azure()!, R.color.pumpkin()!]
@@ -190,7 +190,7 @@ class TokenImageFetcher {
         }
 
         let generatedImage = getDefaultOrGenerateIcon(server: server, contractAddress: contractAddress, type: type, name: name)
-        if contractAddress.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
+        if contractAddress.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
             subscribable.value = generatedImage
             return subscribable
         }

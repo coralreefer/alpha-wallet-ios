@@ -51,7 +51,7 @@ struct Token: Equatable, Hashable {
     }
 
     init(
-            contract: AlphaWallet.Address = Constants.nullAddress,
+            contract: AlphaWallet.Address = AlphaConstants.nullAddress,
             server: RPCServer = .main,
             name: String = "",
             symbol: String = "",

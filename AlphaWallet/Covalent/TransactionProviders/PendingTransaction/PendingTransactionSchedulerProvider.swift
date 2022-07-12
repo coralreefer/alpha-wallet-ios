@@ -16,7 +16,7 @@ protocol PendingTransactionSchedulerProviderDelegate: AnyObject {
 final class PendingTransactionSchedulerProvider: SchedulerProvider {
     private let fetchPendingTransactionsQueue: OperationQueue
 
-    var interval: TimeInterval { return Constants.Covalent.pendingTransactionUpdateInterval }
+    var interval: TimeInterval { return AlphaConstants.Covalent.pendingTransactionUpdateInterval }
     var name: String { "PendingTransactionSchedulerProvider" }
     var operation: AnyPublisher<Void, SchedulerError> {
         return fetchPendingTransactionPublisher()

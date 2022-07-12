@@ -159,7 +159,7 @@ struct NFTCollectionInfoPageViewModel {
     }
 
     var configurations: [NFTCollectionInfoPageViewConfiguration] {
-        if Constants.ticketContractAddress.sameContract(as: token.contractAddress) {
+        if AlphaConstants.ticketContractAddress.sameContract(as: token.contractAddress) {
             return generateFieldsConfigurationsForFifaToken()
         } else {
             return generateFieldsConfigurations()

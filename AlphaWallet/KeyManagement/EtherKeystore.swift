@@ -110,7 +110,7 @@ open class EtherKeystore: NSObject, Keystore {
         }
     }
 
-    init(keychain: KeychainSwift = KeychainSwift(keyPrefix: Constants.keychainKeyPrefix), walletAddressesStore: WalletAddressesStore = EtherKeystore.migratedWalletAddressesStore(userDefaults: .standardOrForTests), analyticsCoordinator: AnalyticsCoordinator) throws {
+    init(keychain: KeychainSwift = KeychainSwift(keyPrefix: AlphaConstants.keychainKeyPrefix), walletAddressesStore: WalletAddressesStore = EtherKeystore.migratedWalletAddressesStore(userDefaults: .standardOrForTests), analyticsCoordinator: AnalyticsCoordinator) throws {
         if !UIApplication.shared.isProtectedDataAvailable {
             throw EtherKeystoreError.protectionDisabled
         }

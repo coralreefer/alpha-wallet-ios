@@ -181,7 +181,7 @@ extension Erc1155TokenIdsFetcher.functional {
         }
 
         //We just need any contract for the Swift API to get events, it's not actually used
-        let dummyContract = Constants.nullAddress
+        let dummyContract = AlphaConstants.nullAddress
         let eventFilter = EventFilter(fromBlock: fromBlock, toBlock: toBlock, addresses: nil, parameterFilters: parameterFilters)
         return firstly {
             getEventLogs(withServer: server, contract: dummyContract, eventName: eventName, abiString: AlphaWallet.Ethereum.ABI.erc1155String, filter: eventFilter, queue: queue)

@@ -200,8 +200,8 @@ class TokensCoordinator: Coordinator {
     }
 
     private func addUefaTokenIfAny() {
-        let server = Constants.uefaRpcServer
-        importToken.importToken(for: Constants.uefaMainnet, server: server, onlyIfThereIsABalance: true)
+        let server = AlphaConstants.uefaRpcServer
+        importToken.importToken(for: AlphaConstants.uefaMainnet, server: server, onlyIfThereIsABalance: true)
             .done { _ in }
             .cauterize()
     }

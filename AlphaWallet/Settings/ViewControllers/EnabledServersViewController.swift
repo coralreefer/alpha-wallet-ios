@@ -227,7 +227,7 @@ extension EnabledServersViewController: EnableServersHeaderViewDelegate {
                 configure(viewModel: .init(servers: viewModel.servers, selectedServers: serversSelectedInPreviousMode, mode: .mainnet))
             } else {
                 serversSelectedInPreviousMode = viewModel.selectedServers
-                configure(viewModel: .init(servers: viewModel.servers, selectedServers: Constants.defaultEnabledServers, mode: .mainnet))
+                configure(viewModel: .init(servers: viewModel.servers, selectedServers: AlphaConstants.defaultEnabledServers, mode: .mainnet))
             }
             tableView.reloadData()
             tableView.reloadSections(sectionIndices, with: .automatic)
@@ -248,7 +248,7 @@ extension EnabledServersViewController: PromptViewControllerDelegate {
             configure(viewModel: .init(servers: viewModel.servers, selectedServers: serversSelectedInPreviousMode, mode: .testnet))
         } else {
             serversSelectedInPreviousMode = viewModel.selectedServers
-            configure(viewModel: .init(servers: viewModel.servers, selectedServers: Constants.defaultEnabledTestnetServers, mode: .testnet))
+            configure(viewModel: .init(servers: viewModel.servers, selectedServers: AlphaConstants.defaultEnabledTestnetServers, mode: .testnet))
         }
         //Animation breaks section headers. No idea why. So don't animate
         tableView.reloadData()

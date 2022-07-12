@@ -39,7 +39,7 @@ class Oneinch: SupportedTokenActionsProvider, SwapTokenViaUrlProvider {
     private static let referralSlug = "/r/0x98f21584006c79871F176F8D474958a69e04595B"
     //NOTE: for Oneinch exchange service we need to use two addresses, by default it uses Uptrennd token
     private let predefinedTokens: [Oneinch.ERC20Token] = [
-        .init(symbol: "ETH", name: "ETH", address: Constants.nativeCryptoAddressInDatabase, decimal: RPCServer.main.decimals)
+        .init(symbol: "ETH", name: "ETH", address: AlphaConstants.nativeCryptoAddressInDatabase, decimal: RPCServer.main.decimals)
     ]
     //NOTE: we use dictionary to improve search tokens
     private var availableTokens: AtomicDictionary<AlphaWallet.Address, Oneinch.ERC20Token> = .init()
@@ -104,11 +104,11 @@ class Oneinch: SupportedTokenActionsProvider, SwapTokenViaUrlProvider {
     }
 
     private func defaultOutputAddress(forInput input: AlphaWallet.Address) -> AlphaWallet.Address {
-        if input == Constants.nativeCryptoAddressInDatabase {
+        if input == AlphaConstants.nativeCryptoAddressInDatabase {
             //TODO extract a list of known/popular token contracts we use in the app? Would that be too much dependency?
             return AlphaWallet.Address(string: "0xdAC17F958D2ee523a2206206994597C13D831ec7")!
         } else {
-            return Constants.nativeCryptoAddressInDatabase
+            return AlphaConstants.nativeCryptoAddressInDatabase
         }
     }
 }

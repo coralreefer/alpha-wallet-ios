@@ -11,7 +11,7 @@ class TokenObject: Object {
 
     @objc dynamic var primaryKey: String = ""
     @objc dynamic var chainId: Int = 0
-    @objc dynamic var contract: String = Constants.nullAddress.eip55String
+    @objc dynamic var contract: String = AlphaConstants.nullAddress.eip55String
     @objc dynamic var name: String = ""
     @objc dynamic var symbol: String = ""
     @objc dynamic var decimals: Int = 0
@@ -42,7 +42,7 @@ class TokenObject: Object {
     }
 
     convenience init(
-            contract: AlphaWallet.Address = Constants.nullAddress,
+            contract: AlphaWallet.Address = AlphaConstants.nullAddress,
             server: RPCServer,
             name: String = "",
             symbol: String = "",

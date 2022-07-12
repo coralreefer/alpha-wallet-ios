@@ -26,5 +26,5 @@ enum SortTokensParam: CaseIterable, Equatable {
     case byField(field: Token.Field, direction: SortDirection)
     case mostUsed
 
-    static var allCases: [SortTokensParam] = Constants.defaultSortTokensParams
+    static var allCases: [SortTokensParam] = AlphaConstants.defaultSortTokensParams
 }

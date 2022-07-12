@@ -19,7 +19,7 @@ final class EnjinNetworkProvider {
 
     private lazy var graphqlClient: ApolloClient = {
         let provider = NetworkInterceptorProvider(store: EnjinNetworkProvider.store, client: EnjinNetworkProvider.client)
-        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: Constants.Enjin.apiUrl)
+        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: AlphaConstants.Enjin.apiUrl)
 
         return ApolloClient(networkTransport: transport, store: EnjinNetworkProvider.store)
     }()

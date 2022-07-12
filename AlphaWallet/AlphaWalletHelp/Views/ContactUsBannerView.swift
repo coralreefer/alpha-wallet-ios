@@ -70,7 +70,7 @@ class ContactUsBannerView: UIView {
     func sendUsEmail() {
         let composerController = MFMailComposeViewController()
         composerController.mailComposeDelegate = self
-        composerController.setToRecipients([Constants.supportEmail])
+        composerController.setToRecipients([AlphaConstants.supportEmail])
         composerController.setSubject(R.string.localizable.aHelpContactEmailSubject())
         composerController.setMessageBody(emailTemplate, isHTML: false)
 

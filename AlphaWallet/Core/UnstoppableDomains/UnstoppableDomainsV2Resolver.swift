@@ -33,14 +33,14 @@ class UnstoppableDomainsV2Resolver {
             return .value(value)
         }
 
-        let baseURL = Constants.unstoppableDomainsV2API
+        let baseURL = AlphaConstants.unstoppableDomainsV2API
         guard let url = URL(string: "\(baseURL)/domains/\(name)") else {
             return .init(error: UnstoppableDomainsV2ApiError(localizedDescription: "Error calling \(baseURL) API isMainThread: \(Thread.isMainThread)"))
         }
 
         verboseLog("[UnstoppableDomains] resolving name: \(name)…")
         return Alamofire
-            .request(url, method: .get, headers: ["Authorization": Constants.Credentials.unstoppableDomainsV2ApiKey])
+            .request(url, method: .get, headers: ["Authorization": AlphaConstants.Credentials.unstoppableDomainsV2ApiKey])
             .responseJSON(queue: .main, options: .allowFragments).map { response -> AlphaWallet.Address in
                 guard let data = response.response.data, let json = try? JSON(data: data) else {
                     throw UnstoppableDomainsV2ApiError(localizedDescription: "Error calling \(baseURL) API isMainThread: \(Thread.isMainThread)")
@@ -64,14 +64,14 @@ class UnstoppableDomainsV2Resolver {
             return .value(value)
         }
 
-        let baseURL = Constants.unstoppableDomainsV2API
+        let baseURL = AlphaConstants.unstoppableDomainsV2API
         guard let url = URL(string: "\(baseURL)/domains/?owners=\(address.eip55String)&sortBy=id&sortDirection=DESC&perPage=50") else {
             return .init(error: UnstoppableDomainsV2ApiError(localizedDescription: "Error calling \(baseURL) API isMainThread: \(Thread.isMainThread)"))
         }
 
         verboseLog("[UnstoppableDomains] resolving address: \(address.eip55String)…")
         return Alamofire
-            .request(url, method: .get, headers: ["Authorization": Constants.Credentials.unstoppableDomainsV2ApiKey])
+            .request(url, method: .get, headers: ["Authorization": AlphaConstants.Credentials.unstoppableDomainsV2ApiKey])
             .responseJSON(queue: .main, options: .allowFragments).map { response -> String in
                 guard let data = response.response.data, let json = try? JSON(data: data) else {
                     throw UnstoppableDomainsV2ApiError(localizedDescription: "Error calling \(baseURL) API isMainThread: \(Thread.isMainThread)")
@@ -95,7 +95,7 @@ extension UnstoppableDomainsV2Resolver: CachebleAddressResolutionServiceType {
 
     func cachedAddressValue(for name: String) -> AlphaWallet.Address? {
         let key = EnsLookupKey(nameOrAddress: name, server: server)
-        switch storage.record(for: key, expirationTime: Constants.Ens.recordExpiration)?.value {
+        switch storage.record(for: key, expirationTime: AlphaConstants.Ens.recordExpiration)?.value {
         case .address(let address):
             return address
         case .record, .ens, .none:
@@ -108,7 +108,7 @@ extension UnstoppableDomainsV2Resolver: CachedEnsResolutionServiceType {
 
     func cachedEnsValue(for address: AlphaWallet.Address) -> String? {
         let key = EnsLookupKey(nameOrAddress: address.eip55String, server: server)
-        switch storage.record(for: key, expirationTime: Constants.Ens.recordExpiration)?.value {
+        switch storage.record(for: key, expirationTime: AlphaConstants.Ens.recordExpiration)?.value {
         case .ens(let ens):
             return ens
         case .record, .address, .none:
@@ -190,7 +190,7 @@ extension UnstoppableDomainsV2Resolver {
 
                     init(json: JSON) throws {
                         var values: [String: String] = [:]
-                        for key in Constants.unstoppableDomainsRecordKeys {
+                        for key in AlphaConstants.unstoppableDomainsRecordKeys {
                             guard let value = json[key].string else { continue }
                             values[key] = value
                         }

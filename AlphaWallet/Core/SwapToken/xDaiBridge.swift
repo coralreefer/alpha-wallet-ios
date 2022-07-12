@@ -41,7 +41,7 @@ final class xDaiBridge: SupportedTokenActionsProvider, BridgeTokenURLProviderTyp
     }
 
     func url(token: TokenActionsServiceKey) -> URL? {
-        return Constants.xDaiBridge
+        return AlphaConstants.xDaiBridge
     }
 
     func start() {

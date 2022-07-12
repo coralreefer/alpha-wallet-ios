@@ -14,7 +14,7 @@ extension Covalent {
         case balances(walletAddress: AlphaWallet.Address, server: RPCServer, quoteCurrency: String, nft: Bool, noNftFetch: Bool, apiKey: String)
 
         func asURL() throws -> URL {
-            guard var components: URLComponents = .init(url: Constants.Covalent.apiBaseUrl, resolvingAgainstBaseURL: false) else {
+            guard var components: URLComponents = .init(url: AlphaConstants.Covalent.apiBaseUrl, resolvingAgainstBaseURL: false) else {
                 throw AFError.invalidURL(url: self)
             }
 

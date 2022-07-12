@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             appCoordinator = try AppCoordinator(window: window!, analyticsService: analyticsService, keystore: keystore, walletAddressesStore: walletAddressesStore, navigationController: navigationController)
             appCoordinator.start()
 
-            if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem, shortcutItem.type == Constants.launchShortcutKey {
+            if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem, shortcutItem.type == AlphaConstants.launchShortcutKey {
                 //Delay needed to work because app is launching..
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.appCoordinator.launchUniversalScanner()
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        if shortcutItem.type == Constants.launchShortcutKey {
+        if shortcutItem.type == AlphaConstants.launchShortcutKey {
             appCoordinator.launchUniversalScanner()
         }
         completionHandler(true)

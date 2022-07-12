@@ -19,7 +19,7 @@ final class NewlyAddedTransactionSchedulerProvider: SchedulerProvider {
 
     private let fetchNewlyAddedTransactionsQueue: OperationQueue
 
-    var interval: TimeInterval { return Constants.Covalent.newlyAddedTransactionUpdateInterval }
+    var interval: TimeInterval { return AlphaConstants.Covalent.newlyAddedTransactionUpdateInterval }
     var name: String { "NewlyAddedTransactionSchedulerProvider" }
     var operation: AnyPublisher<Void, SchedulerError> {
         return fetchNewlyAddedTransactionPublisher()
@@ -53,7 +53,7 @@ final class NewlyAddedTransactionSchedulerProvider: SchedulerProvider {
         }
 
         return provider
-            .transactions(walletAddress: session.account.address, server: session.server, page: lastPage, pageSize: Constants.Covalent.newlyAddedTransactionsPerPage)
+            .transactions(walletAddress: session.account.address, server: session.server, page: lastPage, pageSize: AlphaConstants.Covalent.newlyAddedTransactionsPerPage)
             .subscribe(on: fetchNewlyAddedTransactionsQueue)
             .handleEvents(receiveOutput: { [weak self] response in
                 self?.didReceiveValue(response: response)

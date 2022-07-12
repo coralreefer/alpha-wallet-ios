@@ -17,7 +17,7 @@ final class OldestTransactionSchedulerProvider: SchedulerProvider {
     private let session: WalletSession
     private let fetchLatestTransactionsQueue: OperationQueue
 
-    var interval: TimeInterval { Constants.Covalent.oldestTransactionUpdateInterval }
+    var interval: TimeInterval { AlphaConstants.Covalent.oldestTransactionUpdateInterval }
     var name: String { "OldestTransactionSchedulerProvider" }
     var operation: AnyPublisher<Void, SchedulerError> {
         return fetchOldestTransactionPublisher()
@@ -61,7 +61,7 @@ final class OldestTransactionSchedulerProvider: SchedulerProvider {
             return fallbackForUnsupportedServer()
         }
         return provider
-            .transactions(walletAddress: session.account.address, server: session.server, page: lastPage, pageSize: Constants.Covalent.oldestAddedTransactionsPerPage)
+            .transactions(walletAddress: session.account.address, server: session.server, page: lastPage, pageSize: AlphaConstants.Covalent.oldestAddedTransactionsPerPage)
             .subscribe(on: fetchLatestTransactionsQueue)
             .handleEvents(receiveOutput: { [weak self] response in
                 self?.didReceiveValue(response)

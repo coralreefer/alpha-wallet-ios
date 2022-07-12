@@ -14,8 +14,8 @@ class FunctionCallArgumentTests: XCTestCase {
 
     func testTupleValue() throws {
         let data = [
-            EthereumAddress(Constants.nativeCryptoAddressInDatabase.eip55String, type: .normal) as AnyObject,
-            EthereumAddress(Constants.nativeCryptoAddressInDatabase.eip55String, type: .normal) as AnyObject
+            EthereumAddress(AlphaConstants.nativeCryptoAddressInDatabase.eip55String, type: .normal) as AnyObject,
+            EthereumAddress(AlphaConstants.nativeCryptoAddressInDatabase.eip55String, type: .normal) as AnyObject
         ] as AnyObject
         let value = FunctionCall.Argument(type: .tuple([.address, .address]), anyValue: data)
         XCTAssertEqual(value.description, "[0x0000000000000000000000000000000000000000, 0x0000000000000000000000000000000000000000]")

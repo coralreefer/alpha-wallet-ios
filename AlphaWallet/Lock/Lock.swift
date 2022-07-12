@@ -16,7 +16,7 @@ class Lock: LockInterface {
 
     private let passcodeAttempts = "passcodeAttempts"
     private let maxAttemptTime = "maxAttemptTime"
-    private let keychain = KeychainSwift(keyPrefix: Constants.keychainKeyPrefix)
+    private let keychain = KeychainSwift(keyPrefix: AlphaConstants.keychainKeyPrefix)
 
     var isPasscodeSet: Bool {
         return currentPasscode != nil

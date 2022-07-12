@@ -14,8 +14,8 @@ class MixpanelCoordinatorTests: XCTestCase {
         let values: [AnalyticsEventPropertyValue] = [
             "Hello AlphaWallet",
             1,
-            Constants.nullAddress,
-            URL(string: Constants.website)!,
+            AlphaConstants.nullAddress,
+            URL(string: AlphaConstants.website)!,
             Float(0.0),
             0.0,
             UInt(10)

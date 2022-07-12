@@ -97,7 +97,7 @@ class AmountTextField: UIControl {
             case .cryptoCurrency(let tokenObject):
                 return tokenObject.symbol
             case .usd:
-                return Constants.Currency.usd
+                return AlphaConstants.Currency.usd
             }
         }
 
@@ -277,7 +277,7 @@ class AmountTextField: UIControl {
 
         switch currentPair.left {
         case .cryptoCurrency:
-            return StringFormatter().currency(with: amount, and: Constants.Currency.usd, usesGroupingSeparator: usesGroupingSeparator)
+            return StringFormatter().currency(with: amount, and: AlphaConstants.Currency.usd, usesGroupingSeparator: usesGroupingSeparator)
         case .usd:
             return StringFormatter().alternateAmount(value: amount, usesGroupingSeparator: usesGroupingSeparator)
         }
@@ -446,7 +446,7 @@ class AmountTextField: UIControl {
         } else {
             switch currentPair.left {
             case .cryptoCurrency:
-                alternativeAmountLabel.text = "~ \(amount) \(Constants.Currency.usd)"
+                alternativeAmountLabel.text = "~ \(amount) \(AlphaConstants.Currency.usd)"
             case .usd:
                 switch currentPair.right {
                 case .cryptoCurrency(let tokenObject):

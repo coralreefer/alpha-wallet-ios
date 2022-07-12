@@ -514,7 +514,7 @@ class ActiveWalletCoordinator: NSObject, Coordinator, DappRequestHandlerDelegate
 
     func addImported(contract: AlphaWallet.Address, forServer server: RPCServer) {
         //Useful to check because we are/might action-only TokenScripts for native crypto currency
-        guard !contract.sameContract(as: Constants.nativeCryptoAddressInDatabase) else { return }
+        guard !contract.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) else { return }
 
         importToken.importToken(for: contract, server: server, onlyIfThereIsABalance: false)
             .done { _ in }
@@ -624,7 +624,7 @@ extension ActiveWalletCoordinator: CanOpenURL {
     }
 
     func didPressViewContractWebPage(forContract contract: AlphaWallet.Address, server: RPCServer, in viewController: UIViewController) {
-        if contract.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
+        if contract.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
             guard let url = server.etherscanContractDetailsWebPageURL(for: wallet.address) else { return }
             logExplorerUse(type: .wallet)
             open(url: url, in: viewController)
@@ -794,7 +794,7 @@ extension ActiveWalletCoordinator: UITabBarControllerDelegate {
 extension ActiveWalletCoordinator: WhereAreMyTokensCoordinatorDelegate {
 
     func switchToMainnetSelected(in coordinator: WhereAreMyTokensCoordinator) {
-        restartQueue.add(.reloadServers(Constants.defaultEnabledServers))
+        restartQueue.add(.reloadServers(AlphaConstants.defaultEnabledServers))
         processRestartQueueAndRestartUI()
     }
 

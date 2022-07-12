@@ -22,9 +22,9 @@ extension AlphaWalletService: TargetType {
     var baseURL: URL {
         switch self {
         case .tokensThatHasPrices:
-            return Constants.Coingecko.baseUrl
+            return AlphaConstants.Coingecko.baseUrl
         case .pricesOfTokens:
-            return Constants.Coingecko.baseUrl
+            return AlphaConstants.Coingecko.baseUrl
         case .getTransactions(let server, _, _, _, _):
             if let url = server.transactionInfoEndpoints {  
                 return url
@@ -33,13 +33,13 @@ extension AlphaWalletService: TargetType {
                 return URL(string: "x")!
             }
         case .oneInchTokens:
-            return Constants.OneInch.exchangeUrl
+            return AlphaConstants.OneInch.exchangeUrl
         case .honeySwapTokens:
-            return Constants.HoneySwap.exchangeUrl
+            return AlphaConstants.HoneySwap.exchangeUrl
         case .rampAssets:
-            return Constants.Ramp.exchangeUrl
+            return AlphaConstants.Ramp.exchangeUrl
         case .priceHistoryOfToken:
-            return Constants.Coingecko.baseUrl
+            return AlphaConstants.Coingecko.baseUrl
         }
     }
 

@@ -9,7 +9,7 @@ struct HelpUsViewModel {
     var activityItems: [Any] {
         return [
             R.string.localizable.welldoneViewmodelSharingText(),
-            URL(string: Constants.website)!,
+            URL(string: AlphaConstants.website)!,
         ]
     }
 }

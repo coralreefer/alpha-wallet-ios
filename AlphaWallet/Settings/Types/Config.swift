@@ -219,7 +219,7 @@ struct Config {
             if let chainIds = defaults.array(forKey: Keys.enabledServers) as? [Int] {
                 if chainIds.isEmpty {
                     //TODO remote log. Why is this possible? Note it's not nil (which is possible for new installs)
-                    return Constants.defaultEnabledServers
+                    return AlphaConstants.defaultEnabledServers
                 } else {
                     let servers: [RPCServer] = chainIds.map { .init(chainID: $0) }.filter { $0.conflictedServer == nil }
                     //TODO remove filter after some time as every user should have upgraded and no longer has a mix of mainnet and testnet enabled at the same time. We could have done this filtering one-time per wallet outside of here, but doing it here is more localized
@@ -233,7 +233,7 @@ struct Config {
                     }
                 }
             } else {
-                return Constants.defaultEnabledServers
+                return AlphaConstants.defaultEnabledServers
             }
         }
         set {

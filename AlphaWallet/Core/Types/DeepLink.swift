@@ -55,10 +55,10 @@ extension DeepLink.functional {
 
     static func hasMagicLink(url: URL) -> (server: RPCServer, signedOrder: SignedOrder)? {
         guard let server = RPCServer(withMagicLink: url) else { return nil }
-        let isLegacyLink = url.description.hasPrefix(Constants.legacyMagicLinkPrefix)
+        let isLegacyLink = url.description.hasPrefix(AlphaConstants.legacyMagicLinkPrefix)
         let prefix: String
         if isLegacyLink {
-            prefix = Constants.legacyMagicLinkPrefix
+            prefix = AlphaConstants.legacyMagicLinkPrefix
         } else {
             prefix = server.magicLinkPrefix.description
         }

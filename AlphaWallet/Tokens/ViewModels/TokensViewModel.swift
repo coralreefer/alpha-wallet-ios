@@ -22,7 +22,7 @@ enum TokenOrRpcServer {
             return false
         case .token(let token):
             //guard !token.isInvalidated else { return false }
-            if token.contractAddress.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
+            if token.contractAddress.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
                 return false
             }
             return true

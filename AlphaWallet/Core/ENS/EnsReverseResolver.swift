@@ -32,7 +32,7 @@ class EnsReverseResolver: ENSDelegateImpl {
 extension EnsReverseResolver: CachedEnsResolutionServiceType {
     func cachedEnsValue(for address: AlphaWallet.Address) -> String? {
         let key = EnsLookupKey(nameOrAddress: address.eip55String, server: server)
-        switch storage.record(for: key, expirationTime: Constants.Ens.recordExpiration)?.value {
+        switch storage.record(for: key, expirationTime: AlphaConstants.Ens.recordExpiration)?.value {
         case .ens(let ens):
             return ens
         case .none, .record, .address:

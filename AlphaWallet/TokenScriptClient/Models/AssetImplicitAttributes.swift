@@ -25,7 +25,7 @@ enum AssetImplicitAttributes: String, CaseIterable {
     }
 
     func shouldInclude(forAddress address: AlphaWallet.Address, isFungible: Bool) -> Bool {
-        let isNativeCryptoCurrency = address.sameContract(as: Constants.nativeCryptoAddressInDatabase)
+        let isNativeCryptoCurrency = address.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase)
         switch self {
         case .label:
             return true

@@ -44,7 +44,7 @@ final class GetEnsTextRecord: ENSDelegateImpl {
 
     private func cachedResult(forName name: String, record: EnsTextRecordKey) -> String? {
         let key = EnsLookupKey(nameOrAddress: name, server: server, record: record)
-        switch storage.record(for: key, expirationTime: Constants.Ens.recordExpiration)?.value {
+        switch storage.record(for: key, expirationTime: AlphaConstants.Ens.recordExpiration)?.value {
         case .record(let record):
             return record
         case .ens, .address, .none:

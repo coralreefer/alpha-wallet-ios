@@ -216,7 +216,7 @@ func isZeroBalance(_ balance: String, tokenType: TokenType) -> Bool {
     //We don't care about fungibles here, but want to make sure that *only* ERC875 balances consider string of "0" as null token, because we mark tokens that are burnt as 0, whereas ERC721 can have token ID = 0, eg. https://bscscan.com/tx/0xf6f3ddbb6719d8e47a47cf8ec66853682c02f03626cc4c4f5ece9338a8f20aee
     switch tokenType {
     case .nativeCryptocurrency, .erc20, .erc875:
-        if balance == Constants.nullTokenId || balance == "0" {
+        if balance == AlphaConstants.nullTokenId || balance == "0" {
             return true
         }
         return false

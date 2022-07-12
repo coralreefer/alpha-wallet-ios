@@ -10,8 +10,8 @@ class EventActivity: Object {
     }
 
     @objc dynamic var primaryKey: String = ""
-    @objc dynamic var contract: String = Constants.nullAddress.eip55String
-    @objc dynamic var tokenContract: String = Constants.nullAddress.eip55String
+    @objc dynamic var contract: String = AlphaConstants.nullAddress.eip55String
+    @objc dynamic var tokenContract: String = AlphaConstants.nullAddress.eip55String
     @objc dynamic var chainId: Int = 0
     @objc dynamic var date = Date()
     @objc dynamic var eventName: String = ""

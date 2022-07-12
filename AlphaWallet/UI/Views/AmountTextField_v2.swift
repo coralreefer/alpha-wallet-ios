@@ -270,7 +270,7 @@ extension AmountTextField_v2: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let enteredString = textField.stringReplacingCharacters(in: range, with: string) else { return false }
 
-        let allowChange = textField.amountChanged(in: range, to: string, allowedCharacters: Constants.AmountTextField.allowedCharacters)
+        let allowChange = textField.amountChanged(in: range, to: string, allowedCharacters: AlphaConstants.AmountTextField.allowedCharacters)
         if allowChange {
             viewModel.set(crypto: enteredString)
             notifyAmountDidChange()

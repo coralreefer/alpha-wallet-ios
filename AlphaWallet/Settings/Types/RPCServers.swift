@@ -316,12 +316,12 @@ enum RPCServer: Hashable, CaseIterable {
     var etherscanApiKey: String? {
         switch self {
         case .main, .kovan, .ropsten, .rinkeby, .goerli, .optimistic, .optimisticKovan, .arbitrum, .arbitrumRinkeby:
-            return Constants.Credentials.etherscanKey
+            return AlphaConstants.Credentials.etherscanKey
         case .binance_smart_chain:
             //Key not needed for testnet (empirically)
-            return Constants.Credentials.binanceSmartChainExplorerApiKey
+            return AlphaConstants.Credentials.binanceSmartChainExplorerApiKey
         case .polygon, .mumbai_testnet:
-            return Constants.Credentials.polygonScanExplorerApiKey
+            return AlphaConstants.Credentials.polygonScanExplorerApiKey
         case .fantom, .heco, .heco_testnet, .binance_smart_chain_testnet:
             return nil
         case .klaytnCypress: return nil
@@ -536,86 +536,86 @@ enum RPCServer: Hashable, CaseIterable {
     var magicLinkHost: String {
         switch self {
         case .main:
-            return Constants.mainnetMagicLinkHost
+            return AlphaConstants.mainnetMagicLinkHost
         case .kovan:
-            return Constants.kovanMagicLinkHost
+            return AlphaConstants.kovanMagicLinkHost
         case .ropsten:
-            return Constants.ropstenMagicLinkHost
+            return AlphaConstants.ropstenMagicLinkHost
         case .rinkeby:
-            return Constants.rinkebyMagicLinkHost
+            return AlphaConstants.rinkebyMagicLinkHost
         case .poa:
-            return Constants.poaMagicLinkHost
+            return AlphaConstants.poaMagicLinkHost
         case .sokol:
-            return Constants.sokolMagicLinkHost
+            return AlphaConstants.sokolMagicLinkHost
         case .classic:
-            return Constants.classicMagicLinkHost
+            return AlphaConstants.classicMagicLinkHost
         case .callisto:
-            return Constants.callistoMagicLinkHost
+            return AlphaConstants.callistoMagicLinkHost
         case .goerli:
-            return Constants.goerliMagicLinkHost
+            return AlphaConstants.goerliMagicLinkHost
         case .xDai:
-            return Constants.xDaiMagicLinkHost
+            return AlphaConstants.xDaiMagicLinkHost
         case .phi:
-            return Constants.phiMagicLinkHost
+            return AlphaConstants.phiMagicLinkHost
         case .artis_sigma1:
-            return Constants.artisSigma1MagicLinkHost
+            return AlphaConstants.artisSigma1MagicLinkHost
         case .artis_tau1:
-            return Constants.artisTau1MagicLinkHost
+            return AlphaConstants.artisTau1MagicLinkHost
         case .binance_smart_chain:
-            return Constants.binanceMagicLinkHost
+            return AlphaConstants.binanceMagicLinkHost
         case .binance_smart_chain_testnet:
-            return Constants.binanceTestMagicLinkHost
+            return AlphaConstants.binanceTestMagicLinkHost
         case .custom:
-            return Constants.customMagicLinkHost
+            return AlphaConstants.customMagicLinkHost
         case .heco:
-            return Constants.hecoMagicLinkHost
+            return AlphaConstants.hecoMagicLinkHost
         case .heco_testnet:
-            return Constants.hecoTestMagicLinkHost
+            return AlphaConstants.hecoTestMagicLinkHost
         case .fantom:
-            return Constants.fantomMagicLinkHost
+            return AlphaConstants.fantomMagicLinkHost
         case .fantom_testnet:
-            return Constants.fantomTestMagicLinkHost
+            return AlphaConstants.fantomTestMagicLinkHost
         case .avalanche:
-            return Constants.avalancheMagicLinkHost
+            return AlphaConstants.avalancheMagicLinkHost
         case .avalanche_testnet:
-            return Constants.avalancheTestMagicLinkHost
+            return AlphaConstants.avalancheTestMagicLinkHost
         case .polygon:
-            return Constants.maticMagicLinkHost
+            return AlphaConstants.maticMagicLinkHost
         case .mumbai_testnet:
-            return Constants.mumbaiTestMagicLinkHost
+            return AlphaConstants.mumbaiTestMagicLinkHost
         case .optimistic:
-            return Constants.optimisticMagicLinkHost
+            return AlphaConstants.optimisticMagicLinkHost
         case .optimisticKovan:
-            return Constants.optimisticTestMagicLinkHost
+            return AlphaConstants.optimisticTestMagicLinkHost
         case .cronosTestnet:
-            return Constants.cronosTestMagicLinkHost
+            return AlphaConstants.cronosTestMagicLinkHost
         case .arbitrum:
-            return Constants.arbitrumMagicLinkHost
+            return AlphaConstants.arbitrumMagicLinkHost
         case .arbitrumRinkeby:
-            return Constants.arbitrumRinkebyMagicLinkHost
+            return AlphaConstants.arbitrumRinkebyMagicLinkHost
         case .palm:
-            return Constants.palmMagicLinkHost
+            return AlphaConstants.palmMagicLinkHost
         case .palmTestnet:
-            return Constants.palmTestnetMagicLinkHost
+            return AlphaConstants.palmTestnetMagicLinkHost
         case .klaytnCypress:
-            return Constants.klaytnCypressMagicLinkHost
+            return AlphaConstants.klaytnCypressMagicLinkHost
         case .klaytnBaobabTestnet:
-            return Constants.klaytnBaobabTestnetMagicLinkHost
+            return AlphaConstants.klaytnBaobabTestnetMagicLinkHost
         }
     }
 
     var rpcURL: URL {
         let urlString: String = {
             switch self {
-            case .main: return "https://mainnet.infura.io/v3/\(Constants.Credentials.infuraKey)"
+            case .main: return "https://mainnet.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
             case .classic: return "https://www.ethercluster.com/etc"
             case .callisto: return "https://explorer.callisto.network/api/eth-rpc"
-            case .kovan: return "https://kovan.infura.io/v3/\(Constants.Credentials.infuraKey)"
-            case .ropsten: return "https://ropsten.infura.io/v3/\(Constants.Credentials.infuraKey)"
-            case .rinkeby: return "https://rinkeby.infura.io/v3/\(Constants.Credentials.infuraKey)"
+            case .kovan: return "https://kovan.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
+            case .ropsten: return "https://ropsten.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
+            case .rinkeby: return "https://rinkeby.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
             case .poa: return "https://core.poa.network"
             case .sokol: return "https://sokol.poa.network"
-            case .goerli: return "https://goerli.infura.io/v3/\(Constants.Credentials.infuraKey)"
+            case .goerli: return "https://goerli.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
             case .xDai: return "https://rpc.ankr.com/gnosis"
             case .phi: return "https://rpc1.phi.network"
             case .artis_sigma1: return "https://rpc.sigma1.artis.network"
@@ -629,15 +629,15 @@ enum RPCServer: Hashable, CaseIterable {
             case .fantom_testnet: return "https://rpc.testnet.fantom.network/"
             case .avalanche: return "https://api.avax.network/ext/bc/C/rpc"
             case .avalanche_testnet: return "https://api.avax-test.network/ext/bc/C/rpc"
-            case .polygon: return "https://polygon-mainnet.infura.io/v3/\(Constants.Credentials.infuraKey)"
-            case .mumbai_testnet: return "https://polygon-mumbai.infura.io/v3/\(Constants.Credentials.infuraKey)"
+            case .polygon: return "https://polygon-mainnet.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
+            case .mumbai_testnet: return "https://polygon-mumbai.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
             case .optimistic: return "https://mainnet.optimism.io"
             case .optimisticKovan: return "https://kovan.optimism.io"
             case .cronosTestnet: return "https://cronos-testnet.crypto.org:8545"
-            case .arbitrum: return "https://arbitrum-mainnet.infura.io/v3/\(Constants.Credentials.infuraKey)"
-            case .arbitrumRinkeby: return "https://arbitrum-rinkeby.infura.io/v3/\(Constants.Credentials.infuraKey)"
-            case .palm: return "https://palm-mainnet.infura.io/v3/\(Constants.Credentials.infuraKey)"
-            case .palmTestnet: return "https://palm-testnet.infura.io/v3/\(Constants.Credentials.infuraKey)"
+            case .arbitrum: return "https://arbitrum-mainnet.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
+            case .arbitrumRinkeby: return "https://arbitrum-rinkeby.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
+            case .palm: return "https://palm-mainnet.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
+            case .palmTestnet: return "https://palm-testnet.infura.io/v3/\(AlphaConstants.Credentials.infuraKey)"
             case .klaytnCypress: return "https://public-node-api.klaytnapi.com/v1/cypress"
             case .klaytnBaobabTestnet: return "https://api.baobab.klaytn.net:8651"
             }
@@ -829,7 +829,7 @@ enum RPCServer: Hashable, CaseIterable {
     init?(withMagicLinkHost magicLinkHost: String) {
         var server: RPCServer?
         //Special case to support legacy host name
-        if magicLinkHost == Constants.legacyMagicLinkHost {
+        if magicLinkHost == AlphaConstants.legacyMagicLinkHost {
             server = .main
         } else {
             server = Self.availableServers.first { $0.magicLinkHost == magicLinkHost }

@@ -173,7 +173,7 @@ class TokensFilter {
             return value1 > value2
         }
 
-        let nativeCryptoAddressInDatabase = Constants.nativeCryptoAddressInDatabase.eip55String
+        let nativeCryptoAddressInDatabase = AlphaConstants.nativeCryptoAddressInDatabase.eip55String
 
         let result = tokens.filter {
             $0.shouldDisplay

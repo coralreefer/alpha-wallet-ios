@@ -56,8 +56,8 @@ class CoinTickersFetcher: CoinTickersFetcherType {
 
     func ticker(for addressAndPRCServer: AddressAndRPCServer) -> CoinTicker? {
         //NOTE: If it doesn't include the price for the native token, hardwire it to use Ethereum's mainnet's native token price.
-        if addressAndPRCServer.server == .arbitrum && addressAndPRCServer.address.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
-            let overriddenAddressAndPRCServer: AddressAndRPCServer = .init(address: Constants.nativeCryptoAddressInDatabase, server: .main)
+        if addressAndPRCServer.server == .arbitrum && addressAndPRCServer.address.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
+            let overriddenAddressAndPRCServer: AddressAndRPCServer = .init(address: AlphaConstants.nativeCryptoAddressInDatabase, server: .main)
             return cache.tickers[overriddenAddressAndPRCServer]
         } else {
             return cache.tickers[addressAndPRCServer]
@@ -96,8 +96,8 @@ class CoinTickersFetcher: CoinTickersFetcherType {
     func fetchChartHistories(addressToRPCServerKey addressAndPRCServer: AddressAndRPCServer, force: Bool, periods: [ChartHistoryPeriod]) -> Promise<[ChartHistory]> {
         let addressToRPCServerKey: AddressAndRPCServer
         //NOTE: If it doesn't include the price for the native token, hardwire it to use Ethereum's mainnet's native token price.
-        if addressAndPRCServer.server == .arbitrum && addressAndPRCServer.address.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
-            addressToRPCServerKey = .init(address: Constants.nativeCryptoAddressInDatabase, server: .main)
+        if addressAndPRCServer.server == .arbitrum && addressAndPRCServer.address.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
+            addressToRPCServerKey = .init(address: AlphaConstants.nativeCryptoAddressInDatabase, server: .main)
         } else {
             addressToRPCServerKey = addressAndPRCServer
         }
@@ -110,7 +110,7 @@ class CoinTickersFetcher: CoinTickersFetcherType {
 
     private func fetchChartHistory(period: ChartHistoryPeriod, ticker: CoinTicker) -> Promise<ChartHistory> {
         firstly {
-            provider.request(.priceHistoryOfToken(id: ticker.id, currency: Constants.Currency.usd, days: period.rawValue))
+            provider.request(.priceHistoryOfToken(id: ticker.id, currency: AlphaConstants.Currency.usd, days: period.rawValue))
         }.map(on: CoinTickersFetcher.queue, { response -> ChartHistory in
             try response.map(ChartHistory.self, using: JSONDecoder())
         }).recover(on: CoinTickersFetcher.queue, { _ -> Promise<ChartHistory> in
@@ -203,7 +203,7 @@ class CoinTickersFetcher: CoinTickersFetcherType {
 
     private static func fetchPricesPage(provider: MoyaProvider<AlphaWalletService>, config: Config, ids: String, mappedCoinTickerIds: [MappedCoinTickerId], tickerIds: [String], page: Int, shouldRetry: Bool) -> Promise<[AddressAndRPCServer: CoinTicker]> {
         firstly {
-            provider.request(.pricesOfTokens(ids: ids, currency: Constants.Currency.usd, page: page))
+            provider.request(.pricesOfTokens(ids: ids, currency: AlphaConstants.Currency.usd, page: page))
         }.map(on: CoinTickersFetcher.queue, { response -> [AddressAndRPCServer: CoinTicker] in
             let tickers = try response.map([CoinTicker].self, using: JSONDecoder())
             var resultTickers: [AddressAndRPCServer: CoinTicker] = [:]

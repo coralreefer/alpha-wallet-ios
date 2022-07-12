@@ -5,7 +5,7 @@ import BigInt
 import web3swift
 import Combine
 
-public struct Constants {
+public struct AlphaConstants {
     public static let keychainKeyPrefix = "alphawallet"
     public static let xdaiDropPrefix = Data(bytes:
         [0x58, 0x44, 0x41, 0x49, 0x44, 0x52, 0x4F, 0x50]
@@ -96,10 +96,10 @@ public struct Constants {
     //xDai dapps
     static let xDaiBridge = URL(string: "https://bridge.xdaichain.com/")!
     static let arbitrumBridge = URL(string: "https://bridge.arbitrum.io/")!
-    static let buyXDaiWitRampUrl = "https://buy.ramp.network/?hostApiKey=\(Constants.Credentials.rampApiKey)&hostLogoUrl=https%3A%2F%2Falphawallet.com%2Fwp-content%2Fthemes%2Falphawallet%2Fimg%2Falphawallet-logo.svg&hostAppName=AlphaWallet&swapAsset=xDai"
+    static let buyXDaiWitRampUrl = "https://buy.ramp.network/?hostApiKey=\(AlphaConstants.Credentials.rampApiKey)&hostLogoUrl=https%3A%2F%2Falphawallet.com%2Fwp-content%2Fthemes%2Falphawallet%2Fimg%2Falphawallet-logo.svg&hostAppName=AlphaWallet&swapAsset=xDai"
 
     static func buyWitRampUrl(asset: String) -> String {
-        "https://buy.ramp.network/?hostApiKey=\(Constants.Credentials.rampApiKey)&hostLogoUrl=https%3A%2F%2Falphawallet.com%2Fwp-content%2Fthemes%2Falphawallet%2Fimg%2Falphawallet-logo.svg&hostAppName=AlphaWallet&swapAsset=\(asset)"
+        "https://buy.ramp.network/?hostApiKey=\(AlphaConstants.Credentials.rampApiKey)&hostLogoUrl=https%3A%2F%2Falphawallet.com%2Fwp-content%2Fthemes%2Falphawallet%2Fimg%2Falphawallet-logo.svg&hostAppName=AlphaWallet&swapAsset=\(asset)"
     }
 
     static let highStandardEthereumMainnetGasThresholdGwei = BigInt(130)
@@ -220,7 +220,7 @@ public struct Constants {
 
     enum WalletConnect {
         static let server = "AlphaWallet"
-        static let websiteUrl = URL(string: Constants.website)!
+        static let websiteUrl = URL(string: AlphaConstants.website)!
         static let icons = [
             "https://gblobscdn.gitbook.com/spaces%2F-LJJeCjcLrr53DcT1Ml7%2Favatar.png?alt=media"
         ]

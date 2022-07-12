@@ -157,7 +157,7 @@ extension TransactionType {
     var contract: AlphaWallet.Address {
         switch self {
         case .nativeCryptocurrency:
-            return Constants.nativeCryptoAddressInDatabase
+            return AlphaConstants.nativeCryptoAddressInDatabase
         case .erc20Token(let token, _, _):
             return token.contractAddress
         case .erc875Token(let token, _):
@@ -174,7 +174,7 @@ extension TransactionType {
             return token.contractAddress
         case .prebuilt:
             //We don't care about the contract for prebuilt transactions
-            return Constants.nativeCryptoAddressInDatabase
+            return AlphaConstants.nativeCryptoAddressInDatabase
         }
     }
 }

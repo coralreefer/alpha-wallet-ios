@@ -6,13 +6,13 @@ import PromiseKit
 
 enum Erc20 {
     static func hasEnoughAllowance(server: RPCServer, tokenAddress: AlphaWallet.Address, owner: AlphaWallet.Address, spender: AlphaWallet.Address, amount: BigUInt) -> Promise<(hasEnough: Bool, shortOf: BigUInt)> {
-        if tokenAddress.sameContract(as: Constants.nativeCryptoAddressInDatabase) {
+        if tokenAddress.sameContract(as: AlphaConstants.nativeCryptoAddressInDatabase) {
             return .value((true, 0))
         }
 
         let abi = String(data: AlphaWallet.Ethereum.ABI.ERC20, encoding: .utf8)!
         return firstly {
-            callSmartContract(withServer: server, contract: tokenAddress, functionName: "allowance", abiString: abi, parameters: [owner.eip55String, spender.eip55String] as [AnyObject], timeout: Constants.fetchContractDataTimeout)
+            callSmartContract(withServer: server, contract: tokenAddress, functionName: "allowance", abiString: abi, parameters: [owner.eip55String, spender.eip55String] as [AnyObject], timeout: AlphaConstants.fetchContractDataTimeout)
         }.map { allowanceResult -> (Bool, BigUInt) in
             if let allowance = allowanceResult["0"] as? BigUInt {
                 let hasEnough = allowance >= amount

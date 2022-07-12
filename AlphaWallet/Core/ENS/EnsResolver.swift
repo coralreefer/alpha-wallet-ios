@@ -32,7 +32,7 @@ class EnsResolver: ENSDelegateImpl {
 extension EnsResolver: CachebleAddressResolutionServiceType {
     func cachedAddressValue(for name: String) -> AlphaWallet.Address? {
         let key = EnsLookupKey(nameOrAddress: name, server: self.server)
-        switch storage.record(for: key, expirationTime: Constants.Ens.recordExpiration)?.value {
+        switch storage.record(for: key, expirationTime: AlphaConstants.Ens.recordExpiration)?.value {
         case .address(let address):
             return address
         case .none, .record, .ens:

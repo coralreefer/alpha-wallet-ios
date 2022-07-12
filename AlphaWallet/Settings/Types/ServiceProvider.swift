@@ -39,11 +39,11 @@ enum URLServiceProvider {
         case .telegramCustomer:
             return URL(string: "https://t.me/AlphaWalletSupport")
         case .twitter:
-            return URL(string: "twitter://user?screen_name=\(Constants.twitterUsername)")
+            return URL(string: "twitter://user?screen_name=\(AlphaConstants.twitterUsername)")
         case .reddit:
-            return URL(string: "reddit.com\(Constants.redditGroupName)")
+            return URL(string: "reddit.com\(AlphaConstants.redditGroupName)")
         case .facebook:
-            return URL(string: "fb://profile?id=\(Constants.facebookUsername)")
+            return URL(string: "fb://profile?id=\(AlphaConstants.facebookUsername)")
         case .faq, .github:
             return nil
         }
@@ -56,11 +56,11 @@ enum URLServiceProvider {
         case .telegramCustomer:
             return URL(string: "https://t.me/AlphaWalletSupport")!
         case .twitter:
-            return URL(string: "https://twitter.com/\(Constants.twitterUsername)")!
+            return URL(string: "https://twitter.com/\(AlphaConstants.twitterUsername)")!
         case .reddit:
-            return URL(string: "https://reddit.com/\(Constants.redditGroupName)")!
+            return URL(string: "https://reddit.com/\(AlphaConstants.redditGroupName)")!
         case .facebook:
-            return URL(string: "https://www.facebook.com/\(Constants.facebookUsername)")!
+            return URL(string: "https://www.facebook.com/\(AlphaConstants.facebookUsername)")!
         case .faq:
             return URL(string: "https://alphawallet.com/faq/")!
         case .github:
@@ -174,7 +174,7 @@ final class ContactUsEmailResolver: NSObject {
     private func getMFMailComposeViewController() -> MFMailComposeViewController {
         let mc = MFMailComposeViewController()
 
-        mc.setToRecipients([Constants.supportEmail])
+        mc.setToRecipients([AlphaConstants.supportEmail])
         mc.setSubject(R.string.localizable.aHelpContactEmailSubject())
         mc.setMessageBody(emailTemplate, isHTML: false)
         mc.makePresentationFullScreenForiOS13Migration()

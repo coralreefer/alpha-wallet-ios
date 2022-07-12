@@ -13,7 +13,7 @@ enum Eip681Type {
     var parameters: (contract: AlphaWallet.Address, RPCServer?, recipient: AddressOrEnsName?, amount: String)? {
         switch self {
         case .nativeCryptoSend(let server, let recipient, let amount):
-            return (Constants.nativeCryptoAddressInDatabase, server, recipient, amount)
+            return (AlphaConstants.nativeCryptoAddressInDatabase, server, recipient, amount)
         case .erc20Send(let contract, let server, let recipient, let amount):
             return (contract, server, recipient, amount)
         case .invalidOrNotSupported:

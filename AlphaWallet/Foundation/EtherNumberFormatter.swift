@@ -10,14 +10,14 @@ extension EtherNumberFormatter {
 
     static func createShortEtherNumberFormatter() -> EtherNumberFormatter {
         let formatter = EtherNumberFormatter(locale: Config.locale)
-        formatter.maximumFractionDigits = Constants.etherFormatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.etherFormatterFractionDigits
 
         return formatter
     }
 
     static func createShortPlainEtherNumberFormatter() -> EtherNumberFormatter {
         let formatter = EtherNumberFormatter(locale: Config.locale)
-        formatter.maximumFractionDigits = Constants.etherFormatterFractionDigits
+        formatter.maximumFractionDigits = AlphaConstants.etherFormatterFractionDigits
         formatter.groupingSeparator = ""
 
         return formatter

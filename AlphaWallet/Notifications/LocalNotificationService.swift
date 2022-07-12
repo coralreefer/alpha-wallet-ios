@@ -33,7 +33,7 @@ class LocalNotificationService: ScheduledNotificationService {
         }
 
         content.sound = .default
-        let identifier = Constants.etherReceivedNotificationIdentifier
+        let identifier = AlphaConstants.etherReceivedNotificationIdentifier
         let request = UNNotificationRequest(identifier: "\(identifier):\(transactionId)", content: content, trigger: nil)
 
         DispatchQueue.main.async {
