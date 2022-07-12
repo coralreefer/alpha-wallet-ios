@@ -4463,6 +4463,7 @@
 		5E7C7CE9D3BEED5AA1FC1599 /* RPC */ = {
 			isa = PBXGroup;
 			children = (
+				02C91C80277013B100EB10FB /* Rpc Network */,
 				5E7C7A968681D718C8A32B47 /* Commands */,
 			);
 			path = RPC;
@@ -5916,6 +5917,7 @@
 		CD8C0EAF287DA26B00548162 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8712A37A26F314EF0009C376 /* Alerts */,
 				5E7C71698FE1429F1AC0777D /* Sell */,
 				5E7C7C37B4E80BA2E0DC7FA4 /* Marketplace */,
 				5E7C7ACB32FB112CD7D92977 /* Help */,
@@ -5956,12 +5958,10 @@
 				291F52A01F6B6DBC00B369AB /* EtherClient */,
 				29FC9BC31F830880000209CD /* Core */,
 				02FA3F632818E11F005EDD63 /* Features */,
-				02C91C80277013B100EB10FB /* Rpc Network */,
 				87D7D66227D75AD400202861 /* Swap */,
 				5E7C76487E444E00B78BAA14 /* BlockscanChat */,
 				5E7C72AB43EC4939E6C7D46B /* SpamTokens */,
 				87F15B1327F45B2B00EB9787 /* Covalent */,
-				87D5BBD82727D9B20053E6D2 /* API.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -5969,7 +5969,7 @@
 		CD8C0EB1287DA29E00548162 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				8712A37A26F314EF0009C376 /* Alerts */,
+				87D5BBD82727D9B20053E6D2 /* API.swift */,
 				29850D241F6B27A800791A49 /* R.generated.swift */,
 			);
 			path = Generated;
@@ -6300,7 +6300,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --disable-input-output-files-validation \"$SRCROOT/AlphaWallet/R.generated.swift\"\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --disable-input-output-files-validation \"$SRCROOT/AlphaWallet/Generated/R.generated.swift\"\n";
 		};
 		3170CB07EA6653CD15826406 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6354,7 +6354,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"SupportingFiles/schema.json\" Managers/API.swift\n#Download graphql scheme \n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://cloud.enjin.io/graphql/default\" API.swift\n";
+			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"SupportingFiles/schema.json\" Generated/API.swift\n#Download graphql scheme \n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://cloud.enjin.io/graphql/default\" API.swift\n";
 		};
 		87FBF2B828056D8600616B7D /* Upload debug symbols to Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
