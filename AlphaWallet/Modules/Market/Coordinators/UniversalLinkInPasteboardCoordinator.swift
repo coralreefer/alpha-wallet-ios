@@ -6,8 +6,8 @@ protocol UniversalLinkInPasteboardCoordinatorDelegate: AnyObject {
     func importUniversalLink(url: DeepLink, for coordinator: UniversalLinkInPasteboardCoordinator)
 }
 
-class UniversalLinkInPasteboardCoordinator: Coordinator {
-    var coordinators: [Coordinator] = []
+class UniversalLinkInPasteboardCoordinator: AlphaCoordinator {
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: UniversalLinkInPasteboardCoordinatorDelegate?
 
     func start() {

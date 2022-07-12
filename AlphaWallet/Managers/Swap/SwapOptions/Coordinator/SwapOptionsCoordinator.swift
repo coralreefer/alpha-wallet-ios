@@ -13,7 +13,7 @@ protocol SwapOptionsCoordinatorDelegate: class {
     func didClose(in coordinator: SwapOptionsCoordinator)
 }
 
-final class SwapOptionsCoordinator: Coordinator {
+final class SwapOptionsCoordinator: AlphaCoordinator {
     private let navigationController: UINavigationController
     private lazy var rootViewController: SwapOptionsViewController = {
         let viewModel = SwapOptionsViewModel(configurator: configurator)
@@ -23,7 +23,7 @@ final class SwapOptionsCoordinator: Coordinator {
     }()
     private let configurator: SwapOptionsConfigurator
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: SwapOptionsCoordinatorDelegate?
 
     init(navigationController: UINavigationController, configurator: SwapOptionsConfigurator) {

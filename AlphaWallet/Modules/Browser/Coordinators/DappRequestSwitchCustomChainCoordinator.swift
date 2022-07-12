@@ -20,7 +20,7 @@ enum SwitchCustomChainCallbackId {
     case walletConnect(request: AlphaWallet.WalletConnect.Session.Request)
 }
 
-class DappRequestSwitchCustomChainCoordinator: NSObject, Coordinator {
+class DappRequestSwitchCustomChainCoordinator: NSObject, AlphaCoordinator {
     private var addCustomChain: (chain: AddCustomChain, callbackId: SwitchCustomChainCallbackId)?
     private let config: Config
     let server: RPCServer
@@ -31,7 +31,7 @@ class DappRequestSwitchCustomChainCoordinator: NSObject, Coordinator {
     private let currentUrl: URL?
     private let viewController: UIViewController
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: DappRequestSwitchCustomChainCoordinatorDelegate?
 
     init(config: Config, server: RPCServer, callbackId: SwitchCustomChainCallbackId, customChain: WalletAddEthereumChainObject, restartQueue: RestartTaskQueue, analyticsCoordinator: AnalyticsCoordinator, currentUrl: URL?, inViewController viewController: UIViewController) {

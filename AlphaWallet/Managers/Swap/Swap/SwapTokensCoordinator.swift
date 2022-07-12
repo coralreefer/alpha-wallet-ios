@@ -19,7 +19,7 @@ protocol SwapTokensCoordinatorDelegate: class, CanOpenURL {
     func openFiatOnRamp(wallet: Wallet, server: RPCServer, coordinator: SwapTokensCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
 }
 
-final class SwapTokensCoordinator: Coordinator {
+final class SwapTokensCoordinator: AlphaCoordinator {
     private let navigationController: UINavigationController
     private lazy var rootViewController: SwapTokensViewController = {
         let viewModel = SwapTokensViewModel(configurator: configurator)
@@ -49,7 +49,7 @@ final class SwapTokensCoordinator: Coordinator {
     private var cancelable = Set<AnyCancellable>()
     private var transactionConfirmationResult: ConfirmResult? = .none
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: SwapTokensCoordinatorDelegate?
 
     init(navigationController: UINavigationController, configurator: SwapOptionsConfigurator, keystore: Keystore, analyticsCoordinator: AnalyticsCoordinator, domainResolutionService: DomainResolutionServiceType, assetDefinitionStore: AssetDefinitionStore, tokenCollection: TokenCollection, eventsDataStore: NonActivityEventsDataStore) {

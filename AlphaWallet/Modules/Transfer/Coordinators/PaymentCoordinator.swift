@@ -12,7 +12,7 @@ protocol PaymentCoordinatorDelegate: class, CanOpenURL {
     func didSelectTokenHolder(tokenHolder: TokenHolder, in coordinator: PaymentCoordinator)
 }
 
-class PaymentCoordinator: Coordinator {
+class PaymentCoordinator: AlphaCoordinator {
     private var session: WalletSession {
         sessions.value[server]
     }
@@ -32,7 +32,7 @@ class PaymentCoordinator: Coordinator {
 
     let flow: PaymentFlow
     weak var delegate: PaymentCoordinatorDelegate?
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     let navigationController: UINavigationController
 
     init(

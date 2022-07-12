@@ -25,7 +25,7 @@ final class TransactionStateFetcher {
     }
 }
 
-class CheckTransactionStateCoordinator: Coordinator {
+class CheckTransactionStateCoordinator: AlphaCoordinator {
     private let navigationController: UINavigationController
     private let config: Config
     private var serverSelection: ServerSelection = .server(server: .server(.main))
@@ -38,7 +38,7 @@ class CheckTransactionStateCoordinator: Coordinator {
         return viewController
     }()
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: CheckTransactionStateCoordinatorDelegate?
 
     init(navigationController: UINavigationController, config: Config) {

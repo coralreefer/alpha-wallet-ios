@@ -16,7 +16,7 @@ protocol ActiveWalletCoordinatorDelegate: AnyObject {
 }
 
 // swiftlint:disable type_body_length
-class ActiveWalletCoordinator: NSObject, Coordinator, DappRequestHandlerDelegate {
+class ActiveWalletCoordinator: NSObject, AlphaCoordinator, DappRequestHandlerDelegate {
     private var wallet: Wallet
     private let config: Config
     private let assetDefinitionStore: AssetDefinitionStore
@@ -80,7 +80,7 @@ class ActiveWalletCoordinator: NSObject, Coordinator, DappRequestHandlerDelegate
         return ActivitiesService(config: config, sessions: sessionsSubject.value, assetDefinitionStore: assetDefinitionStore, eventsActivityDataStore: eventsActivityDataStore, eventsDataStore: eventsDataStore, transactionDataStore: transactionDataStore, tokensDataStore: tokensDataStore)
     }()
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     var keystore: Keystore
     var universalLinkCoordinator: UniversalLinkCoordinatorType
 

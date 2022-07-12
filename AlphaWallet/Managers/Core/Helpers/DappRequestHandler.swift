@@ -13,12 +13,12 @@ protocol DappRequestHandlerDelegate: class {
 
 extension ActiveWalletCoordinator {
     /// Wraps DappRequestSwitchCustomChainCoordinatorDelegate and DappRequestSwitchExistingChainCoordinatorDelegate to reduce in coordinator size
-    class DappRequestHandler: Coordinator {
+    class DappRequestHandler: AlphaCoordinator {
         private let walletConnectCoordinator: WalletConnectCoordinator
         private var dappBrowserCoordinator: DappBrowserCoordinator
 
         weak var delegate: DappRequestHandlerDelegate?
-        var coordinators: [Coordinator] = []
+        var coordinators: [AlphaCoordinator] = []
 
         init(walletConnectCoordinator: WalletConnectCoordinator, dappBrowserCoordinator: DappBrowserCoordinator) {
             self.walletConnectCoordinator = walletConnectCoordinator

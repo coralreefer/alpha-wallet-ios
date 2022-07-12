@@ -2,8 +2,8 @@
 
 import Foundation
 
-class FetchAssetDefinitionsCoordinator: Coordinator {
-    var coordinators: [Coordinator] = []
+class FetchAssetDefinitionsCoordinator: AlphaCoordinator {
+    var coordinators: [AlphaCoordinator] = []
     private let assetDefinitionStore: AssetDefinitionStore
     private let tokensDataStore: TokensDataStore
     private let config: Config

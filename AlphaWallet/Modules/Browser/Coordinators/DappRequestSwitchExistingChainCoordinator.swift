@@ -11,7 +11,7 @@ protocol DappRequestSwitchExistingChainCoordinatorDelegate: AnyObject {
     func failed(withErrorMessage errorMessage: String, withCallbackId callbackId: SwitchCustomChainCallbackId, inCoordinator coordinator: DappRequestSwitchExistingChainCoordinator)
 }
 
-class DappRequestSwitchExistingChainCoordinator: NSObject, Coordinator {
+class DappRequestSwitchExistingChainCoordinator: NSObject, AlphaCoordinator {
     private let config: Config
     let server: RPCServer
     let callbackId: SwitchCustomChainCallbackId
@@ -21,7 +21,7 @@ class DappRequestSwitchExistingChainCoordinator: NSObject, Coordinator {
     private let currentUrl: URL?
     private let viewController: UIViewController
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: DappRequestSwitchExistingChainCoordinatorDelegate?
 
     init(config: Config, server: RPCServer, callbackId: SwitchCustomChainCallbackId, targetChain: WalletSwitchEthereumChainObject, restartQueue: RestartTaskQueue, analyticsCoordinator: AnalyticsCoordinator, currentUrl: URL?, inViewController viewController: UIViewController) {

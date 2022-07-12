@@ -2,16 +2,16 @@
 
 import Foundation
 
-protocol Coordinator: AnyObject {
-    var coordinators: [Coordinator] { get set }
+protocol AlphaCoordinator: AnyObject {
+    var coordinators: [AlphaCoordinator] { get set }
 }
 
-extension Coordinator {
-    func addCoordinator(_ coordinator: Coordinator) {
+extension AlphaCoordinator {
+    func addCoordinator(_ coordinator: AlphaCoordinator) {
         coordinators.append(coordinator)
     }
 
-    func removeCoordinator(_ coordinator: Coordinator) {
+    func removeCoordinator(_ coordinator: AlphaCoordinator) {
         coordinators = coordinators.filter { $0 !== coordinator }
     }
 
@@ -19,7 +19,7 @@ extension Coordinator {
         coordinators.removeAll()
     }
 
-    private func coordinatorOfType<T: Coordinator>(coordinator: Coordinator, type: T.Type) -> T? {
+    private func coordinatorOfType<T: AlphaCoordinator>(coordinator: AlphaCoordinator, type: T.Type) -> T? {
         if let value = coordinator as? T {
             return value
         } else {
@@ -27,7 +27,7 @@ extension Coordinator {
         }
     }
 
-    func coordinatorOfType<T: Coordinator>(type: T.Type) -> T? {
+    func coordinatorOfType<T: AlphaCoordinator>(type: T.Type) -> T? {
         return coordinatorOfType(coordinator: self, type: type)
     }
 }

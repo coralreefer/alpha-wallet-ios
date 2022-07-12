@@ -17,7 +17,7 @@ protocol PromptBackupCoordinatorSubtlePromptDelegate: AnyObject {
     func updatePrompt(inCoordinator coordinator: PromptBackupCoordinator)
 }
 
-class PromptBackupCoordinator: Coordinator {
+class PromptBackupCoordinator: AlphaCoordinator {
     //Explicit `TimeInterval()` to speed up compilation
     private static let secondsInAMonth = TimeInterval(30) * 24 * 60 * 60
     private static let thresholdNativeCryptoCurrencyAmountInUsdToPromptBackup = Double(200)
@@ -34,7 +34,7 @@ class PromptBackupCoordinator: Coordinator {
 
     var prominentPromptView: UIView?
     var subtlePromptView: UIView?
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     private var cancelable = Set<AnyCancellable>()
 
     weak var prominentPromptDelegate: PromptBackupCoordinatorProminentPromptDelegate?

@@ -17,7 +17,7 @@ protocol DappBrowserCoordinatorDelegate: CanOpenURL, RequestAddCustomChainProvid
     func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: DappBrowserCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
 }
 
-final class DappBrowserCoordinator: NSObject, Coordinator {
+final class DappBrowserCoordinator: NSObject, AlphaCoordinator {
     private var session: WalletSession {
         return sessions[server]
     }
@@ -79,7 +79,7 @@ final class DappBrowserCoordinator: NSObject, Coordinator {
         return currentUrl != nil
     }
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     let navigationController: UINavigationController
 
     lazy var rootViewController: DappsHomeViewController = {

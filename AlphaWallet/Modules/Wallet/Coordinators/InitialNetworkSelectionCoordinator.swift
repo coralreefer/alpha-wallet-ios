@@ -11,8 +11,8 @@ protocol InitialNetworkSelectionCoordinatorDelegate: class {
     func didSelect(networks: [RPCServer], in coordinator: InitialNetworkSelectionCoordinator)
 }
 
-class InitialNetworkSelectionCoordinator: Coordinator {
-    var coordinators: [Coordinator] = []
+class InitialNetworkSelectionCoordinator: AlphaCoordinator {
+    var coordinators: [AlphaCoordinator] = []
     var navigationController: UINavigationController
     var config: Config
     var restartTaskQueue: RestartTaskQueue

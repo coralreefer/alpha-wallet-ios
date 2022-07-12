@@ -8,7 +8,7 @@ protocol ElevateWalletSecurityCoordinatorDelegate: AnyObject {
     func didCancelLock(forAccount account: AlphaWallet.Address, inCoordinator coordinator: ElevateWalletSecurityCoordinator)
 }
 
-class ElevateWalletSecurityCoordinator: Coordinator {
+class ElevateWalletSecurityCoordinator: AlphaCoordinator {
     fileprivate struct Error: LocalizedError {
         var errorDescription: String?
     }
@@ -23,7 +23,7 @@ class ElevateWalletSecurityCoordinator: Coordinator {
     private let keystore: Keystore
 
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ElevateWalletSecurityCoordinatorDelegate?
 
     init(navigationController: UINavigationController = UINavigationController(), keystore: Keystore, account: AlphaWallet.Address) {

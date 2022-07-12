@@ -27,7 +27,7 @@ struct NativeCryptoOrErc20TokenFilter: TokenFilterProtocol {
     }
 }
 
-class SelectTokenCoordinator: Coordinator {
+class SelectTokenCoordinator: AlphaCoordinator {
 
     private let parentsNavigationController: UINavigationController
     private (set) lazy var rootViewController: SelectTokenViewController = {
@@ -46,7 +46,7 @@ class SelectTokenCoordinator: Coordinator {
     private let tokenBalanceService: TokenBalanceService
 
     lazy var navigationController = UINavigationController(rootViewController: rootViewController)
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: SelectTokenCoordinatorDelegate?
 
     //NOTE: `filter: WalletFilter` parameter allow us to to filter tokens we need

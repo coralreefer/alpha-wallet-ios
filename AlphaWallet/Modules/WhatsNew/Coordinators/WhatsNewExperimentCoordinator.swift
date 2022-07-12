@@ -6,7 +6,7 @@ protocol WhatsNewExperimentCoordinatorDelegate: AnyObject {
     func didEnd(in coordinator: WhatsNewExperimentCoordinator)
 }
 
-class WhatsNewExperimentCoordinator: Coordinator {
+class WhatsNewExperimentCoordinator: AlphaCoordinator {
     static private let key = "experiments.whatsnew.1"
     static private let walletLastCreatedWindowSkipWhatsNew = TimeInterval(3)
 
@@ -17,7 +17,7 @@ class WhatsNewExperimentCoordinator: Coordinator {
     private let analyticsCoordinator: AnalyticsCoordinator
     private let userDefaults: UserDefaults
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: WhatsNewExperimentCoordinatorDelegate?
 
     //TODO probably need to generalize this. Maybe use AppTracker or a similar, new type

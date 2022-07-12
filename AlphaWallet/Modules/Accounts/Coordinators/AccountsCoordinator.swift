@@ -44,7 +44,7 @@ struct AccountsCoordinatorViewModel {
     }
 }
 
-class AccountsCoordinator: Coordinator {
+class AccountsCoordinator: AlphaCoordinator {
     private let config: Config
     private let keystore: Keystore
     private let analyticsCoordinator: AnalyticsCoordinator
@@ -52,7 +52,7 @@ class AccountsCoordinator: Coordinator {
     private let blockiesGenerator: BlockiesGenerator
     private let domainResolutionService: DomainResolutionServiceType
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     lazy var accountsViewController: AccountsViewController = {
         let viewModel = AccountsViewModel(keystore: keystore, config: config, configuration: self.viewModel.configuration, analyticsCoordinator: analyticsCoordinator, walletBalanceService: walletBalanceService, blockiesGenerator: blockiesGenerator, domainResolutionService: domainResolutionService)

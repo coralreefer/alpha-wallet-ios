@@ -18,7 +18,7 @@ protocol TransferCollectiblesCoordinatorDelegate: CanOpenURL, SendTransactionDel
     func didCancel(in coordinator: TransferCollectiblesCoordinator)
 }
 
-class TransferCollectiblesCoordinator: Coordinator {
+class TransferCollectiblesCoordinator: AlphaCoordinator {
     private lazy var sendViewController: TransferTokenBatchCardsViaWalletAddressViewController = {
         return makeTransferTokensCardViaWalletAddressViewController(token: tokenObject, tokenHolders: filteredTokenHolders)
     }()
@@ -33,7 +33,7 @@ class TransferCollectiblesCoordinator: Coordinator {
 
     weak var delegate: TransferCollectiblesCoordinatorDelegate?
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(
             session: WalletSession,

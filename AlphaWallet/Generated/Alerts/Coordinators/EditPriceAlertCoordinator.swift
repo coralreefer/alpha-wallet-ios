@@ -12,8 +12,8 @@ protocol EditPriceAlertCoordinatorDelegate: class {
     func didUpdateAlert(in coordinator: EditPriceAlertCoordinator)
 }
 
-class EditPriceAlertCoordinator: Coordinator {
-    var coordinators: [Coordinator] = []
+class EditPriceAlertCoordinator: AlphaCoordinator {
+    var coordinators: [AlphaCoordinator] = []
     private let configuration: EdiPricetAlertViewModelConfiguration
     private let navigationController: UINavigationController
     private let token: Token

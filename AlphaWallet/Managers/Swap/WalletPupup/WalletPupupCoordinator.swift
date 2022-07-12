@@ -12,10 +12,10 @@ protocol WalletPupupCoordinatorDelegate: class {
     func didClose(in coordinator: WalletPupupCoordinator)
 }
 
-class WalletPupupCoordinator: Coordinator {
+class WalletPupupCoordinator: AlphaCoordinator {
     private let navigationController: UINavigationController
     
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: WalletPupupCoordinatorDelegate?
 
     init(navigationController: UINavigationController) {

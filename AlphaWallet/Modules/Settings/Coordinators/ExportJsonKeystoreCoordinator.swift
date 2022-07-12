@@ -12,9 +12,9 @@ import UIKit
     func didComplete(coordinator: ExportJsonKeystoreCoordinator)
 }
 
-class ExportJsonKeystoreCoordinator: NSObject, Coordinator {
+class ExportJsonKeystoreCoordinator: NSObject, AlphaCoordinator {
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ExportJsonKeystoreCoordinatorDelegate?
     private var keystore: Keystore
     private var navigationController: UINavigationController

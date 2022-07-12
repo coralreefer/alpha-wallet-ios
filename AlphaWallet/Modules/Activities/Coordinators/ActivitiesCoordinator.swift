@@ -8,7 +8,7 @@ protocol ActivitiesCoordinatorDelegate: AnyObject {
     func didPressActivity(activity: Activity, in viewController: ActivitiesViewController)
 }
 
-class ActivitiesCoordinator: NSObject, Coordinator {
+class ActivitiesCoordinator: NSObject, AlphaCoordinator {
     private let sessions: ServerDictionary<WalletSession>
     private let activitiesService: ActivitiesServiceType
     private let keystore: Keystore
@@ -23,7 +23,7 @@ class ActivitiesCoordinator: NSObject, Coordinator {
     }()
 
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(
         analyticsCoordinator: AnalyticsCoordinator,

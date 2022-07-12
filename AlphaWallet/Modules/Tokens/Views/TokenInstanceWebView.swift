@@ -15,7 +15,7 @@ protocol TokenInstanceWebViewDelegate: AnyObject {
 }
 
 class TokenInstanceWebView: UIView {
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     enum SetProperties {
         static let setActionProps = "setActionProps"
         //Values ought to be typed. But it's just much easier to keep them as `Any` and convert them to the correct types when accessed (based on TokenScript syntax and XML tag). We don't know what those are here
@@ -415,7 +415,7 @@ extension TokenInstanceWebView: WKUIDelegate {
 }
 
 //TODO this contains functions duplicated and modified from DappBrowserCoordinator. Clean this up. Or move it somewhere, to a coordinator?
-extension TokenInstanceWebView: Coordinator {
+extension TokenInstanceWebView: AlphaCoordinator {
     
     //allow the message to be passed in as a pure string, if it is then we convert it to hex
     private func convertMessageToHex(msg: String) -> String {

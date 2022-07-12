@@ -8,11 +8,11 @@ protocol ClearDappBrowserCacheCoordinatorDelegate: AnyObject {
     func didCancel(in coordinator: ClearDappBrowserCacheCoordinator)
 }
 
-class ClearDappBrowserCacheCoordinator: Coordinator {
+class ClearDappBrowserCacheCoordinator: AlphaCoordinator {
     private let viewController: UIViewController
     private let analyticsCoordinator: AnalyticsCoordinator
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ClearDappBrowserCacheCoordinatorDelegate?
 
     init(inViewController viewController: UIViewController, analyticsCoordinator: AnalyticsCoordinator) {

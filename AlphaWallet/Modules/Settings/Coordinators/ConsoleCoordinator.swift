@@ -7,10 +7,10 @@ protocol ConsoleCoordinatorDelegate: AnyObject {
     func didCancel(in coordinator: ConsoleCoordinator)
 }
 
-class ConsoleCoordinator: Coordinator {
+class ConsoleCoordinator: AlphaCoordinator {
     private let assetDefinitionStore: AssetDefinitionStore
     private let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ConsoleCoordinatorDelegate?
 
     private lazy var consoleViewController: ConsoleViewController = {

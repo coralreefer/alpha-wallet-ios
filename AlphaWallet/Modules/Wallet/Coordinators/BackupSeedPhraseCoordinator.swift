@@ -9,7 +9,7 @@ protocol BackupSeedPhraseCoordinatorDelegate: AnyObject {
     func didVerifySeedPhraseSuccessfully(forAccount account: AlphaWallet.Address, inCoordinator coordinator: BackupSeedPhraseCoordinator)
 }
 
-class BackupSeedPhraseCoordinator: Coordinator {
+class BackupSeedPhraseCoordinator: AlphaCoordinator {
     private lazy var rootViewController: SeedPhraseBackupIntroductionViewController = {
         let controller = SeedPhraseBackupIntroductionViewController(account: account)
         controller.delegate = self
@@ -46,7 +46,7 @@ class BackupSeedPhraseCoordinator: Coordinator {
     private var _isInactiveBecauseWeAccessingBiometrics = false
 
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: BackupSeedPhraseCoordinatorDelegate?
 
     init(navigationController: UINavigationController = UINavigationController(), keystore: Keystore, account: AlphaWallet.Address, analyticsCoordinator: AnalyticsCoordinator) {

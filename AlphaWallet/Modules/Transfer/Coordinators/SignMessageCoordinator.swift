@@ -17,7 +17,7 @@ protocol SignMessageCoordinatorDelegate: AnyObject {
     func didCancel(in coordinator: SignMessageCoordinator)
 }
 
-class SignMessageCoordinator: Coordinator {
+class SignMessageCoordinator: AlphaCoordinator {
     private let analyticsCoordinator: AnalyticsCoordinator
     private let navigationController: UINavigationController
     private let keystore: Keystore
@@ -33,7 +33,7 @@ class SignMessageCoordinator: Coordinator {
         return controller
     }()
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: SignMessageCoordinatorDelegate?
     
     init(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, keystore: Keystore, account: AlphaWallet.Address, message: SignMessageType, source: Analytics.SignMessageRequestSource, walletConnectDappRequesterViewModel: WalletConnectDappRequesterViewModel?) {

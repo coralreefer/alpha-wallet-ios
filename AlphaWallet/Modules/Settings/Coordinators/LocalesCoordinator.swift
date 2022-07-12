@@ -6,8 +6,8 @@ protocol LocalesCoordinatorDelegate: AnyObject {
     func didSelect(locale: AppLocale, in coordinator: LocalesCoordinator)
 }
 
-class LocalesCoordinator: Coordinator {
-    var coordinators: [Coordinator] = []
+class LocalesCoordinator: AlphaCoordinator {
+    var coordinators: [AlphaCoordinator] = []
 
     lazy var localesViewController: LocalesViewController = {
         let locales: [AppLocale] = [

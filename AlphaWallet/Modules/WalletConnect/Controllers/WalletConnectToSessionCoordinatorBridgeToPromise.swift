@@ -12,7 +12,7 @@ private class WalletConnectToSessionCoordinatorBridgeToPromise {
     private let (promiseToReturn, seal) = Promise<AlphaWallet.WalletConnect.ProposalResponse>.pending()
     private var retainCycle: WalletConnectToSessionCoordinatorBridgeToPromise?
 
-    init(navigationController: UINavigationController, coordinator: Coordinator, proposal: AlphaWallet.WalletConnect.Proposal, serverChoices: [RPCServer], analyticsCoordinator: AnalyticsCoordinator, config: Config) {
+    init(navigationController: UINavigationController, coordinator: AlphaCoordinator, proposal: AlphaWallet.WalletConnect.Proposal, serverChoices: [RPCServer], analyticsCoordinator: AnalyticsCoordinator, config: Config) {
         retainCycle = self
 
         let newCoordinator = WalletConnectToSessionCoordinator(analyticsCoordinator: analyticsCoordinator, proposal: proposal, navigationController: navigationController, serverChoices: serverChoices, config: config)
@@ -41,7 +41,7 @@ extension WalletConnectToSessionCoordinatorBridgeToPromise: WalletConnectToSessi
 
 extension WalletConnectToSessionCoordinator {
 
-    static func promise(_ navigationController: UINavigationController, coordinator: Coordinator, proposal: AlphaWallet.WalletConnect.Proposal, serverChoices: [RPCServer], analyticsCoordinator: AnalyticsCoordinator, config: Config) -> Promise<AlphaWallet.WalletConnect.ProposalResponse> {
+    static func promise(_ navigationController: UINavigationController, coordinator: AlphaCoordinator, proposal: AlphaWallet.WalletConnect.Proposal, serverChoices: [RPCServer], analyticsCoordinator: AnalyticsCoordinator, config: Config) -> Promise<AlphaWallet.WalletConnect.ProposalResponse> {
         return WalletConnectToSessionCoordinatorBridgeToPromise(
             navigationController: navigationController,
             coordinator: coordinator,

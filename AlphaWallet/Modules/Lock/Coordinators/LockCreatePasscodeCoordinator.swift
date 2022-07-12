@@ -3,8 +3,8 @@
 
 import UIKit
 
-class LockCreatePasscodeCoordinator: Coordinator {
-    var coordinators: [Coordinator] = []
+class LockCreatePasscodeCoordinator: AlphaCoordinator {
+    var coordinators: [AlphaCoordinator] = []
     private let model: LockCreatePasscodeViewModel
     private let navigationController: UINavigationController
     lazy var lockViewController: LockCreatePasscodeViewController = {

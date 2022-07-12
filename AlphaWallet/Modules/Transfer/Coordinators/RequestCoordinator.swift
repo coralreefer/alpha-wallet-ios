@@ -7,7 +7,7 @@ protocol RequestCoordinatorDelegate: AnyObject {
     func didCancel(in coordinator: RequestCoordinator)
 }
 
-class RequestCoordinator: Coordinator {
+class RequestCoordinator: AlphaCoordinator {
     private let account: Wallet
     private let domainResolutionService: DomainResolutionServiceType
 
@@ -21,7 +21,7 @@ class RequestCoordinator: Coordinator {
     }()
 
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: RequestCoordinatorDelegate?
 
     init(navigationController: UINavigationController, account: Wallet, domainResolutionService: DomainResolutionServiceType) {

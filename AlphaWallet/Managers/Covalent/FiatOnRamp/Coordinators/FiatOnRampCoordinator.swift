@@ -5,14 +5,14 @@ import UIKit
 protocol FiatOnRampCoordinatorDelegate: AnyObject, CanOpenURL {
 }
 
-class FiatOnRampCoordinator: Coordinator {
+class FiatOnRampCoordinator: AlphaCoordinator {
     private let wallet: Wallet
     private let server: RPCServer
     private let sourceViewController: UIViewController
     private let source: Analytics.FiatOnRampSource
     private let analyticsCoordinator: AnalyticsCoordinator
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: FiatOnRampCoordinatorDelegate?
 
     init(wallet: Wallet, server: RPCServer, viewController: UIViewController, source: Analytics.FiatOnRampSource, analyticsCoordinator: AnalyticsCoordinator) {

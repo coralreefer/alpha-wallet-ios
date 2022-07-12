@@ -12,8 +12,8 @@ protocol WalletConnectToSessionCoordinatorDelegate: AnyObject {
     func coordinator(_ coordinator: WalletConnectToSessionCoordinator, didCompleteWithConnection result: AlphaWallet.WalletConnect.ProposalResponse)
 }
 
-class WalletConnectToSessionCoordinator: Coordinator {
-    var coordinators: [Coordinator] = []
+class WalletConnectToSessionCoordinator: AlphaCoordinator {
+    var coordinators: [AlphaCoordinator] = []
 
     private let analyticsCoordinator: AnalyticsCoordinator
     private let proposal: AlphaWallet.WalletConnect.Proposal

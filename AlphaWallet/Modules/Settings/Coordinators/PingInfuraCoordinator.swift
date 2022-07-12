@@ -10,11 +10,11 @@ protocol PingInfuraCoordinatorDelegate: AnyObject {
     func didCancel(in coordinator: PingInfuraCoordinator)
 }
 
-class PingInfuraCoordinator: Coordinator {
+class PingInfuraCoordinator: AlphaCoordinator {
     private let viewController: UIViewController
     private let analyticsCoordinator: AnalyticsCoordinator
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: PingInfuraCoordinatorDelegate?
 
     init(inViewController viewController: UIViewController, analyticsCoordinator: AnalyticsCoordinator) {

@@ -11,9 +11,9 @@ protocol WhatsNewListingCoordinatorDelegate: AnyObject {
     func didDismiss(in coordinator: WhatsNewListingCoordinator)
 }
 
-class WhatsNewListingCoordinator: NSObject, Coordinator {
+class WhatsNewListingCoordinator: NSObject, AlphaCoordinator {
     private let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: WhatsNewListingCoordinatorDelegate?
 
     init(navigationController: UINavigationController) {

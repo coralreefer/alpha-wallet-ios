@@ -8,7 +8,7 @@ import Combine
 protocol TransactionCoordinatorDelegate: class, CanOpenURL {
 }
 
-class TransactionCoordinator: NSObject, Coordinator {
+class TransactionCoordinator: NSObject, AlphaCoordinator {
     private let analyticsCoordinator: AnalyticsCoordinator
     private let sessions: ServerDictionary<WalletSession>
     private var cancelable = Set<AnyCancellable>()
@@ -20,7 +20,7 @@ class TransactionCoordinator: NSObject, Coordinator {
 
     weak var delegate: TransactionCoordinatorDelegate?
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(
         analyticsCoordinator: AnalyticsCoordinator,

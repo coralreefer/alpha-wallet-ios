@@ -3,13 +3,13 @@ import Foundation
 import UIKit
 import StoreKit
 
-class HelpUsCoordinator: Coordinator {
+class HelpUsCoordinator: AlphaCoordinator {
     private let hostViewController: UIViewController
     private let appTracker: AppTracker
     private let viewModel = HelpUsViewModel()
     private let analyticsCoordinator: AnalyticsCoordinator
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(
         hostViewController: UIViewController = UIViewController(),

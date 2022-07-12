@@ -13,14 +13,14 @@ protocol WalletConnectSessionCoordinatorDelegate: AnyObject {
     func didDismiss(in coordinator: WalletConnectSessionCoordinator)
 }
 
-class WalletConnectSessionCoordinator: Coordinator {
+class WalletConnectSessionCoordinator: AlphaCoordinator {
     private let analyticsCoordinator: AnalyticsCoordinator
     private let navigationController: UINavigationController
     private let provider: WalletConnectServerProviderType
     private var viewController: WalletConnectSessionViewController
     private let session: AlphaWallet.WalletConnect.Session
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: WalletConnectSessionCoordinatorDelegate?
     private let config = Config()
     

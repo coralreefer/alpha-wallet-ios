@@ -12,10 +12,10 @@ protocol NFTAssetSelectionCoordinatorDelegate: AnyObject {
     func didTapSend(in coordinator: NFTAssetSelectionCoordinator, tokenObject: TokenObject, tokenHolders: [TokenHolder])
 }
 
-class NFTAssetSelectionCoordinator: Coordinator {
+class NFTAssetSelectionCoordinator: AlphaCoordinator {
 
     private let parentsNavigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: NFTAssetSelectionCoordinatorDelegate?
     private let tokenObject: TokenObject
     private let tokenHolders: [TokenHolder]

@@ -15,7 +15,7 @@ protocol ImportMagicLinkCoordinatorDelegate: class, CanOpenURL {
 }
 
 // swiftlint:disable type_body_length
-class ImportMagicLinkCoordinator: Coordinator {
+class ImportMagicLinkCoordinator: AlphaCoordinator {
     private enum TransactionType {
         case freeTransfer(query: String, parameters: Parameters)
         case paid(signedOrder: SignedOrder, tokenObject: TokenObject)
@@ -54,7 +54,7 @@ class ImportMagicLinkCoordinator: Coordinator {
         }
     }
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     let server: RPCServer
     weak var delegate: ImportMagicLinkCoordinatorDelegate?
     private let tokenBalanceService: TokenBalanceService

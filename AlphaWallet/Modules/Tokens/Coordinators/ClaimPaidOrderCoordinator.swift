@@ -14,7 +14,7 @@ protocol ClaimOrderCoordinatorDelegate: class, CanOpenURL {
     func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: ClaimPaidOrderCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
 }
 
-class ClaimPaidOrderCoordinator: Coordinator {
+class ClaimPaidOrderCoordinator: AlphaCoordinator {
     private let navigationController: UINavigationController
     private let keystore: Keystore
     private let session: WalletSession
@@ -33,7 +33,7 @@ class ClaimPaidOrderCoordinator: Coordinator {
         }
     }
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ClaimOrderCoordinatorDelegate?
 
     init(navigationController: UINavigationController, keystore: Keystore, session: WalletSession, tokenObject: TokenObject, signedOrder: SignedOrder, analyticsCoordinator: AnalyticsCoordinator, domainResolutionService: DomainResolutionServiceType) {

@@ -3,7 +3,7 @@
 
 import UIKit
 
-class ProtectionCoordinator: Coordinator {
+class ProtectionCoordinator: AlphaCoordinator {
 	private lazy var splashCoordinator: SplashCoordinator = {
 		return SplashCoordinator(window: protectionWindow)
 	}()
@@ -14,7 +14,7 @@ class ProtectionCoordinator: Coordinator {
 
 	private let protectionWindow = UIWindow()
 
-	var coordinators: [Coordinator] = []
+	var coordinators: [AlphaCoordinator] = []
 
 	init() {
 		protectionWindow.windowLevel = UIWindow.Level.statusBar + 2.0

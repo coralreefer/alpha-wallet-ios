@@ -12,7 +12,7 @@ protocol ShowSeedPhraseCoordinatorDelegate: AnyObject {
     func didCancel(in coordinator: ShowSeedPhraseCoordinator)
 }
 
-class ShowSeedPhraseCoordinator: Coordinator {
+class ShowSeedPhraseCoordinator: AlphaCoordinator {
 
     private var showSeedPhraseViewController: ShowSeedPhraseViewController? {
         navigationController.viewControllers.compactMap { $0 as? ShowSeedPhraseViewController }.first
@@ -41,7 +41,7 @@ class ShowSeedPhraseCoordinator: Coordinator {
     private var _isInactiveBecauseWeAccessingBiometrics = false
 
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ShowSeedPhraseCoordinatorDelegate?
 
     init(navigationController: UINavigationController, keystore: Keystore, account: AlphaWallet.Address) {

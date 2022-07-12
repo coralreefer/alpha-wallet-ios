@@ -3,8 +3,8 @@
 
 import UIKit
 
-class LockEnterPasscodeCoordinator: Coordinator {
-	var coordinators: [Coordinator] = []
+class LockEnterPasscodeCoordinator: AlphaCoordinator {
+	var coordinators: [AlphaCoordinator] = []
 	let window: UIWindow = UIWindow()
 	private let model: LockEnterPasscodeViewModel
 	private let lock: LockInterface

@@ -4,12 +4,12 @@ import Foundation
 import BigInt
 import PromiseKit
 
-class PaymentFlowFromEip681UrlResolver: Coordinator {
+class PaymentFlowFromEip681UrlResolver: AlphaCoordinator {
     private let tokensDataStore: TokensDataStore
     private let assetDefinitionStore: AssetDefinitionStore
     private let config: Config
     private let account: Wallet
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(tokensDataStore: TokensDataStore, account: Wallet, assetDefinitionStore: AssetDefinitionStore, config: Config) {
         self.tokensDataStore = tokensDataStore

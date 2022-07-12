@@ -8,14 +8,14 @@ protocol InitialWalletCreationCoordinatorDelegate: AnyObject {
     func didAddAccount(_ account: Wallet, in coordinator: InitialWalletCreationCoordinator)
 }
 
-class InitialWalletCreationCoordinator: Coordinator {
+class InitialWalletCreationCoordinator: AlphaCoordinator {
     private let keystore: Keystore
     private let config: Config
     private let analyticsCoordinator: AnalyticsCoordinator
     private let domainResolutionService: DomainResolutionServiceType
 
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: InitialWalletCreationCoordinatorDelegate?
 
     init(

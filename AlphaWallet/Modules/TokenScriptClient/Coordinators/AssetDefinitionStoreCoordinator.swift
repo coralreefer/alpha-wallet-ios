@@ -29,7 +29,7 @@ enum OpenURLError: Error {
     }
 }
 
-class AssetDefinitionStoreCoordinator: Coordinator {
+class AssetDefinitionStoreCoordinator: AlphaCoordinator {
 
     private static var inboxDirectory: URL? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .allDomainsMask, true).compactMap { URL(fileURLWithPath: $0) }
@@ -47,7 +47,7 @@ class AssetDefinitionStoreCoordinator: Coordinator {
     private var viewControllers: [WeakRef<AssetDefinitionsOverridesViewController>] = []
 
     weak var delegate: AssetDefinitionStoreCoordinatorDelegate?
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     private var inboxContents: [URL]? {
         guard let inboxDirectory = AssetDefinitionStoreCoordinator.inboxDirectory else { return nil }

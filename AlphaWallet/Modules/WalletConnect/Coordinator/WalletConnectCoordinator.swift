@@ -22,7 +22,7 @@ protocol WalletConnectCoordinatorDelegate: CanOpenURL, SendTransactionAndFiatOnR
     func universalScannerSelected(in coordinator: WalletConnectCoordinator)
 }
 
-class WalletConnectCoordinator: NSObject, Coordinator {
+class WalletConnectCoordinator: NSObject, AlphaCoordinator {
 
     private lazy var walletConnectV2service: WalletConnectV2Provider = {
         let walletConnectV2service = WalletConnectV2Provider(sessionsSubject: sessionsSubject)
@@ -60,7 +60,7 @@ class WalletConnectCoordinator: NSObject, Coordinator {
     private var sessionsSubject: CurrentValueSubject<ServerDictionary<WalletSession>, Never>
 
     weak var delegate: WalletConnectCoordinatorDelegate?
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     var sessions: AnyPublisher<[AlphaWallet.WalletConnect.Session], Never> {
         provider.sessions

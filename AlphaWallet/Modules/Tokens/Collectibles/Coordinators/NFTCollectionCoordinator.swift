@@ -19,7 +19,7 @@ protocol NFTCollectionCoordinatorDelegate: class, CanOpenURL {
     func didTap(activity: Activity, in coordinator: NFTCollectionCoordinator)
 }
 
-class NFTCollectionCoordinator: NSObject, Coordinator {
+class NFTCollectionCoordinator: NSObject, AlphaCoordinator {
     private let keystore: Keystore
     private let token: TokenObject
     lazy var rootViewController: NFTCollectionViewController = {
@@ -39,7 +39,7 @@ class NFTCollectionCoordinator: NSObject, Coordinator {
     private let activitiesService: ActivitiesServiceType
     weak var delegate: NFTCollectionCoordinatorDelegate?
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     private var cancelable = Set<AnyCancellable>()
 
     init(

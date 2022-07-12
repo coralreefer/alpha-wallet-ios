@@ -10,7 +10,7 @@ protocol ScanQRCodeCoordinatorDelegate: AnyObject {
     func didScan(result: String, in coordinator: ScanQRCodeCoordinator)
 }
 
-final class ScanQRCodeCoordinator: NSObject, Coordinator {
+final class ScanQRCodeCoordinator: NSObject, AlphaCoordinator {
     private let analyticsCoordinator: AnalyticsCoordinator
     private lazy var navigationController = UINavigationController(rootViewController: qrcodeController)
     private lazy var reader = QRCodeReader(metadataObjectTypes: [AVMetadataObject.ObjectType.qr])
@@ -43,7 +43,7 @@ final class ScanQRCodeCoordinator: NSObject, Coordinator {
     private let domainResolutionService: DomainResolutionServiceType
 
     let parentNavigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ScanQRCodeCoordinatorDelegate?
 
     init(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, account: Wallet?, domainResolutionService: DomainResolutionServiceType) {

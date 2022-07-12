@@ -11,7 +11,7 @@ protocol TransactionInProgressCoordinatorDelegate: AnyObject {
     func didDismiss(in coordinator: TransactionInProgressCoordinator)
 }
 
-class TransactionInProgressCoordinator: Coordinator {
+class TransactionInProgressCoordinator: AlphaCoordinator {
 
     private lazy var viewControllerToPresent: UINavigationController = {
         let controller = TransactionInProgressViewController(viewModel: .init())
@@ -22,7 +22,7 @@ class TransactionInProgressCoordinator: Coordinator {
     }()
     private let presentingViewController: UIViewController
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: TransactionInProgressCoordinatorDelegate?
 
     init(presentingViewController: UIViewController) {

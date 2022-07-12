@@ -10,7 +10,7 @@ protocol ReplaceTransactionCoordinatorDelegate: class, CanOpenURL {
     func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: ReplaceTransactionCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
 }
 
-class ReplaceTransactionCoordinator: Coordinator {
+class ReplaceTransactionCoordinator: AlphaCoordinator {
     enum Mode {
         case speedup
         case cancel
@@ -77,7 +77,7 @@ class ReplaceTransactionCoordinator: Coordinator {
         }
     }
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ReplaceTransactionCoordinatorDelegate?
 
     init?(analyticsCoordinator: AnalyticsCoordinator, domainResolutionService: DomainResolutionServiceType, keystore: Keystore, presentingViewController: UIViewController, session: WalletSession, transaction: TransactionInstance, mode: Mode) {

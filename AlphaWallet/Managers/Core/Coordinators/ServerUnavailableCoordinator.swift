@@ -8,15 +8,15 @@
 import UIKit
 import PromiseKit
 
-class ServerUnavailableCoordinator: Coordinator {
-    var coordinators: [Coordinator] = []
+class ServerUnavailableCoordinator: AlphaCoordinator {
+    var coordinators: [AlphaCoordinator] = []
 
     private let navigationController: UINavigationController
     private var retainCycle: ServerUnavailableCoordinator?
     private let (promiseToReturn, seal) = Promise<Void>.pending()
     private let servers: [RPCServer]
 
-    init(navigationController: UINavigationController, servers: [RPCServer], coordinator: Coordinator) {
+    init(navigationController: UINavigationController, servers: [RPCServer], coordinator: AlphaCoordinator) {
         self.navigationController = navigationController
         self.servers = servers
 

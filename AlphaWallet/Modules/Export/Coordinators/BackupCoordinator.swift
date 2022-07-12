@@ -9,14 +9,14 @@ protocol BackupCoordinatorDelegate: AnyObject {
     func didFinish(account: AlphaWallet.Address, in coordinator: BackupCoordinator)
 }
 
-class BackupCoordinator: Coordinator {
+class BackupCoordinator: AlphaCoordinator {
     private let keystore: Keystore
     private let account: AlphaWallet.Address
     private let analyticsCoordinator: AnalyticsCoordinator
 
     let navigationController: UINavigationController
     weak var delegate: BackupCoordinatorDelegate?
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(navigationController: UINavigationController, keystore: Keystore, account: AlphaWallet.Address, analyticsCoordinator: AnalyticsCoordinator) {
         self.navigationController = navigationController

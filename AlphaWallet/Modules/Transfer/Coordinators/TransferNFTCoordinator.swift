@@ -10,7 +10,7 @@ protocol TransferNFTCoordinatorDelegate: CanOpenURL, SendTransactionDelegate {
     func didCancel(in coordinator: TransferNFTCoordinator)
 }
 
-class TransferNFTCoordinator: Coordinator {
+class TransferNFTCoordinator: AlphaCoordinator {
     private lazy var sendViewController: TransferTokensCardViaWalletAddressViewController = {
         return makeTransferTokensCardViaWalletAddressViewController(token: tokenObject, for: tokenHolder, paymentFlow: .send(type: .transaction(transactionType)))
     }()
@@ -26,7 +26,7 @@ class TransferNFTCoordinator: Coordinator {
 
     weak var delegate: TransferNFTCoordinatorDelegate?
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(
             session: WalletSession,

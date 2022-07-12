@@ -12,13 +12,13 @@ private class SignMessageCoordinatorBridgeToPromise {
     private let analyticsCoordinator: AnalyticsCoordinator
     private let navigationController: UINavigationController
     private let keystore: Keystore
-    private let parentCoordinator: Coordinator
+    private let parentCoordinator: AlphaCoordinator
     private let source: Analytics.SignMessageRequestSource
     private weak var signMessageCoordinator: SignMessageCoordinator?
     private let (promise, seal) = Promise<Data>.pending()
     private var retainCycle: SignMessageCoordinatorBridgeToPromise?
 
-    init(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, keystore: Keystore, coordinator: Coordinator, source: Analytics.SignMessageRequestSource) {
+    init(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, keystore: Keystore, coordinator: AlphaCoordinator, source: Analytics.SignMessageRequestSource) {
         self.analyticsCoordinator = analyticsCoordinator
         self.navigationController = navigationController
         self.keystore = keystore
@@ -65,7 +65,7 @@ extension SignMessageCoordinatorBridgeToPromise: SignMessageCoordinatorDelegate 
 }
 
 extension SignMessageCoordinator {
-    static func promise(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, keystore: Keystore, coordinator: Coordinator, signType: SignMessageType, account: AlphaWallet.Address, source: Analytics.SignMessageRequestSource, walletConnectDappRequesterViewModel: WalletConnectDappRequesterViewModel?) -> Promise<Data> {
+    static func promise(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, keystore: Keystore, coordinator: AlphaCoordinator, signType: SignMessageType, account: AlphaWallet.Address, source: Analytics.SignMessageRequestSource, walletConnectDappRequesterViewModel: WalletConnectDappRequesterViewModel?) -> Promise<Data> {
         let bridge = SignMessageCoordinatorBridgeToPromise(analyticsCoordinator: analyticsCoordinator, navigationController: navigationController, keystore: keystore, coordinator: coordinator, source: source)
         return bridge.promise(signType: signType, account: account, walletConnectDappRequesterViewModel: walletConnectDappRequesterViewModel)
     }

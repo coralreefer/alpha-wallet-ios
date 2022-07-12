@@ -2,7 +2,7 @@
 
 import Foundation
 
-protocol CoordinatorThatEnds: Coordinator {
+protocol CoordinatorThatEnds: AlphaCoordinator {
     func endUserInterface(animated: Bool)
     func end()
 }

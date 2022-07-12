@@ -84,7 +84,7 @@ private enum CheckEIP681Error: Error {
     case missingRpcServer
 }
 
-final class QRCodeResolutionCoordinator: Coordinator {
+final class QRCodeResolutionCoordinator: AlphaCoordinator {
     enum Usage {
         case all(tokensDatastore: TokensDataStore, assetDefinitionStore: AssetDefinitionStore)
         case importWalletOnly
@@ -98,7 +98,7 @@ final class QRCodeResolutionCoordinator: Coordinator {
     }
     private let scanQRCodeCoordinator: ScanQRCodeCoordinator
     private let account: Wallet
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: QRCodeResolutionCoordinatorDelegate?
 
     init(config: Config, coordinator: ScanQRCodeCoordinator, usage: Usage, account: Wallet) {

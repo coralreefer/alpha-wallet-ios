@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-class CheckDeviceCoordinator: Coordinator {
+class CheckDeviceCoordinator: AlphaCoordinator {
     private let navigationController: UINavigationController
     private let jailbreakChecker: JailbreakChecker
 
@@ -19,7 +19,7 @@ class CheckDeviceCoordinator: Coordinator {
         return controller
     }()
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(
         navigationController: UINavigationController,

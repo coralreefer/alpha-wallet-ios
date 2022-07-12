@@ -8,7 +8,7 @@ protocol ServersCoordinatorDelegate: AnyObject {
     func didSelectDismiss(in coordinator: ServersCoordinator)
 }
 
-class ServersCoordinator: Coordinator {
+class ServersCoordinator: AlphaCoordinator {
     //Cannot be `let` as the chains can change dynamically without the app being restarted (i.e. killed). The UI can be restarted though (when switching changes)
     static var serversOrdered: [RPCServer] {
         let all: [RPCServer] = [
@@ -61,7 +61,7 @@ class ServersCoordinator: Coordinator {
     }()
 
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: ServersCoordinatorDelegate?
 
     init(defaultServer: RPCServerOrAuto, config: Config, navigationController: UINavigationController) {
@@ -114,7 +114,7 @@ private class ServersCoordinatorBridgeToPromise {
     private let (promiseToReturn, seal) = Promise<ServerSelection>.pending()
     private var retainCycle: ServersCoordinatorBridgeToPromise?
 
-    init(_ navigationController: UINavigationController, coordinator: Coordinator, viewModel: ServersViewModel) {
+    init(_ navigationController: UINavigationController, coordinator: AlphaCoordinator, viewModel: ServersViewModel) {
         self.navigationController = navigationController
 
         retainCycle = self
@@ -153,7 +153,7 @@ extension ServersCoordinatorBridgeToPromise: ServersCoordinatorDelegate {
 }
 
 extension ServersCoordinator {
-    static func promise(_ navigationController: UINavigationController, viewModel: ServersViewModel, coordinator: Coordinator) -> Promise<ServerSelection> {
+    static func promise(_ navigationController: UINavigationController, viewModel: ServersViewModel, coordinator: AlphaCoordinator) -> Promise<ServerSelection> {
         let bridge = ServersCoordinatorBridgeToPromise(navigationController, coordinator: coordinator, viewModel: viewModel)
         return bridge.promise
     }

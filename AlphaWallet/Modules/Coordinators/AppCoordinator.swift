@@ -4,7 +4,7 @@ import Combine
 import UIKit
 import PromiseKit
 
-class AppCoordinator: NSObject, Coordinator {
+class AppCoordinator: NSObject, AlphaCoordinator {
     private let config = Config()
     private let legacyFileBasedKeystore: LegacyFileBasedKeystore
     private let lock = Lock()
@@ -32,7 +32,7 @@ class AppCoordinator: NSObject, Coordinator {
     lazy private var openSea: OpenSea = OpenSea(analyticsCoordinator: analyticsService, queue: .global())
     private let restartQueue = RestartTaskQueue()
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     var activeWalletCoordinator: ActiveWalletCoordinator? {
         return coordinators.first { $0 is ActiveWalletCoordinator } as? ActiveWalletCoordinator
     }

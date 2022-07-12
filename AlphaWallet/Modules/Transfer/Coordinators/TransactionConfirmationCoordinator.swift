@@ -57,7 +57,7 @@ protocol TransactionConfirmationCoordinatorDelegate: CanOpenURL, SendTransaction
     func didClose(in coordinator: TransactionConfirmationCoordinator)
 }
 
-class TransactionConfirmationCoordinator: Coordinator {
+class TransactionConfirmationCoordinator: AlphaCoordinator {
     private let configuration: TransactionConfirmationConfiguration
     private lazy var viewModel: TransactionConfirmationViewModel = .init(configurator: configurator, configuration: configuration, domainResolutionService: domainResolutionService)
     private lazy var rootViewController: TransactionConfirmationViewController = {
@@ -82,7 +82,7 @@ class TransactionConfirmationCoordinator: Coordinator {
     private var server: RPCServer { configurator.session.server }
     private let navigationController: UIViewController
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: TransactionConfirmationCoordinatorDelegate?
 
     init(presentingViewController: UIViewController, session: WalletSession, transaction: UnconfirmedTransaction, configuration: TransactionConfirmationConfiguration, analyticsCoordinator: AnalyticsCoordinator, domainResolutionService: DomainResolutionServiceType) throws {

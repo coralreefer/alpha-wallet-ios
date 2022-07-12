@@ -10,7 +10,7 @@ protocol AddHideTokensCoordinatorDelegate: AnyObject {
     func didClose(in coordinator: AddHideTokensCoordinator)
 }
 
-class AddHideTokensCoordinator: Coordinator {
+class AddHideTokensCoordinator: AlphaCoordinator {
     private let analyticsCoordinator: AnalyticsCoordinator
     private let domainResolutionService: DomainResolutionServiceType
     private let navigationController: UINavigationController
@@ -24,7 +24,7 @@ class AddHideTokensCoordinator: Coordinator {
     private let config: Config
     private let tokenCollection: TokenCollection
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: AddHideTokensCoordinatorDelegate?
 
     init(assetDefinitionStore: AssetDefinitionStore, tokenCollection: TokenCollection, analyticsCoordinator: AnalyticsCoordinator, domainResolutionService: DomainResolutionServiceType, navigationController: UINavigationController, config: Config, importToken: ImportToken) {

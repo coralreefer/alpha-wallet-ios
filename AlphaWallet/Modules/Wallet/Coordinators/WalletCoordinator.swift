@@ -8,7 +8,7 @@ protocol WalletCoordinatorDelegate: AnyObject {
     func didCancel(in coordinator: WalletCoordinator)
 }
 
-class WalletCoordinator: Coordinator {
+class WalletCoordinator: AlphaCoordinator {
     private let config: Config
     private var keystore: Keystore
     private weak var importWalletViewController: ImportWalletViewController?
@@ -17,7 +17,7 @@ class WalletCoordinator: Coordinator {
 
     var navigationController: UINavigationController
     weak var delegate: WalletCoordinatorDelegate?
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(
         config: Config,

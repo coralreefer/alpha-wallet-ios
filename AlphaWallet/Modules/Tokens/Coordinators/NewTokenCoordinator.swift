@@ -16,7 +16,7 @@ protocol NewTokenCoordinatorDelegate: AnyObject {
     func didClose(in coordinator: NewTokenCoordinator)
 }
 
-class NewTokenCoordinator: Coordinator {
+class NewTokenCoordinator: AlphaCoordinator {
 
     private var serverToAddCustomTokenOn: RPCServerOrAuto = .auto {
         didSet {
@@ -36,7 +36,7 @@ class NewTokenCoordinator: Coordinator {
     private let navigationController: UINavigationController
     private lazy var viewController: NewTokenViewController = .init(server: serverToAddCustomTokenOn, domainResolutionService: domainResolutionService, initialState: initialState)
     private let initialState: NewTokenInitialState
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: NewTokenCoordinatorDelegate?
 
     init(analyticsCoordinator: AnalyticsCoordinator, navigationController: UINavigationController, config: Config, importToken: ImportToken, initialState: NewTokenInitialState = .empty, domainResolutionService: DomainResolutionServiceType) {

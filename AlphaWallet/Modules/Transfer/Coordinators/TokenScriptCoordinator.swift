@@ -16,7 +16,7 @@ protocol TokenScriptCoordinatorDelegate: CanOpenURL, SendTransactionDelegate {
     func didCancel(in coordinator: TokenScriptCoordinator)
 }
 
-class TokenScriptCoordinator: Coordinator {
+class TokenScriptCoordinator: AlphaCoordinator {
     private lazy var viewController: TokenInstanceActionViewController = {
         return makeTokenInstanceActionViewController(token: tokenObject, for: tokenHolder, action: action)
     }()
@@ -36,7 +36,7 @@ class TokenScriptCoordinator: Coordinator {
 
     weak var delegate: TokenScriptCoordinatorDelegate?
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     init(
             session: WalletSession,

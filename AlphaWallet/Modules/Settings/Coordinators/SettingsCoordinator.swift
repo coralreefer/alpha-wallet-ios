@@ -19,7 +19,7 @@ protocol SettingsCoordinatorDelegate: class, CanOpenURL {
     func restartToReloadServersQueued(in coordinator: SettingsCoordinator)
 }
 
-class SettingsCoordinator: Coordinator {
+class SettingsCoordinator: AlphaCoordinator {
 	private let keystore: Keystore
 	private var config: Config
 	private let sessions: ServerDictionary<WalletSession>
@@ -38,7 +38,7 @@ class SettingsCoordinator: Coordinator {
 
 	let navigationController: UINavigationController
 	weak var delegate: SettingsCoordinatorDelegate?
-	var coordinators: [Coordinator] = []
+	var coordinators: [AlphaCoordinator] = []
 
 	lazy var rootViewController: SettingsViewController = {
 		let controller = SettingsViewController(config: config, keystore: keystore, account: account, analyticsCoordinator: analyticsCoordinator, domainResolutionService: domainResolutionService)

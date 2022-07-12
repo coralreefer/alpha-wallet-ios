@@ -12,9 +12,9 @@ protocol WhereAreMyTokensCoordinatorDelegate: class {
     func didDismiss(in coordinator: WhereAreMyTokensCoordinator)
 }
 
-class WhereAreMyTokensCoordinator: NSObject, Coordinator {
+class WhereAreMyTokensCoordinator: NSObject, AlphaCoordinator {
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: WhereAreMyTokensCoordinatorDelegate?
 
     init(navigationController: UINavigationController) {

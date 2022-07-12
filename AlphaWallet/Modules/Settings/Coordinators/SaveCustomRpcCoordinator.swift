@@ -29,7 +29,7 @@ enum SaveOperationType {
 
 typealias OverallProtocol = SaveCustomRpcHandleUrlFailure & HandleAddMultipleCustomRpcViewControllerResponse
 
-class SaveCustomRpcCoordinator: NSObject, Coordinator {
+class SaveCustomRpcCoordinator: NSObject, AlphaCoordinator {
 
     private let navigationController: UINavigationController
     private let config: Config
@@ -38,7 +38,7 @@ class SaveCustomRpcCoordinator: NSObject, Coordinator {
     private let operation: SaveOperationType
     private var activeViewController: OverallProtocol?
 
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: SaveCustomRpcCoordinatorDelegate?
 
     init(navigationController: UINavigationController, config: Config, restartQueue: RestartTaskQueue, analyticsCoordinator: AnalyticsCoordinator, operation: SaveOperationType) {

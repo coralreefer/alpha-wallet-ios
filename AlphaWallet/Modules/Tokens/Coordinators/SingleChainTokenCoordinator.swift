@@ -24,7 +24,7 @@ protocol SingleChainTokenCoordinatorDelegate: CanOpenURL, SendTransactionDelegat
     func didTapEditAlert(for token: Token, alert: PriceAlert, in coordinator: SingleChainTokenCoordinator)
 }
 
-class SingleChainTokenCoordinator: Coordinator {
+class SingleChainTokenCoordinator: AlphaCoordinator {
     private let keystore: Keystore
     private let tokensDataStore: TokensDataStore
     private let assetDefinitionStore: AssetDefinitionStore
@@ -36,7 +36,7 @@ class SingleChainTokenCoordinator: Coordinator {
     private let activitiesService: ActivitiesServiceType
     let session: WalletSession
     weak var delegate: SingleChainTokenCoordinatorDelegate?
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
 
     var server: RPCServer {
         session.server

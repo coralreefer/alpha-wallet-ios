@@ -11,7 +11,7 @@ protocol SendCoordinatorDelegate: class, CanOpenURL {
     func openFiatOnRamp(wallet: Wallet, server: RPCServer, inCoordinator coordinator: SendCoordinator, viewController: UIViewController, source: Analytics.FiatOnRampSource)
 }
 
-class SendCoordinator: Coordinator {
+class SendCoordinator: AlphaCoordinator {
     private let transactionType: TransactionType
     private let session: WalletSession
     private let keystore: Keystore
@@ -22,7 +22,7 @@ class SendCoordinator: Coordinator {
     private var transactionConfirmationResult: ConfirmResult? = .none
 
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     lazy var sendViewController: SendViewController = {
         return makeSendViewController()
     }()

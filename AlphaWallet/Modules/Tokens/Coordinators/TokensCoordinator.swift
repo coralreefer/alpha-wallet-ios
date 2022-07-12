@@ -24,7 +24,7 @@ protocol TokensCoordinatorDelegate: CanOpenURL, SendTransactionDelegate {
     func viewWillAppearOnce(in coordinator: TokensCoordinator)
 }
 
-class TokensCoordinator: Coordinator {
+class TokensCoordinator: AlphaCoordinator {
     private let sessions: ServerDictionary<WalletSession>
     private let keystore: Keystore
     private let config: Config
@@ -70,7 +70,7 @@ class TokensCoordinator: Coordinator {
     }
     private let walletConnectCoordinator: WalletConnectCoordinator
     let navigationController: UINavigationController
-    var coordinators: [Coordinator] = []
+    var coordinators: [AlphaCoordinator] = []
     weak var delegate: TokensCoordinatorDelegate?
 
     private let coinTickersFetcher: CoinTickersFetcherType
