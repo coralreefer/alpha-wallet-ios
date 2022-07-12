@@ -39,8 +39,8 @@ class AmountTextField_v2: UIControl {
         return textField
     }()
 
-    var allFundsButton: Button = {
-        let button = Button(size: .normal, style: .borderless)
+    var allFundsButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .borderless)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.localizable.sendAllFunds(), for: .normal)
         button.titleLabel?.font = DataEntry.Font.accessory

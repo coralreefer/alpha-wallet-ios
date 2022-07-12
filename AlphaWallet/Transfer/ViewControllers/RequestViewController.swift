@@ -165,8 +165,8 @@ class RequestViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        addressContainerView.cornerRadius = addressContainerView.frame.size.height / 2
-        ensContainerView.cornerRadius = ensContainerView.frame.size.height / 2
+        addressContainerView.aw_cornerRadius = addressContainerView.frame.size.height / 2
+        ensContainerView.aw_cornerRadius = ensContainerView.frame.size.height / 2
     }
 
     private func configure() {
@@ -188,7 +188,7 @@ class RequestViewController: UIViewController {
                 if let ensName = ensName, ensName.nonEmpty {
                     strongSelf.ensLabel.text = ensName
                     strongSelf.ensContainerView.isHidden = false
-                    strongSelf.ensContainerView.cornerRadius = strongSelf.ensContainerView.frame.size.height / 2
+                    strongSelf.ensContainerView.aw_cornerRadius = strongSelf.ensContainerView.frame.size.height / 2
                 } else {
                     strongSelf.ensLabel.text = nil
                     strongSelf.ensContainerView.isHidden = true

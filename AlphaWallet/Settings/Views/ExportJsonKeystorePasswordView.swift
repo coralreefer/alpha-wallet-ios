@@ -32,8 +32,8 @@ class ExportJsonKeystorePasswordView: UIView {
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
         _ = textField.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
-        textField.borderColor = R.color.azure()
-        textField.borderWidth = 1.0
+        textField.aw_borderColor = R.color.azure()
+        textField.aw_borderWidth = 1.0
         textField.layer.cornerRadius = 5.0
         textField.returnKeyType = .done
         textField.spellCheckingType = .no

@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-enum ButtonSize: Int {
+enum AlphaButtonSize: Int {
     case small
     case normal
     case large
@@ -19,7 +19,7 @@ enum ButtonSize: Int {
     }
 }
 
-enum ButtonStyle {
+enum AlphaButtonStyle {
     case solid
     case squared
     case border
@@ -103,10 +103,10 @@ enum ButtonStyle {
     }
 }
 
-class Button: UIButton {
+class AlphaButton: UIButton {
     var heightConstraint: NSLayoutConstraint?
 
-    init(size: ButtonSize, style: ButtonStyle) {
+    init(size: AlphaButtonSize, style: AlphaButtonStyle) {
         super.init(frame: .zero)
         apply(size: size, style: style)
     }
@@ -115,7 +115,7 @@ class Button: UIButton {
         return nil
     }
 
-    func apply(size: ButtonSize, style: ButtonStyle) {
+    func apply(size: AlphaButtonSize, style: AlphaButtonStyle) {
         heightConstraint.flatMap { NSLayoutConstraint.deactivate([$0]) }
 
         let constraint = heightAnchor.constraint(equalToConstant: size.height)

@@ -12,7 +12,7 @@ import StatefulViewController
 class EmptyFilteringResultView: UIView {
     private let titleLabel = UILabel()
     private let imageView = UIImageView()
-    private let button = Button(size: .large, style: .green)
+    private let button = AlphaButton(size: .large, style: .green)
     private let insets: UIEdgeInsets
     var onRetry: (() -> Void)? = .none
     private let viewModel = StateViewModel()

@@ -26,9 +26,9 @@ class ExportJsonKeystoreFileView: UIView {
         textView.backgroundColor = R.color.alabaster()!
         textView.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Fonts.regular(size: 17.0))
         textView.textColor = R.color.mine()!
-        textView.borderColor = R.color.silver()
-        textView.cornerRadius = 5.0
-        textView.borderWidth = 1.0
+        textView.aw_borderColor = R.color.silver()
+        textView.aw_cornerRadius = 5.0
+        textView.aw_borderWidth = 1.0
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.isSelectable = true

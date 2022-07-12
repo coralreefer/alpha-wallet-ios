@@ -12,7 +12,7 @@ class EmptyView: UIView {
     private let stackView: UIStackView = [].asStackView(axis: .vertical, spacing: 30, alignment: .center)
     private var titleLabel: UILabel?
     private var imageView: UIImageView?
-    private var button: Button?
+    private var button: AlphaButton?
     private var insets: UIEdgeInsets = .zero
     private var buttonSelectionClosure: (() -> Void)? = .none
     private var placementConstraints: [NSLayoutConstraint] = []
@@ -63,10 +63,10 @@ class EmptyView: UIView {
         return build()
     }
 
-    func configure(buttonTitle title: String?, width: CGFloat = 180, size: ButtonSize = .large, style: ButtonStyle = .green, buttonSelectionClosure: (() -> Void)?) -> Self {
+    func configure(buttonTitle title: String?, width: CGFloat = 180, size: AlphaButtonSize = .large, style: AlphaButtonStyle = .green, buttonSelectionClosure: (() -> Void)?) -> Self {
         self.buttonSelectionClosure = buttonSelectionClosure
-        self.button = title.flatMap { title -> Button in
-            let button = Button(size: size, style: style)
+        self.button = title.flatMap { title -> AlphaButton in
+            let button = AlphaButton(size: size, style: style)
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitle(title, for: .normal)
             button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)

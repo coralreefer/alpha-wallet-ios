@@ -42,7 +42,7 @@ class ConfirmationHeaderView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Colors.black.withAlphaComponent(0.2)
-        view.cornerRadius = 2.5
+        view.aw_cornerRadius = 2.5
 
         NSLayoutConstraint.activate([
             view.widthAnchor.constraint(equalToConstant: 36),

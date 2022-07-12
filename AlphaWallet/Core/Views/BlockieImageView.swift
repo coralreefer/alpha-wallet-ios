@@ -51,7 +51,7 @@ class BlockieImageView: UIView {
         isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.cornerRadius = imageSize.height/2.0
+        imageView.aw_cornerRadius = imageSize.height/2.0
         addSubview(imageView)
 
         NSLayoutConstraint.activate([

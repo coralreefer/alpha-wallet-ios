@@ -73,8 +73,8 @@ class OpenSeaNonFungibleTokenView: UIView {
         background.backgroundColor = viewModel.contentsBackgroundColor
         background.layer.cornerRadius = viewModel.contentsCornerRadius
         background.clipsToBounds = true
-        background.borderWidth = 1
-        background.borderColor = R.color.mercury()
+        background.aw_borderWidth = 1
+        background.aw_borderColor = R.color.mercury()
 
         imageHolder.clipsToBounds = true
         tokenImageView.subscribable = viewModel.tokenIcon

@@ -91,7 +91,7 @@ class TransactionViewCell: UITableViewCell {
         subTitleLabel.font = viewModel.subTitleFont
 
         blockchainLabel.textAlignment = viewModel.blockChainNameTextAlignment
-        blockchainLabel.cornerRadius = viewModel.blockChainNameCornerRadius
+        blockchainLabel.aw_cornerRadius = viewModel.blockChainNameCornerRadius
         blockchainLabel.backgroundColor = viewModel.blockChainNameBackgroundColor
         blockchainLabel.textColor = viewModel.blockChainNameColor
         blockchainLabel.font = viewModel.blockChainNameFont

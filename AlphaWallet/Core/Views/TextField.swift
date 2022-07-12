@@ -188,7 +188,7 @@ class TextField: UIControl {
         guard !isConfigured else { return }
         isConfigured = true
 
-        cornerRadius = DataEntry.Metric.cornerRadius
+        aw_cornerRadius = DataEntry.Metric.cornerRadius
 
         label.font = DataEntry.Font.textFieldTitle
         label.textColor = DataEntry.Color.label

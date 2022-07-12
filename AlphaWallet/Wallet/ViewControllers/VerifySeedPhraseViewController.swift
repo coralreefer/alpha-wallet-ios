@@ -50,17 +50,17 @@ class VerifySeedPhraseViewController: UIViewController {
                 seedPhraseCollectionView.viewModel = .init(words: words, isSelectable: true)
                 errorLabel.text = viewModel.noErrorText
                 errorLabel.textColor = viewModel.noErrorColor
-                seedPhraseTextView.borderColor = viewModel.seedPhraseTextViewBorderNormalColor
+                seedPhraseTextView.aw_borderColor = viewModel.seedPhraseTextViewBorderNormalColor
                 delegate?.didVerifySeedPhraseSuccessfully(for: account, in: self)
             case .seedPhraseNotMatched:
                 errorLabel.text = R.string.localizable.walletsVerifySeedPhraseWrong()
                 errorLabel.textColor = viewModel.errorColor
-                seedPhraseTextView.borderColor = viewModel.seedPhraseTextViewBorderErrorColor
+                seedPhraseTextView.aw_borderColor = viewModel.seedPhraseTextViewBorderErrorColor
             case .keystoreError(let error):
                 seedPhraseCollectionView.viewModel = .init(words: [], isSelectable: true)
                 errorLabel.text = error.errorDescription
                 errorLabel.textColor = viewModel.errorColor
-                seedPhraseTextView.borderColor = viewModel.seedPhraseTextViewBorderErrorColor
+                seedPhraseTextView.aw_borderColor = viewModel.seedPhraseTextViewBorderErrorColor
             case .notDisplayedSeedPhrase:
                 seedPhraseCollectionView.viewModel = .init(words: [], isSelectable: true)
                 seedPhraseTextView.text = ""
@@ -70,7 +70,7 @@ class VerifySeedPhraseViewController: UIViewController {
                 seedPhraseCollectionView.viewModel = .init(words: [], isSelectable: true)
                 errorLabel.text = error.errorDescription
                 errorLabel.textColor = viewModel.errorColor
-                seedPhraseTextView.borderColor = viewModel.seedPhraseTextViewBorderErrorColor
+                seedPhraseTextView.aw_borderColor = viewModel.seedPhraseTextViewBorderErrorColor
             }
         }
     }
@@ -229,9 +229,9 @@ class VerifySeedPhraseViewController: UIViewController {
         seedPhraseTextView.autocapitalizationType = .none
         seedPhraseTextView.autocorrectionType = .no
         seedPhraseTextView.enablesReturnKeyAutomatically = true
-        seedPhraseTextView.borderColor = viewModel.seedPhraseTextViewBorderNormalColor
-        seedPhraseTextView.borderWidth = viewModel.seedPhraseTextViewBorderWidth
-        seedPhraseTextView.cornerRadius = viewModel.seedPhraseTextViewBorderCornerRadius
+        seedPhraseTextView.aw_borderColor = viewModel.seedPhraseTextViewBorderNormalColor
+        seedPhraseTextView.aw_borderWidth = viewModel.seedPhraseTextViewBorderWidth
+        seedPhraseTextView.aw_cornerRadius = viewModel.seedPhraseTextViewBorderCornerRadius
         seedPhraseTextView.font = viewModel.seedPhraseTextViewFont
         seedPhraseTextView.contentInset = viewModel.seedPhraseTextViewContentInset
 
@@ -293,7 +293,7 @@ class VerifySeedPhraseViewController: UIViewController {
     private func clearError() {
         errorLabel.text = viewModel.noErrorText
         errorLabel.textColor = viewModel.noErrorColor
-        seedPhraseTextView.borderColor = viewModel.seedPhraseTextViewBorderNormalColor
+        seedPhraseTextView.aw_borderColor = viewModel.seedPhraseTextViewBorderNormalColor
     }
 }
 

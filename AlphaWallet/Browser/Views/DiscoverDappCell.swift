@@ -59,18 +59,18 @@ class DiscoverDappCell: UITableViewCell {
         addButton.isHidden = viewModel.isAddButtonHidden
         addButton.titleLabel?.font = viewModel.addRemoveButtonFont
         addButton.contentEdgeInsets = viewModel.addRemoveButtonContentEdgeInsets
-        addButton.borderColor = viewModel.addRemoveButtonBorderColor
-        addButton.borderWidth = viewModel.addRemoveButtonBorderWidth
-        addButton.cornerRadius = viewModel.addRemoveButtonBorderCornerRadius
+        addButton.aw_borderColor = viewModel.addRemoveButtonBorderColor
+        addButton.aw_borderWidth = viewModel.addRemoveButtonBorderWidth
+        addButton.aw_cornerRadius = viewModel.addRemoveButtonBorderCornerRadius
 
         removeButton.addTarget(self, action: #selector(onTappedRemove), for: .touchUpInside)
         removeButton.setTitle(R.string.localizable.removeButtonTitle().localizedUppercase, for: .normal)
         removeButton.isHidden = viewModel.isRemoveButtonHidden
         removeButton.titleLabel?.font = viewModel.addRemoveButtonFont
         removeButton.contentEdgeInsets = viewModel.addRemoveButtonContentEdgeInsets
-        removeButton.borderColor = viewModel.addRemoveButtonBorderColor
-        removeButton.borderWidth = viewModel.addRemoveButtonBorderWidth
-        removeButton.cornerRadius = viewModel.addRemoveButtonBorderCornerRadius
+        removeButton.aw_borderColor = viewModel.addRemoveButtonBorderColor
+        removeButton.aw_borderWidth = viewModel.addRemoveButtonBorderWidth
+        removeButton.aw_cornerRadius = viewModel.addRemoveButtonBorderCornerRadius
 
         iconImageViewHolder.configureShadow(color: viewModel.imageViewShadowColor, offset: viewModel.imageViewShadowOffset, opacity: viewModel.imageViewShadowOpacity, radius: viewModel.imageViewShadowRadius, cornerRadius: iconImageViewHolder.frame.size.width / 2)
 

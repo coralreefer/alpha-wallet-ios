@@ -44,8 +44,8 @@ class AddressTextField: UIControl {
         }
     }
 
-    var pasteButton: Button = {
-        let button = Button(size: .normal, style: .borderless)
+    var pasteButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .borderless)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.localizable.sendPasteButtonTitle(), for: .normal)
         button.titleLabel?.font = DataEntry.Font.accessory
@@ -61,8 +61,8 @@ class AddressTextField: UIControl {
         return button
     }()
 
-    var clearButton: Button = {
-        let button = Button(size: .normal, style: .borderless)
+    var clearButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .borderless)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.localizable.clearButtonTitle(), for: .normal)
         button.titleLabel?.font = DataEntry.Font.accessory
@@ -241,7 +241,7 @@ class AddressTextField: UIControl {
         guard !isConfigured else { return }
         isConfigured = true
 
-        cornerRadius = DataEntry.Metric.cornerRadius
+        aw_cornerRadius = DataEntry.Metric.cornerRadius
 
         label.font = DataEntry.Font.textFieldTitle
         label.textColor = DataEntry.Color.label
@@ -270,7 +270,7 @@ class AddressTextField: UIControl {
     }
 
     private func makeTargetAddressRightView() -> UIView {
-        let scanQRCodeButton = Button(size: .normal, style: .system)
+        let scanQRCodeButton = AlphaButton(size: .normal, style: .system)
         scanQRCodeButton.translatesAutoresizingMaskIntoConstraints = false
         scanQRCodeButton.setImage(R.image.qr_code_icon(), for: .normal)
         scanQRCodeButton.addTarget(self, action: #selector(openReader), for: .touchUpInside)

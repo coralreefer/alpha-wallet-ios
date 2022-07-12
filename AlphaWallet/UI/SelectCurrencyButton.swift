@@ -154,7 +154,7 @@ fileprivate class HasNoTokenView: UIControl {
         ])
 
         backgroundColor = .black
-        cornerRadius = 20
+        aw_cornerRadius = 20
         titleLabel.attributedText = NSAttributedString.init(string: "Select Token", attributes: [
             .font: Fonts.bold(size: 17),
             .foregroundColor: Colors.appWhite

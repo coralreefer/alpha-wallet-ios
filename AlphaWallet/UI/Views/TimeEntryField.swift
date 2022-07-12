@@ -37,7 +37,7 @@ class TimeEntryField: UIControl {
     }
 
     private func configure() {
-        cornerRadius = DataEntry.Metric.cornerRadius
+        aw_cornerRadius = DataEntry.Metric.cornerRadius
 
         layer.borderColor = DataEntry.Color.border.cgColor
         layer.borderWidth = DataEntry.Metric.borderThickness

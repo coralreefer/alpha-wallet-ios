@@ -7,7 +7,7 @@ import StatefulViewController
 class ErrorView: UIView {
     private let descriptionLabel = UILabel()
     private let imageView = UIImageView()
-    private let button = Button(size: .normal, style: .solid)
+    private let button = AlphaButton(size: .normal, style: .solid)
     private let insets: UIEdgeInsets
     private var onRetry: (() -> Void)? = .none
     private let viewModel = StateViewModel()

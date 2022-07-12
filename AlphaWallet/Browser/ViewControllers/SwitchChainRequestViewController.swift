@@ -36,8 +36,8 @@ class SwitchChainRequestViewController: ModalViewController {
 
         return v
     }()
-    private lazy var enableTestnetButton: Button = {
-        let button = Button(size: .normal, style: .system)
+    private lazy var enableTestnetButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .system)
         button.setTitle(viewModel.additionalButtonTitle, for: .normal)
 
         return button

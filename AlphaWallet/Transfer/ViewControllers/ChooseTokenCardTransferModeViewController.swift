@@ -133,7 +133,7 @@ class ChooseTokenCardTransferModeViewController: UIViewController, TokenVerifiab
         transferNowButton.setTitle("    \(R.string.localizable.aWalletTokenTransferModeNowButtonTitle())    ", for: .normal)
         transferNowButton.addTarget(self, action: #selector(transferNowTapped), for: .touchUpInside)
 
-        //Button fonts have to be smaller because the button title is too long
+        //AlphaButton fonts have to be smaller because the button title is too long
         generateMagicLinkButton.titleLabel?.font = viewModel.buttonFont
         transferNowButton.titleLabel?.font = viewModel.buttonFont
     }

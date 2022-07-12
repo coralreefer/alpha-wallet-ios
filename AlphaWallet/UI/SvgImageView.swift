@@ -71,11 +71,11 @@ final class SvgImageView: WKWebView {
 
         switch rounding {
         case .none:
-            cornerRadius = 0
+            aw_cornerRadius = 0
         case .circle:
-            cornerRadius = bounds.width / 2
+            aw_cornerRadius = bounds.width / 2
         case .custom(let radius):
-            cornerRadius = radius
+            aw_cornerRadius = radius
         }
     }
 

@@ -63,7 +63,7 @@ class VerticalButtonsBar: UIView {
         var buttonViews: [ContainerViewWithShadow<BarButton>] = [ContainerViewWithShadow<BarButton>]()
         guard numberOfButtons > 0 else { return }
         let primaryButton = createButton(viewModel: .primaryButton)
-        primaryButton.childView.borderWidth = 0
+        primaryButton.childView.aw_borderWidth = 0
         buttonViews.append(primaryButton)
         if numberOfButtons > 1 {
             (1 ..< numberOfButtons).forEach { _ in
@@ -136,9 +136,9 @@ class VerticalButtonsBar: UIView {
         //So long titles (that cause font to be adjusted) have some margins on the left and right
         button.contentEdgeInsets = .init(top: 0, left: 3, bottom: 0, right: 3)
 
-        button.cornerRadius = viewModel.buttonCornerRadius
-        button.borderColor = viewModel.buttonBorderColor
-        button.borderWidth = viewModel.buttonBorderWidth
+        button.aw_cornerRadius = viewModel.buttonCornerRadius
+        button.aw_borderColor = viewModel.buttonBorderColor
+        button.aw_borderWidth = viewModel.buttonBorderWidth
     }
 
     // MARK: - Configuration

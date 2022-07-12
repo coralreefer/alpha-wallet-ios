@@ -31,7 +31,7 @@ class SeedPhraseCell: UICollectionViewCell {
     }
 
     func configure(viewModel: SeedPhraseCellViewModel) {
-        cornerRadius = 7
+        aw_cornerRadius = 7
 
         if viewModel.sequence != nil {
             sequenceLabel.font = viewModel.sequenceFont

@@ -37,7 +37,7 @@ class ContainerViewWithShadow<T: UIView>: UIView {
         layoutIfNeeded()
         
         layer.cornerRadius = cornerRadius
-        childView.cornerRadius = cornerRadius
+        childView.aw_cornerRadius = cornerRadius
 
         layer.shadowColor = color.cgColor
         layer.shadowOffset = offset

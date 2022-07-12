@@ -114,7 +114,7 @@ public enum StopAnimationStyle {
         setBackgroundImage(cachedBackgroundImage, for: .normal)
 
         isUserInteractionEnabled = true
-        layer.cornerRadius = cornerRadius
+        layer.cornerRadius = aw_cornerRadius
     }
 
     private func animateToOriginalWidth(completion: (() -> Void)?) {

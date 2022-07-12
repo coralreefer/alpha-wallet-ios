@@ -71,8 +71,8 @@ class NonFungibleTraitView: UIView {
         countLabel.attributedText = viewModel.attributedCountValue
         countLabel.isHidden = countLabel.attributedText == nil
 
-        borderColor = viewModel.borderColor
-        cornerRadius = viewModel.cornerRadius
-        borderWidth = viewModel.borderWidth
+        aw_borderColor = viewModel.borderColor
+        aw_cornerRadius = viewModel.cornerRadius
+        aw_borderWidth = viewModel.borderWidth
     }
 }

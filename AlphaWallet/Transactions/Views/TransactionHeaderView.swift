@@ -41,7 +41,7 @@ class TransactionHeaderView: UIView {
         amountLabel.attributedText = amount
 
         blockchainLabel.textAlignment = .center
-        blockchainLabel.cornerRadius = 7
+        blockchainLabel.aw_cornerRadius = 7
         blockchainLabel.backgroundColor = server.blockChainNameColor
         blockchainLabel.textColor = Screen.TokenCard.Color.blockChainName
         blockchainLabel.font = Screen.TokenCard.Font.blockChainName

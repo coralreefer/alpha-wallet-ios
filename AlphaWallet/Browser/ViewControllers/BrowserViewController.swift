@@ -267,7 +267,7 @@ extension BrowserViewController: WKScriptMessageHandler {
 }
 
 extension BrowserViewController: BrowserErrorViewDelegate {
-    func didTapReload(_ sender: Button) {
+    func didTapReload(_ sender: AlphaButton) {
         reload()
     }
 }

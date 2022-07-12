@@ -214,9 +214,9 @@ class ConfigureTransactionViewController: UIViewController {
         let background = UIView()
         background.translatesAutoresizingMaskIntoConstraints = false
         background.backgroundColor = .init(red: 255, green: 235, blue: 234)
-        background.borderColor = .init(red: 252, green: 187, blue: 183)
-        background.cornerRadius = 8
-        background.borderWidth = 1
+        background.aw_borderColor = .init(red: 252, green: 187, blue: 183)
+        background.aw_cornerRadius = 8
+        background.aw_borderWidth = 1
 
         let warningIcon = UIImageView(image: R.image.gasWarning())
         warningIcon.translatesAutoresizingMaskIntoConstraints = false

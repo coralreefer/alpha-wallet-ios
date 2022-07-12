@@ -142,8 +142,8 @@ class NumberStepper: UIControl {
         addSubview(label)
 
         backgroundColor = buttonsBackgroundColor
-        borderWidth = 1
-        borderColor = DataEntry.Color.border
+        aw_borderWidth = 1
+        aw_borderColor = DataEntry.Color.border
         layer.cornerRadius = DataEntry.Metric.cornerRadius
         clipsToBounds = true
     }

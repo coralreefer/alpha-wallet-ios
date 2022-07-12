@@ -53,8 +53,8 @@ private class TokenCardSelectionAmountHeaderView: UIView {
         return label
     }()
 
-    var closeButton: Button = {
-        let button = Button(size: .normal, style: .borderless)
+    var closeButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .borderless)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(R.image.close(), for: .normal)
         button.heightConstraint.flatMap { NSLayoutConstraint.deactivate([$0]) }
@@ -89,8 +89,8 @@ protocol SelectTokenCardAmountViewDelegate: class {
 
 class SelectTokenCardAmountView: UIView {
 
-    private (set) var plusButton: Button = {
-        let button = Button(size: .normal, style: .borderless)
+    private (set) var plusButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .borderless)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(R.image.iconsSystemAddBorderCircle(), for: .normal)
         button.heightConstraint.flatMap { NSLayoutConstraint.deactivate([$0]) }
@@ -98,8 +98,8 @@ class SelectTokenCardAmountView: UIView {
         return button
     }()
 
-    private (set) var minusButton: Button = {
-        let button = Button(size: .normal, style: .borderless)
+    private (set) var minusButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .borderless)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(R.image.iconsSystemCircleMinue(), for: .normal)
         button.heightConstraint.flatMap { NSLayoutConstraint.deactivate([$0]) }

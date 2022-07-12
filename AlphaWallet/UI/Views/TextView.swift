@@ -83,8 +83,8 @@ class TextView: UIControl {
         }
     }
 
-    var pasteButton: Button = {
-        let button = Button(size: .normal, style: .borderless)
+    var pasteButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .borderless)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.localizable.sendPasteButtonTitle(), for: .normal)
         button.titleLabel?.font = DataEntry.Font.accessory
@@ -97,8 +97,8 @@ class TextView: UIControl {
         return button
     }()
 
-    var clearButton: Button = {
-        let button = Button(size: .normal, style: .borderless)
+    var clearButton: AlphaButton = {
+        let button = AlphaButton(size: .normal, style: .borderless)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.localizable.clearButtonTitle(), for: .normal)
         button.titleLabel?.font = DataEntry.Font.accessory
@@ -209,7 +209,7 @@ class TextView: UIControl {
         textView.layer.borderWidth = DataEntry.Metric.borderThickness
         textView.layer.cornerRadius = DataEntry.Metric.cornerRadius
 
-        cornerRadius = DataEntry.Metric.cornerRadius
+        aw_cornerRadius = DataEntry.Metric.cornerRadius
         layer.borderWidth = DataEntry.Metric.borderThickness
         backgroundColor = DataEntry.Color.textFieldBackground
         textView.backgroundColor = .clear

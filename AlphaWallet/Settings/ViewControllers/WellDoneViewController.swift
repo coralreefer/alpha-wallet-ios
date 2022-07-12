@@ -26,7 +26,7 @@ class WellDoneViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textAlignment = .center
 
-        let otherButton = Button(size: .normal, style: .solid)
+        let otherButton = AlphaButton(size: .normal, style: .solid)
         otherButton.translatesAutoresizingMaskIntoConstraints = false
         otherButton.setTitle(R.string.localizable.welldoneShareLabelText(), for: .normal)
         otherButton.addTarget(self, action: #selector(other(_:)), for: .touchUpInside)

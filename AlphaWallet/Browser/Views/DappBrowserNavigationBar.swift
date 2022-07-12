@@ -89,7 +89,7 @@ final class DappBrowserNavigationBar: UINavigationBar {
         textField.layer.borderWidth = DataEntry.Metric.borderThickness
         textField.backgroundColor = DataEntry.Color.searchTextFieldBackground
         textField.layer.borderColor = UIColor.clear.cgColor
-        textField.cornerRadius = DataEntry.Metric.cornerRadius
+        textField.aw_cornerRadius = DataEntry.Metric.cornerRadius
 
         return textField
     }()

@@ -9,7 +9,7 @@
 import UIKit
 // swiftlint:disable all
 extension UIView {
-    @IBInspectable var cornerRadius: CGFloat {
+    @IBInspectable var aw_cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -19,7 +19,7 @@ extension UIView {
         }
     }
 
-    @IBInspectable var borderWidth: CGFloat {
+    @IBInspectable var aw_borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -28,7 +28,7 @@ extension UIView {
         }
     }
 
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable var aw_borderColor: UIColor? {
         get {
             return UIColor(cgColor: layer.borderColor!)
         }

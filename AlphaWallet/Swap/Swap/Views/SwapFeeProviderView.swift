@@ -29,7 +29,7 @@ extension SwapFeesView {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = UIColor.init(red: 74, green: 74, blue: 74)
-            view.cornerRadius = 5
+            view.aw_cornerRadius = 5
             view.heightAnchor.constraint(equalToConstant: 10).isActive = true
             view.widthAnchor.constraint(equalToConstant: 10).isActive = true
 

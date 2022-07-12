@@ -229,9 +229,9 @@ class HorizontalButtonsBar: UIView, ButtonsBarViewType {
         //So long titles (that cause font to be adjusted) have some margins on the left and right
         button.contentEdgeInsets = .init(top: 0, left: 3, bottom: 0, right: 3)
 
-        button.cornerRadius = viewModel.buttonCornerRadius
-        button.borderColor = viewModel.buttonBorderColor
-        button.borderWidth = viewModel.buttonBorderWidth
+        button.aw_cornerRadius = viewModel.buttonCornerRadius
+        button.aw_borderColor = viewModel.buttonBorderColor
+        button.aw_borderWidth = viewModel.buttonBorderWidth
     }
 
     private func resetIsHiddenObservers() {

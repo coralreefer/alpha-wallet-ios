@@ -42,9 +42,9 @@ class SelectableSlippageView: UIView {
     }
 
     func configure(viewModel: SelectableSlippageViewModel) {
-        borderColor = viewModel.borderColor
-        cornerRadius = viewModel.cornerRadius
-        borderWidth = viewModel.borderWidth
+        aw_borderColor = viewModel.borderColor
+        aw_cornerRadius = viewModel.cornerRadius
+        aw_borderWidth = viewModel.borderWidth
         backgroundColor = viewModel.backgroundColor
         titleLabel.attributedText = viewModel.titleAttributedString
     }

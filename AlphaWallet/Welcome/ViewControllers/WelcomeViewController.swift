@@ -27,7 +27,7 @@ class WelcomeViewController: UIViewController {
         return pageControl
     }()
     private let createWalletButton: UIButton = {
-        let button = Button(size: .large, style: .squared)
+        let button = AlphaButton(size: .large, style: .squared)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.localizable.aWelcomeOnboardingCreatewalletButtonTitle(), for: .normal)
         button.titleLabel?.font = Fonts.semibold(size: 16)

@@ -57,7 +57,7 @@ class PromptBackupWalletView: UIView {
 
     func configure() {
         backgroundColor = viewModel.backgroundColor
-        cornerRadius = viewModel.cornerRadius
+        aw_cornerRadius = viewModel.cornerRadius
 
         titleLabel.font = viewModel.titleFont
         titleLabel.textColor = viewModel.titleColor

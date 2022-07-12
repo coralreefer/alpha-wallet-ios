@@ -103,7 +103,7 @@ class AddressOrEnsNameLabel: UILabel {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        blockieImageView.cornerRadius = 10
+        blockieImageView.aw_cornerRadius = 10
     }
 
     func clear() {

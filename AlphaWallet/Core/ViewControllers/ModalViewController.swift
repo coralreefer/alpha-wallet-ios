@@ -43,7 +43,7 @@ class ModalViewController: UINavigationController {
         view.backgroundColor = .clear
 
         viewController.delegate = self
-        viewController.headerView.cornerRadius = 10
+        viewController.headerView.aw_cornerRadius = 10
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -111,7 +111,7 @@ private class _ModalViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-        view.cornerRadius = 12
+        view.aw_cornerRadius = 12
 
         let subview = [
             headerView,
