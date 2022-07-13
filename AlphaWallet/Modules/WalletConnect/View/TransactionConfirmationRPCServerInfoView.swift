@@ -64,7 +64,7 @@ struct TransactionConfirmationRPCServerInfoViewModel {
         self.title = server.name
     }
 
-    var iconImage: Subscribable<Image> {
+    var iconImage: AlphaSubscribable<Image> {
         server.walletConnectIconImage
     }
 }

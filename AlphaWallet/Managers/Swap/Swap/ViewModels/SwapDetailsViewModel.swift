@@ -65,7 +65,7 @@ final class SwapDetailsViewModel {
                     return value.isNaN ? nil : abs(value)
                 }()
 
-                guard let totalFee = rate.flatMap({ Formatter.shortCrypto(symbol: pair.tokens.from.symbol).string(from: $0 + feeAmount) }) else { return "-" }
+                guard let totalFee = rate.flatMap({ CurrencyFormatter.shortCrypto(symbol: pair.tokens.from.symbol).string(from: $0 + feeAmount) }) else { return "-" }
 
                 return totalFee
             }.eraseToAnyPublisher()
@@ -88,7 +88,7 @@ final class SwapDetailsViewModel {
                     guard fromAmount > 0 else { return nil }
                     return (receivedAmount / fromAmount).nilIfNan
                 }()
-                guard let cryptoToCryptoRate = rate.flatMap({ Formatter.shortCrypto(symbol: pair.tokens.to.symbol).string(from: $0) }) else { return "-" }
+                guard let cryptoToCryptoRate = rate.flatMap({ CurrencyFormatter.shortCrypto(symbol: pair.tokens.to.symbol).string(from: $0) }) else { return "-" }
 
                 return "1 \(pair.tokens.from.symbol) = \(cryptoToCryptoRate)"
             }.eraseToAnyPublisher()

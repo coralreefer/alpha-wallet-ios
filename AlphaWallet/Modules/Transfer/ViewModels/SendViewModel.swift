@@ -169,7 +169,7 @@ struct SendViewModel {
 
     //This function is required because BigInt.init(String) doesn't handle scientific notation
     func convertMaybeScientificAmountToBigInt(_ maybeScientificAmountString: String) -> BigInt? {
-        let numberFormatter = Formatter.scientificAmount
+        let numberFormatter = CurrencyFormatter.scientificAmount
         let amountString = numberFormatter.number(from: maybeScientificAmountString).flatMap { numberFormatter.string(from: $0) }
         return amountString.flatMap { BigInt($0) }
     }

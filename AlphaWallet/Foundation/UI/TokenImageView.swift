@@ -3,8 +3,8 @@
 import UIKit
 
 class ImageView: UIImageView {
-    private var subscriptionKey: Subscribable<Image>.SubscribableKey?
-    var subscribable: Subscribable<Image>? {
+    private var subscriptionKey: AlphaSubscribable<Image>.SubscribableKey?
+    var subscribable: AlphaSubscribable<Image>? {
         didSet {
             if let previousSubscribable = oldValue, let subscriptionKey = subscriptionKey {
                 previousSubscribable.unsubscribe(subscriptionKey)
@@ -24,7 +24,7 @@ class ImageView: UIImageView {
 }
 
 class TokenImageView: UIView, ViewRoundingSupportable, ViewLoadingCancelable {
-    private var subscriptionKey: Subscribable<TokenImage>.SubscribableKey?
+    private var subscriptionKey: AlphaSubscribable<TokenImage>.SubscribableKey?
     private let symbolLabel: UILabel = {
         let label = UILabel()
         label.textColor = Colors.appWhite
@@ -66,7 +66,7 @@ class TokenImageView: UIView, ViewRoundingSupportable, ViewLoadingCancelable {
         didSet { imageView.contentMode = contentMode }
     } 
 
-    var subscribable: Subscribable<TokenImage>? {
+    var subscribable: AlphaSubscribable<TokenImage>? {
         didSet {
             if let previousSubscribable = oldValue, let subscriptionKey = subscriptionKey {
                 previousSubscribable.unsubscribe(subscriptionKey)

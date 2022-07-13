@@ -19,7 +19,7 @@ protocol Tokenable {
     var valueBI: BigInt { get }
     var balanceNft: [TokenBalanceValue] { get }
 
-    func icon(withSize size: GoogleContentSize) -> Subscribable<TokenImage>
+    func icon(withSize size: GoogleContentSize) -> AlphaSubscribable<TokenImage>
 }
 
 extension Tokenable {

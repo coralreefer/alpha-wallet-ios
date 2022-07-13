@@ -67,7 +67,7 @@ class WalletConnectSessionsViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem.backBarButton(self, selector: #selector(closeButtonSelected))
         navigationItem.rightBarButtonItem = UIBarButtonItem.qrCodeBarButton(self, selector: #selector(qrCodeButtonSelected))
 
-        emptyView = EmptyView.walletSessionEmptyView(completion: { [weak self] in
+        emptyView = AlphaEmptyView.walletSessionEmptyView(completion: { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.qrCodeSelected(in: strongSelf)
         })

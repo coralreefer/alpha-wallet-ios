@@ -54,12 +54,12 @@ class SelectTokenViewController: UIViewController {
             stackView.anchorsConstraint(to: view)
         ])
 
-        errorView = ErrorView(onRetry: { [weak self] in
+        errorView = AlphaErrorView(onRetry: { [weak self] in
             self?.fetchTokens()
         })
 
-        loadingView = LoadingView(insets: .init(top: Style.SearchBar.height, left: 0, bottom: 0, right: 0))
-        emptyView = EmptyView.tokensEmptyView(completion: { [weak self] in
+        loadingView = AlphaLoadingView(insets: .init(top: Style.SearchBar.height, left: 0, bottom: 0, right: 0))
+        emptyView = AlphaEmptyView.tokensEmptyView(completion: { [weak self] in
             self?.fetchTokens()
         })
     }

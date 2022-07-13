@@ -42,8 +42,8 @@ enum AssetAttributeSyntax: String {
         }
     }
 
-    private func coerceSubscribableToSyntax(_ subscribable: Subscribable<AssetInternalValue>) -> AssetInternalValue? {
-        let convertedSubscribable = Subscribable<AssetInternalValue>(nil)
+    private func coerceSubscribableToSyntax(_ subscribable: AlphaSubscribable<AssetInternalValue>) -> AssetInternalValue? {
+        let convertedSubscribable = AlphaSubscribable<AssetInternalValue>(nil)
         subscribable.subscribe { value in
             guard let value = value else { return }
             convertedSubscribable.value = self.coerceNonSubscribableToSyntax(value)

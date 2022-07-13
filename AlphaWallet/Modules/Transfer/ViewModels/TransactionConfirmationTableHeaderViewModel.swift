@@ -17,7 +17,7 @@ struct TransactionConfirmationHeaderViewModel {
     let headerName: String?
     let details: String?
     var configuration: TransactionConfirmationHeaderView.Configuration
-    let titleIcon: Subscribable<UIImage>
+    let titleIcon: AlphaSubscribable<UIImage>
     var chevronImage: UIImage? {
         let image = configuration.isOpened ? R.image.expand() : R.image.not_expand()
         return image?.withRenderingMode(.alwaysTemplate)
@@ -66,7 +66,7 @@ struct TransactionConfirmationHeaderViewModel {
         return Colors.appBackground
     }
 
-    init(title: Title, headerName: String?, details: String? = nil, titleIcon: Subscribable<UIImage> = .init(nil), configuration: TransactionConfirmationHeaderView.Configuration) {
+    init(title: Title, headerName: String?, details: String? = nil, titleIcon: AlphaSubscribable<UIImage> = .init(nil), configuration: TransactionConfirmationHeaderView.Configuration) {
         switch title {
         case .normal(let title):
             self.title = title

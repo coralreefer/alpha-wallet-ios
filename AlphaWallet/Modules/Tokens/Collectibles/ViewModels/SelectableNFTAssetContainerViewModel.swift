@@ -37,7 +37,7 @@ struct SelectableNFTAssetContainerViewModel {
         ])
     }
 
-    var iconImage: Subscribable<TokenImage> {
+    var iconImage: AlphaSubscribable<TokenImage> {
         .init(nil)
     }
 

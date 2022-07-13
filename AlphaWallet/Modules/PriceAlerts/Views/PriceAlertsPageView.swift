@@ -66,7 +66,7 @@ class PriceAlertsPageView: UIView, PageViewType {
             addNotificationView.heightAnchor.constraint(equalToConstant: DataEntry.Metric.Tokens.Filter.height)
         ])
         
-        statefulView.emptyView = EmptyView.activitiesEmptyView() 
+        statefulView.emptyView = AlphaEmptyView.activitiesEmptyView() 
     }
 
     required init?(coder: NSCoder) {

@@ -54,7 +54,7 @@ class TokenInstanceWebView: UIView {
     }
 
     private let analyticsCoordinator: AnalyticsCoordinator
-    //TODO see if we can be smarter about just subscribing to the attribute once. Note that this is not `Subscribable.subscribeOnce()`
+    //TODO see if we can be smarter about just subscribing to the attribute once. Note that this is not `AlphaSubscribable.subscribeOnce()`
     private let wallet: Wallet
     private let assetDefinitionStore: AssetDefinitionStore
     private var hashOfCurrentHtml: Int?

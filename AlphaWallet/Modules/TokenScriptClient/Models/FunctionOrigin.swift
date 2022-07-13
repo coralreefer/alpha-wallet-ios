@@ -166,7 +166,7 @@ struct FunctionOrigin {
                 functionName: functionName,
                 output: functionType.output,
                 callForAssetAttributeCoordinator: callForAssetAttributeCoordinator) else { return nil }
-        let resultSubscribable = Subscribable<AssetInternalValue>(nil)
+        let resultSubscribable = AlphaSubscribable<AssetInternalValue>(nil)
         subscribable.subscribe { value in
             guard let value = value else { return }
             if let bitmask = self.bitmask {
@@ -345,7 +345,7 @@ struct FunctionOrigin {
             functionName: String,
             output: AssetFunctionCall.ReturnType,
             callForAssetAttributeCoordinator: CallForAssetAttributeCoordinator
-    ) -> Subscribable<AssetInternalValue>? {
+    ) -> AlphaSubscribable<AssetInternalValue>? {
         assert(functionType.isCall)
         guard let arguments = formArguments(withTokenId: tokenId, attributeAndValues: attributeAndValues, localRefs: localRefs, account: account) else { return nil }
         guard let functionName = functionType.functionName else { return nil }
@@ -353,7 +353,7 @@ struct FunctionOrigin {
 
         //ENS token is treated as ERC721 because it is picked up from OpenSea. But it doesn't respond to `name` and `symbol`. Calling them is harmless but causes node errors that can be confusing "execution reverted" when looking at logs
         if ["name", "symbol"].contains(functionCall.functionName) && functionCall.contract.sameContract(as: AlphaConstants.ensContractOnMainnet) {
-            return Subscribable<AssetInternalValue>(nil)
+            return AlphaSubscribable<AssetInternalValue>(nil)
         }
 
         return callForAssetAttributeCoordinator.getValue(forAttributeId: attributeId, tokenId: tokenId, functionCall: functionCall)

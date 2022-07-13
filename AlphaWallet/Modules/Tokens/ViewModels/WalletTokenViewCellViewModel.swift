@@ -54,7 +54,7 @@ struct WalletTokenViewCellViewModel {
         return isVisible ? 1.0 : 0.4
     }
 
-    var iconImage: Subscribable<TokenImage> {
+    var iconImage: AlphaSubscribable<TokenImage> {
         token.icon(withSize: .s300)
     }
 

@@ -31,7 +31,7 @@ struct PopularToken: Decodable {
     var server: RPCServer
     var name: String
 
-    var iconImage: Subscribable<TokenImage> {
+    var iconImage: AlphaSubscribable<TokenImage> {
         return TokenImageFetcher.instance.image(contractAddress: contractAddress, server: server, name: name, size: .s120)
     }
 

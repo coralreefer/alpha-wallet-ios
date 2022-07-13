@@ -296,7 +296,7 @@ extension QRCodeResolutionCoordinator: ScanQRCodeCoordinatorDelegate {
 extension String {
 
     var scientificAmountToBigInt: BigInt? {
-        let numberFormatter = Formatter.scientificAmount
+        let numberFormatter = CurrencyFormatter.scientificAmount
 
         let amountString = numberFormatter.number(from: self).flatMap { numberFormatter.string(from: $0) }
         return amountString.flatMap { BigInt($0) }

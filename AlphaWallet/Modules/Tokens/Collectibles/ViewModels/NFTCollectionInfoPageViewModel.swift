@@ -21,7 +21,7 @@ enum NFTPreviewViewType {
 
 extension NFTPreviewViewType {
     enum Params {
-        case image(iconImage: Subscribable<TokenImage>)
+        case image(iconImage: AlphaSubscribable<TokenImage>)
         case tokenScriptWebView(tokenHolder: TokenHolder, tokenId: TokenId)
     }
 }

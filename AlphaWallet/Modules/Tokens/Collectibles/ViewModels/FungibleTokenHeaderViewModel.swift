@@ -66,7 +66,7 @@ class FungibleTokenHeaderViewModel: NSObject {
         return Screen.TokenCard.Color.background
     }
 
-    var iconImage: Subscribable<TokenImage> {
+    var iconImage: AlphaSubscribable<TokenImage> {
         transactionType.tokenObject.icon(withSize: .s300)
     }
 
@@ -177,7 +177,7 @@ class FungibleTokenHeaderViewModel: NSObject {
 
     private func marketPriceValueFor(balance: BalanceViewModel) -> String? {
         if let value = EthCurrencyHelper(ticker: balance.ticker).marketPrice {
-            return Formatter.usd.string(from: value)
+            return CurrencyFormatter.usd.string(from: value)
         } else {
             return nil
         }

@@ -121,7 +121,7 @@ struct ActivityViewModel {
         }
     }
 
-    var iconImage: Subscribable<TokenImage> {
+    var iconImage: AlphaSubscribable<TokenImage> {
         activity.token.icon(withSize: .s300)
     }
 

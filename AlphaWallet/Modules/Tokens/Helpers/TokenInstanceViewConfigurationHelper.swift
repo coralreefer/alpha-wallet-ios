@@ -252,7 +252,7 @@ final class TokenInstanceViewConfigurationHelper {
 
     var totalVolume: TokenAttributeViewModel? {
         return openSeaStats
-            .flatMap { Formatter.shortCrypto(symbol: RPCServer.main.symbol).string(from: $0.totalVolume) }
+            .flatMap { CurrencyFormatter.shortCrypto(symbol: RPCServer.main.symbol).string(from: $0.totalVolume) }
             .flatMap {
                 let attributedValue = TokenAttributeViewModel.defaultValueAttributedString($0)
                 return .init(title: R.string.localizable.nonfungiblesValueTotalVolume(), attributedValue: attributedValue)
@@ -296,7 +296,7 @@ final class TokenInstanceViewConfigurationHelper {
 
     var averagePrice: TokenAttributeViewModel? {
         return openSeaStats
-            .flatMap { Formatter.shortCrypto.string(from: $0.averagePrice) }
+            .flatMap { CurrencyFormatter.shortCrypto.string(from: $0.averagePrice) }
             .flatMap {
                 let attributedValue = TokenAttributeViewModel.defaultValueAttributedString($0)
                 return .init(title: R.string.localizable.nonfungiblesValueAveragePrice(), attributedValue: attributedValue)
@@ -314,7 +314,7 @@ final class TokenInstanceViewConfigurationHelper {
 
     var floorPrice: TokenAttributeViewModel? {
         return (overridenFloorPrice ?? openSeaStats?.floorPrice)
-            .flatMap { Formatter.shortCrypto(symbol: RPCServer.main.symbol).string(from: $0) }
+            .flatMap { CurrencyFormatter.shortCrypto(symbol: RPCServer.main.symbol).string(from: $0) }
             .flatMap {
                 let attributedValue = TokenAttributeViewModel.defaultValueAttributedString($0)
                 return .init(title: R.string.localizable.nonfungiblesValueFloorPrice(), attributedValue: attributedValue)

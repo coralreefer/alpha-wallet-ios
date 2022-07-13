@@ -28,7 +28,7 @@ struct WalletBalance: Equatable {
     }
 
     var totalAmountString: String {
-        if let totalAmount = totalAmountDouble, let value = Formatter.usd.string(from: totalAmount) {
+        if let totalAmount = totalAmountDouble, let value = CurrencyFormatter.usd.string(from: totalAmount) {
             return value
         } else if let etherAmount = etherAmountShort {
             return "\(etherAmount) \(RPCServer.main.symbol)"
@@ -40,7 +40,7 @@ struct WalletBalance: Equatable {
     var etherAmountShort: String? {
         guard let token = etherToken, let value = token.valueDecimal else { return nil }
 
-        return Formatter.shortCrypto.string(from: value.doubleValue)
+        return CurrencyFormatter.shortCrypto.string(from: value.doubleValue)
     }
 
     var etherToken: Token? {

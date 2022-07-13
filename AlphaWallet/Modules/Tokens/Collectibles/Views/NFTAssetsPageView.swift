@@ -87,7 +87,7 @@ class NFTAssetsPageView: UIView, PageViewType {
 
         applyLayout(viewModel.selection)
 
-        emptyView = EmptyView.filterTokenHoldersEmptyView()
+        emptyView = AlphaEmptyView.filterTokenHoldersEmptyView()
         configureDataSource()
     }
 

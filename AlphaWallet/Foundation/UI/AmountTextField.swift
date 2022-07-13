@@ -101,7 +101,7 @@ class AmountTextField: UIControl {
             }
         }
 
-        var icon: Subscribable<TokenImage> {
+        var icon: AlphaSubscribable<TokenImage> {
             switch left {
             case .cryptoCurrency(let tokenObject):
                 return tokenObject.icon(withSize: .s120)

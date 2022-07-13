@@ -20,7 +20,7 @@ open class XYMarkerView: BalloonMarker {
 
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
         let date = Date(timeIntervalSince1970: TimeInterval(entry.x))
-        let usdValue = Formatter.usd.string(from: entry.y) ?? "-"
+        let usdValue = CurrencyFormatter.usd.string(from: entry.y) ?? "-"
         let dateValue = XYMarkerView.dateFormatter.string(from: date)
 
         setLabel("\(dateValue)\n\(usdValue)")

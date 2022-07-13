@@ -10,7 +10,7 @@ struct WalletConnectSessionCellViewModel {
         Colors.appBackground
     }
 
-    var serverIconImages: [Subscribable<Image>] {
+    var serverIconImages: [AlphaSubscribable<Image>] {
         servers.map { $0.walletConnectIconImage }
     }
 

@@ -11,7 +11,7 @@ class SelectNetworkViewModel {
     let session: WalletSession
     var isSelected: Bool
     var isAvailableToSelect: Bool
-    var networkImage: Subscribable<Image> { session.server.walletConnectIconImage }
+    var networkImage: AlphaSubscribable<Image> { session.server.walletConnectIconImage }
 
     var selectionImage: UIImage? {
         isSelected ? R.image.iconsSystemRadioOn() : R.image.iconsSystemRadioOff()

@@ -42,8 +42,8 @@ class ImportWalletViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    private lazy var mnemonicTextView: TextView = {
-        let textView = TextView()
+    private lazy var mnemonicTextView: AlphaTextView = {
+        let textView = AlphaTextView()
         textView.label.translatesAutoresizingMaskIntoConstraints = false
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,8 +53,8 @@ class ImportWalletViewController: UIViewController {
 
         return textView
     }()
-    private lazy var keystoreJSONTextView: TextView = {
-        let textView = TextView()
+    private lazy var keystoreJSONTextView: AlphaTextView = {
+        let textView = AlphaTextView()
         textView.label.translatesAutoresizingMaskIntoConstraints = false
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,8 +86,8 @@ class ImportWalletViewController: UIViewController {
 
         return textField
     }()
-    private lazy var privateKeyTextView: TextView = {
-        let textView = TextView()
+    private lazy var privateKeyTextView: AlphaTextView = {
+        let textView = AlphaTextView()
         textView.label.translatesAutoresizingMaskIntoConstraints = false
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -679,27 +679,27 @@ extension ImportWalletViewController: TextFieldDelegate {
     }
 }
 
-extension ImportWalletViewController: TextViewDelegate {
+extension ImportWalletViewController: AlphaTextViewDelegate {
 
-    func didPaste(in textView: TextView) {
+    func didPaste(in textView: AlphaTextView) {
         view.endEditing(true)
         showCorrectTab()
     }
 
-    func shouldReturn(in textView: TextView) -> Bool {
+    func shouldReturn(in textView: AlphaTextView) -> Bool {
         moveFocusToTextEntryField(after: textView)
         return false
     }
 
-    func doneButtonTapped(for textView: TextView) {
+    func doneButtonTapped(for textView: AlphaTextView) {
         view.endEditing(true)
     }
 
-    func nextButtonTapped(for textView: TextView) {
+    func nextButtonTapped(for textView: AlphaTextView) {
         moveFocusToTextEntryField(after: textView)
     }
 
-    func didChange(inTextView textView: TextView) {
+    func didChange(inTextView textView: AlphaTextView) {
         showCorrectTab()
         guard textView == mnemonicTextView else { return }
         mnemonicCountLabel.text = "\(mnemonicInput.count)"

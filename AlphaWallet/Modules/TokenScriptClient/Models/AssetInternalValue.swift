@@ -39,7 +39,7 @@ enum AssetInternalValue: Codable {
     case uint(BigUInt)
     case generalisedTime(GeneralisedTime)
     case bool(Bool)
-    case subscribable(Subscribable<AssetInternalValue>)
+    case subscribable(AlphaSubscribable<AssetInternalValue>)
     case openSeaNonFungibleTraits([OpenSeaNonFungibleTrait])
 
     var resolvedValue: AssetInternalValue? {
@@ -77,7 +77,7 @@ enum AssetInternalValue: Codable {
         guard case .bool(let value) = self else { return nil }
         return value
     }
-    var subscribableValue: Subscribable<AssetInternalValue>? {
+    var subscribableValue: AlphaSubscribable<AssetInternalValue>? {
         guard case .subscribable(let value) = self else { return nil }
         return value
     }
@@ -166,7 +166,7 @@ enum AssetInternalValue: Codable {
     }
 }
 
-extension Array where Element == Subscribable<AssetInternalValue> {
+extension Array where Element == AlphaSubscribable<AssetInternalValue> {
     func createPromiseForSubscribeOnce() -> Promise<Void> {
         guard !isEmpty else { return .value(Void()) }
         return Promise { seal in

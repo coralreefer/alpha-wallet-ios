@@ -10,7 +10,7 @@ final class StringFormatter {
     ///   - currencyCode: code of the currency.
     /// - Returns: Currency `String` representation.
     func currency(with value: Double, and currencyCode: String = "") -> String {
-        let formatter = Formatter.currencyAccounting
+        let formatter = CurrencyFormatter.currencyAccounting
         formatter.currencyCode = currencyCode
         //Trimming is important because the formatter output for `1.2` becomes "1.2 " (with trailing space) when region = Poland
         return (formatter.string(from: NSNumber(value: value))?.trimmed ?? "\(value)").droppedTrailingZeros
@@ -22,7 +22,7 @@ final class StringFormatter {
     ///   - currencyCode: code of the currency.
     /// - Returns: Currency `String` representation.
     func currency(with value: NSDecimalNumber, and currencyCode: String = "", usesGroupingSeparator: Bool = true) -> String {
-        let formatter = Formatter.currencyAccounting
+        let formatter = CurrencyFormatter.currencyAccounting
         formatter.currencyCode = currencyCode
         formatter.usesGroupingSeparator = usesGroupingSeparator
 
@@ -48,7 +48,7 @@ final class StringFormatter {
     }
 
     func alternateAmount(value: NSDecimalNumber, usesGroupingSeparator: Bool = false) -> String {
-        let formatter = Formatter.alternateAmount
+        let formatter = CurrencyFormatter.alternateAmount
         formatter.usesGroupingSeparator = usesGroupingSeparator
 
         //For some reasons formatter adds trailing whitespace

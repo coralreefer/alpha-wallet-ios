@@ -2,21 +2,21 @@
 
 import UIKit
 
-protocol TextViewDelegate: AnyObject {
-    func shouldReturn(in textView: TextView) -> Bool
-    func doneButtonTapped(for textView: TextView)
-    func nextButtonTapped(for textView: TextView)
-    func didChange(inTextView textView: TextView)
-    func didPaste(in textView: TextView)
+protocol AlphaTextViewDelegate: AnyObject {
+    func shouldReturn(in textView: AlphaTextView) -> Bool
+    func doneButtonTapped(for textView: AlphaTextView)
+    func nextButtonTapped(for textView: AlphaTextView)
+    func didChange(inTextView textView: AlphaTextView)
+    func didPaste(in textView: AlphaTextView)
 }
 
-extension TextViewDelegate {
-    func didChange(inTextView textView: TextView) {
+extension AlphaTextViewDelegate {
+    func didChange(inTextView textView: AlphaTextView) {
         //do nothing
     }
 }
 
-class TextView: UIControl {
+class AlphaTextView: UIControl {
     enum InputAccessoryButtonType {
         case done
         case next
@@ -112,7 +112,7 @@ class TextView: UIControl {
     }()
 
     private var isConfigured = false
-    weak var delegate: TextViewDelegate?
+    weak var delegate: AlphaTextViewDelegate?
     private let notifications = NotificationCenter.default
 
     init() {
@@ -242,7 +242,7 @@ class TextView: UIControl {
     }
 }
 
-extension TextView: UITextViewDelegate {
+extension AlphaTextView: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
         let borderColor = errorState.textFieldBorderColor(whileEditing: true)

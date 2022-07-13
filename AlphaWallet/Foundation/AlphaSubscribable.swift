@@ -4,8 +4,8 @@ import Foundation
 
 fileprivate let threadSafeForSubscribable = ThreadSafe(label: "org.alphawallet.swift.subscribable")
 //TODO probably should have an ID which is really good for debugging
-open class Subscribable<T>: Hashable {
-    public static func == (lhs: Subscribable<T>, rhs: Subscribable<T>) -> Bool {
+open class AlphaSubscribable<T>: Hashable {
+    public static func == (lhs: AlphaSubscribable<T>, rhs: AlphaSubscribable<T>) -> Bool {
         return lhs.uuid == rhs.uuid
     }
 

@@ -14,8 +14,8 @@ class CallForAssetAttributeCoordinator {
             forAttributeId attributeId: AttributeId,
             tokenId: TokenId,
             functionCall: AssetFunctionCall
-    ) -> Subscribable<AssetInternalValue> {
-        let subscribable = Subscribable<AssetInternalValue>(nil)
+    ) -> AlphaSubscribable<AssetInternalValue> {
+        let subscribable = AlphaSubscribable<AssetInternalValue>(nil)
         if let promise = promiseCache[functionCall] {
             promise.done { result in
                 subscribable.value = result

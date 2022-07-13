@@ -33,7 +33,7 @@ private func symbolBackgroundColor(for contractAddress: AlphaWallet.Address, ser
 }
 
 extension RPCServer {
-    var walletConnectIconImage: Subscribable<Image> {
+    var walletConnectIconImage: AlphaSubscribable<Image> {
         return RPCServerImageFetcher.instance.image(server: self)
     }
 
@@ -86,13 +86,13 @@ extension RPCServer {
 class RPCServerImageFetcher {
     static var instance = RPCServerImageFetcher()
 
-    private static var subscribables: AtomicDictionary<Int, Subscribable<Image>> = .init()
+    private static var subscribables: AtomicDictionary<Int, AlphaSubscribable<Image>> = .init()
 
-    func image(server: RPCServer) -> Subscribable<Image> {
+    func image(server: RPCServer) -> AlphaSubscribable<Image> {
         if let sub = Self.subscribables[server.chainID] {
             return sub
         } else {
-            let sub = Subscribable<Image>(nil)
+            let sub = AlphaSubscribable<Image>(nil)
             Self.subscribables[server.chainID] = sub
 
             sub.value = server.iconImage ?? R.image.tokenPlaceholderLarge()!
@@ -105,14 +105,14 @@ class RPCServerImageFetcher {
 extension TokenObject {
     fileprivate static let numberOfCharactersOfSymbolToShowInIcon = 4
 
-    func icon(withSize size: GoogleContentSize) -> Subscribable<TokenImage> {
+    func icon(withSize size: GoogleContentSize) -> AlphaSubscribable<TokenImage> {
         return TokenImageFetcher.instance.image(forToken: self, size: size)
     }
 }
 
 extension Token {
 
-    func icon(withSize size: GoogleContentSize) -> Subscribable<TokenImage> {
+    func icon(withSize size: GoogleContentSize) -> AlphaSubscribable<TokenImage> {
         let name = symbol.nilIfEmpty ?? name
         let nftBalance = nftBalanceValue.first
 
@@ -127,7 +127,7 @@ class TokenImageFetcher {
 
     static var instance = TokenImageFetcher()
 
-    private static var subscribables: AtomicDictionary<String, Subscribable<TokenImage>> = .init()
+    private static var subscribables: AtomicDictionary<String, AlphaSubscribable<TokenImage>> = .init()
 
     private static func programmaticallyGenerateIcon(for contractAddress: AlphaWallet.Address, type: TokenType, server: RPCServer, symbol: String) -> TokenImage? {
         guard let i = [TokenObject.numberOfCharactersOfSymbolToShowInIcon, symbol.count].min() else { return nil }
@@ -151,11 +151,11 @@ class TokenImageFetcher {
     }
 
     //Relies on built-in HTTP/HTTPS caching in iOS for the images
-    func image(forToken tokenObject: TokenObject, size: GoogleContentSize) -> Subscribable<TokenImage> {
+    func image(forToken tokenObject: TokenObject, size: GoogleContentSize) -> AlphaSubscribable<TokenImage> {
         return image(contractAddress: tokenObject.contractAddress, server: tokenObject.server, name: tokenObject.symbol.nilIfEmpty ?? tokenObject.name, type: tokenObject.type, balance: tokenObject.balance.first?.nonFungibleBalance, size: size)
     }
 
-    func image(contractAddress: AlphaWallet.Address, server: RPCServer, name: String, size: GoogleContentSize) -> Subscribable<TokenImage> {
+    func image(contractAddress: AlphaWallet.Address, server: RPCServer, name: String, size: GoogleContentSize) -> AlphaSubscribable<TokenImage> {
         // NOTE: not meatter what type we passa as `type`, here we are not going to fetch from OpenSea
         return image(contractAddress: contractAddress, server: server, name: name, type: .erc20, balance: nil, size: size)
     }
@@ -175,8 +175,8 @@ class TokenImageFetcher {
         return TokenImageFetcher.programmaticallyGenerateIcon(for: contractAddress, type: type, server: server, symbol: name)
     }
 
-    func image(contractAddress: AlphaWallet.Address, server: RPCServer, name: String, type: TokenType, balance: NonFungibleFromJson?, size: GoogleContentSize) -> Subscribable<TokenImage> {
-        let subscribable: Subscribable<TokenImage>
+    func image(contractAddress: AlphaWallet.Address, server: RPCServer, name: String, type: TokenType, balance: NonFungibleFromJson?, size: GoogleContentSize) -> AlphaSubscribable<TokenImage> {
+        let subscribable: AlphaSubscribable<TokenImage>
         let key = "\(contractAddress.eip55String)-\(server.chainID)-\(size.rawValue)"
         if let sub = TokenImageFetcher.subscribables[key] {
             subscribable = sub
@@ -184,7 +184,7 @@ class TokenImageFetcher {
                 return subscribable
             }
         } else {
-            let sub = Subscribable<TokenImage>(nil)
+            let sub = AlphaSubscribable<TokenImage>(nil)
             TokenImageFetcher.subscribables[key] = sub
             subscribable = sub
         }

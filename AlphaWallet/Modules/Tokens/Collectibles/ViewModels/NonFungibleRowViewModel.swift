@@ -56,7 +56,7 @@ struct NonFungibleRowViewModel {
         self.displayHelper = OpenSeaNonFungibleTokenDisplayHelper(contract: tokenHolder.contractAddress)
     } 
 
-    var assetImage: Subscribable<TokenImage> {
+    var assetImage: AlphaSubscribable<TokenImage> {
         let tokenImage = tokenHolder.assetImageUrl(tokenId: tokenId, rewriteGoogleContentSizeUrl: .s300)
             .flatMap { TokenImage(image: .url($0), symbol: "", isFinal: true, overlayServerIcon: nil) }
 

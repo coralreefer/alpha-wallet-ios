@@ -121,7 +121,7 @@ class TokenInfoPageViewModel: NSObject {
     }
 
     private var maxSupplyViewModel: TokenAttributeViewModel {
-        let value: String = ticker?.max_supply.flatMap { Formatter.usd.string(from: $0) } ?? "-"
+        let value: String = ticker?.max_supply.flatMap { CurrencyFormatter.usd.string(from: $0) } ?? "-"
         let attributedValue = TokenAttributeViewModel.defaultValueAttributedString(value)
         return .init(title: R.string.localizable.tokenInfoFieldStatsMax_supply(), attributedValue: attributedValue)
     }
@@ -129,7 +129,7 @@ class TokenInfoPageViewModel: NSObject {
     private var yearLowViewModel: TokenAttributeViewModel {
         let value: String = {
             let history = chartHistories[safe: ChartHistoryPeriod.year.index]
-            if let min = HistoryHelper(history: history).minMax?.min, let value = Formatter.usd.string(from: min) {
+            if let min = HistoryHelper(history: history).minMax?.min, let value = CurrencyFormatter.usd.string(from: min) {
                 return value
             } else {
                 return "-"
@@ -143,7 +143,7 @@ class TokenInfoPageViewModel: NSObject {
     private var yearHighViewModel: TokenAttributeViewModel {
         let value: String = {
             let history = chartHistories[safe: ChartHistoryPeriod.year.index]
-            if let max = HistoryHelper(history: history).minMax?.max, let value = Formatter.usd.string(from: max) {
+            if let max = HistoryHelper(history: history).minMax?.max, let value = CurrencyFormatter.usd.string(from: max) {
                 return value
             } else {
                 return "-"
@@ -180,13 +180,13 @@ class TokenInfoPageViewModel: NSObject {
 
             switch result.change {
             case .appreciate(let percentage, let value):
-                let p = Formatter.percent.string(from: percentage) ?? "-"
-                let v = Formatter.usd.string(from: value) ?? "-"
+                let p = CurrencyFormatter.percent.string(from: percentage) ?? "-"
+                let v = CurrencyFormatter.usd.string(from: value) ?? "-"
 
                 return ("\(v) (\(p)%)", Style.value.appreciated)
             case .depreciate(let percentage, let value):
-                let p = Formatter.percent.string(from: percentage) ?? "-"
-                let v = Formatter.usd.string(from: value) ?? "-"
+                let p = CurrencyFormatter.percent.string(from: percentage) ?? "-"
+                let v = CurrencyFormatter.usd.string(from: value) ?? "-"
 
                 return ("\(v) (\(p)%)", Style.value.depreciated)
             case .none:

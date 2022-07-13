@@ -51,7 +51,7 @@ class ActivitiesView: UIView {
             tableView.anchorsConstraint(to: self)
         ])
 
-        emptyView = EmptyView.activitiesEmptyView()
+        emptyView = AlphaEmptyView.activitiesEmptyView()
     }
 
     func resetStatefulStateToReleaseObjectToAvoidMemoryLeak() {

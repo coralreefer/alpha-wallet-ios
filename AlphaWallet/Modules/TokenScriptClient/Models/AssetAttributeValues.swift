@@ -22,7 +22,7 @@ class AssetAttributeValues {
     }
 
     func resolve(withUpdatedBlock block: @escaping ([AttributeId: AssetInternalValue]) -> Void) -> [AttributeId: AssetInternalValue] {
-        var subscribedAttributes = [Subscribable<AssetInternalValue>]()
+        var subscribedAttributes = [AlphaSubscribable<AssetInternalValue>]()
         for (name, value) in attributeValues.values {
             if case .subscribable(let subscribable) = value {
                 if let subscribedValue = subscribable.value {

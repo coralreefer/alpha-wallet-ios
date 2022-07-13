@@ -1,5 +1,5 @@
 //
-//  LoadingView.swift
+//  AlphaLoadingView.swift
 //  AlphaWallet
 //
 //  Created by Vladyslav Shepitko on 18.03.2021.

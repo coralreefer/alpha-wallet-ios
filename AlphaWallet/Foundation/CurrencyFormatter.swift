@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Formatter {
+struct CurrencyFormatter {
 
     static let currency: NumberFormatter = {
         let formatter = basicCurrencyFormatter()
@@ -80,7 +80,7 @@ struct Formatter {
     }()
 
     static let scientificAmount: NumberFormatter = {
-        let formatter = Formatter.default
+        let formatter = CurrencyFormatter.default
         formatter.numberStyle = .decimal
         formatter.usesGroupingSeparator = false
         formatter.locale = Locale(identifier: "en_US")

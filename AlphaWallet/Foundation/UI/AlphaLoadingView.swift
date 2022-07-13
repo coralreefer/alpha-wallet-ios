@@ -4,43 +4,40 @@ import Foundation
 import UIKit
 import StatefulViewController
 
-class ErrorView: UIView {
-    private let descriptionLabel = UILabel()
+class AlphaLoadingView: UIView {
     private let imageView = UIImageView()
-    private let button = AlphaButton(size: .normal, style: .solid)
     private let insets: UIEdgeInsets
-    private var onRetry: (() -> Void)? = .none
     private let viewModel = StateViewModel()
+
+    let label = UILabel()
+    let loadingIndicator = UIActivityIndicatorView(style: .medium)
 
     init(
         frame: CGRect = .zero,
-        description: String = R.string.localizable.errorViewDescriptionLabelTitle(),
-        image: UIImage? = R.image.error(),
-        insets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
-        onRetry: (() -> Void)? = .none
+        message: String = R.string.localizable.loading(),
+        image: UIImage? = .none,
+        insets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     ) {
-        self.onRetry = onRetry
         self.insets = insets
         super.init(frame: frame)
 
         backgroundColor = .white
 
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.text = description
-        descriptionLabel.font = viewModel.descriptionFont
-        descriptionLabel.textColor = viewModel.descriptionTextColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = message
+        label.font = viewModel.titleFont
+        label.textColor = viewModel.titleTextColor
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = image
 
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(R.string.localizable.retry(), for: .normal)
-        button.addTarget(self, action: #selector(retry), for: .touchUpInside)
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.startAnimating()
 
         let stackView = [
+            loadingIndicator,
+            label,
             imageView,
-            descriptionLabel,
-            button,
         ].asStackView(axis: .vertical, spacing: viewModel.stackSpacing, alignment: .center)
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -51,12 +48,7 @@ class ErrorView: UIView {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            button.widthAnchor.constraint(equalToConstant: 160),
         ])
-    }
-
-    @objc func retry() {
-        onRetry?()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -64,7 +56,7 @@ class ErrorView: UIView {
     }
 }
 
-extension ErrorView: StatefulPlaceholderView {
+extension AlphaLoadingView: StatefulPlaceholderView {
     func placeholderViewInsets() -> UIEdgeInsets {
         return insets
     }

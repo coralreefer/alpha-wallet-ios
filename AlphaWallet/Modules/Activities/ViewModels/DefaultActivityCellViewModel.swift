@@ -187,7 +187,7 @@ struct DefaultActivityCellViewModel {
         .right
     }
 
-    var iconImage: Subscribable<TokenImage> {
+    var iconImage: AlphaSubscribable<TokenImage> {
         activity.token.icon(withSize: .s120)
     }
 

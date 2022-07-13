@@ -35,7 +35,7 @@ class OpenSeaNonFungibleTokenViewCellViewModel {
             .foregroundColor: Colors.appText
         ])
     }
-    var tokenIcon: Subscribable<TokenImage> {
+    var tokenIcon: AlphaSubscribable<TokenImage> {
         token.icon(withSize: .s750)
     }
 

@@ -72,7 +72,7 @@ struct AssetAttributeSyntaxValue: Hashable {
     var boolValue: Bool? {
         return value.boolValue
     }
-    var subscribableValue: Subscribable<AssetInternalValue>? {
+    var subscribableValue: AlphaSubscribable<AssetInternalValue>? {
         return value.subscribableValue
     }
     var subscribableStringValue: String? {
@@ -94,7 +94,7 @@ extension Dictionary where Key == AttributeId, Value == AssetAttributeSyntaxValu
 }
 
 extension Array where Element == AssetAttributeSyntaxValue {
-    var filterToSubscribables: [Subscribable<AssetInternalValue>] {
+    var filterToSubscribables: [AlphaSubscribable<AssetInternalValue>] {
         return compactMap {
             if case .subscribable(let subscribable) = $0.value {
                 return subscribable
@@ -245,19 +245,19 @@ extension Dictionary where Key == AttributeId, Value == AssetAttributeSyntaxValu
         self["collectionCreatedDate"] = .init(generalisedTime: generalisedTime)
     }
 
-    var buildingSubscribableValue: Subscribable<AssetInternalValue>? {
+    var buildingSubscribableValue: AlphaSubscribable<AssetInternalValue>? {
         self["building"]?.subscribableValue
     }
 
-    var streetSubscribableValue: Subscribable<AssetInternalValue>? {
+    var streetSubscribableValue: AlphaSubscribable<AssetInternalValue>? {
         self["street"]?.subscribableValue
     }
 
-    var stateSubscribableValue: Subscribable<AssetInternalValue>? {
+    var stateSubscribableValue: AlphaSubscribable<AssetInternalValue>? {
         self["state"]?.subscribableValue
     }
 
-    var localitySubscribableValue: Subscribable<AssetInternalValue>? {
+    var localitySubscribableValue: AlphaSubscribable<AssetInternalValue>? {
         self["locality"]?.subscribableValue
     }
 

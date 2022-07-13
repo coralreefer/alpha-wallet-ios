@@ -56,7 +56,7 @@ class SelectCurrencyButton: UIControl {
         set { textLabel.text = newValue }
     }
 
-    var tokenIcon: Subscribable<TokenImage>? {
+    var tokenIcon: AlphaSubscribable<TokenImage>? {
         get { currencyIconImageView.subscribable }
         set { currencyIconImageView.subscribable = newValue }
     }

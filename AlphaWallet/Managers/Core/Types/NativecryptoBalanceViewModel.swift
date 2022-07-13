@@ -28,7 +28,7 @@ struct NativecryptoBalanceViewModel: BalanceViewModel {
 
     var currencyAmount: String? {
         guard let totalAmount = currencyAmountWithoutSymbol else { return nil }
-        return Formatter.usd.string(from: totalAmount)
+        return CurrencyFormatter.usd.string(from: totalAmount)
     }
 
     var currencyAmountWithoutSymbol: Double? {

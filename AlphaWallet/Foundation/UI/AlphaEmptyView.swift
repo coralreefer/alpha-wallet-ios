@@ -8,7 +8,7 @@ protocol EmptyViewPlacement {
     func resolveContraints(superView: UIView, container: UIView) -> [NSLayoutConstraint]
 }
 
-class EmptyView: UIView {
+class AlphaEmptyView: UIView {
     private let stackView: UIStackView = [].asStackView(axis: .vertical, spacing: 30, alignment: .center)
     private var titleLabel: UILabel?
     private var imageView: UIImageView?
@@ -102,7 +102,7 @@ class EmptyView: UIView {
     }
 }
 
-extension EmptyView: StatefulPlaceholderView {
+extension AlphaEmptyView: StatefulPlaceholderView {
     func placeholderViewInsets() -> UIEdgeInsets {
         return insets
     }
@@ -147,9 +147,9 @@ final class FilterTokensHoldersEmptyViewDefaultPlacement: EmptyViewPlacement {
     }
 }
 
-extension EmptyView {
-    static func tokensEmptyView(completion: @escaping () -> Void) -> EmptyView {
-        EmptyView()
+extension AlphaEmptyView {
+    static func tokensEmptyView(completion: @escaping () -> Void) -> AlphaEmptyView {
+        AlphaEmptyView()
             .configure(image: R.image.no_transactions_mascot())
             .configure(title: R.string.localizable.emptyViewNoTokensLabelTitle())
             .configure(buttonTitle: R.string.localizable.refresh(), width: 240, buttonSelectionClosure: completion)
@@ -157,8 +157,8 @@ extension EmptyView {
             .configure(insets: .init(top: Style.SearchBar.height, left: 0, bottom: 0, right: 0))
     }
 
-    static func walletSessionEmptyView(completion: @escaping () -> Void) -> EmptyView {
-        EmptyView()
+    static func walletSessionEmptyView(completion: @escaping () -> Void) -> AlphaEmptyView {
+        AlphaEmptyView()
             .configure(spacing: 24)
             .configure(insets: .zero)
             .configure(image: R.image.iconsIllustrationsEmptyWalletConnect())
@@ -166,32 +166,32 @@ extension EmptyView {
             .configure(buttonTitle: R.string.localizable.walletConnectSessionsScanQrCode(), width: 240, buttonSelectionClosure: completion)
     }
 
-    static func transactionsEmptyView() -> EmptyView {
-        EmptyView()
+    static func transactionsEmptyView() -> AlphaEmptyView {
+        AlphaEmptyView()
             .configure(image: R.image.no_transactions_mascot())
             .configure(title: R.string.localizable.emptyViewNoTokensLabelTitle())
             .configure(spacing: 30)
             .configure(insets: .zero)
     }
 
-    static func activitiesEmptyView() -> EmptyView {
-        EmptyView()
+    static func activitiesEmptyView() -> AlphaEmptyView {
+        AlphaEmptyView()
             .configure(image: R.image.activities_empty_list())
             .configure(title: R.string.localizable.activityEmpty())
             .configure(spacing: 30)
             .configure(insets: .zero)
     }
 
-    static func priceAlertsEmpryView() -> EmptyView {
-        EmptyView()
+    static func priceAlertsEmpryView() -> AlphaEmptyView {
+        AlphaEmptyView()
             .configure(image: R.image.iconsIllustrationsAlert2())
             .configure(title: R.string.localizable.activityEmpty())
             .configure(spacing: 0)
             .configure(insets: .zero)
     }
 
-    static func filterTokensEmptyView(completion: @escaping () -> Void) -> EmptyView {
-        EmptyView(placement: FilterTokensEmptyViewDefaultPlacement())
+    static func filterTokensEmptyView(completion: @escaping () -> Void) -> AlphaEmptyView {
+        AlphaEmptyView(placement: FilterTokensEmptyViewDefaultPlacement())
             .configure(image: R.image.iconsIllustrationsSearchResults())
             .configure(title: R.string.localizable.seachTokenNoresultsTitle())
             .configure(buttonTitle: R.string.localizable.addCustomTokenTitle(), width: 240, buttonSelectionClosure: completion)
@@ -199,8 +199,8 @@ extension EmptyView {
             .configure(insets: .zero)
     }
 
-    static func filterTokenHoldersEmptyView() -> EmptyView {
-        EmptyView(placement: FilterTokensHoldersEmptyViewDefaultPlacement(verticalOffset: -20))
+    static func filterTokenHoldersEmptyView() -> AlphaEmptyView {
+        AlphaEmptyView(placement: FilterTokensHoldersEmptyViewDefaultPlacement(verticalOffset: -20))
             .configure(image: R.image.iconsIllustrationsSearchResults())
             .configure(title: R.string.localizable.seachTokenNoresultsTitle())
             .configure(spacing: 30)

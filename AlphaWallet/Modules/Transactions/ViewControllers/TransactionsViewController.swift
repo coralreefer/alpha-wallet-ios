@@ -52,19 +52,19 @@ class TransactionsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        errorView = ErrorView(onRetry: { [weak self] in
+        errorView = AlphaErrorView(onRetry: { [weak self] in
             self?.startLoading()
             self?.dataCoordinator.fetch()
         })
-        loadingView = LoadingView()
+        loadingView = AlphaLoadingView()
         //TODO move into StateViewModel once this change is global
-        if let loadingView = loadingView as? LoadingView {
+        if let loadingView = loadingView as? AlphaLoadingView {
             loadingView.backgroundColor = Colors.appGrayLabel
             loadingView.label.textColor = Colors.appWhite
             loadingView.loadingIndicator.color = Colors.appWhite
             loadingView.label.font = Fonts.regular(size: 18)
         }
-        emptyView = EmptyView.transactionsEmptyView()
+        emptyView = AlphaEmptyView.transactionsEmptyView()
     }
 
     override func viewWillAppear(_ animated: Bool) {

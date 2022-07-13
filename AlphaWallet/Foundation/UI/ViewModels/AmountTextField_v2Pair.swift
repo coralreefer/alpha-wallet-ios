@@ -90,7 +90,7 @@ extension AmountTextField_v2 {
             }
         }
 
-        var icon: Subscribable<TokenImage> {
+        var icon: AlphaSubscribable<TokenImage> {
             switch left {
             case .cryptoCurrency(let token): return token.icon(withSize: .s120)
             case .fiatCurrency:

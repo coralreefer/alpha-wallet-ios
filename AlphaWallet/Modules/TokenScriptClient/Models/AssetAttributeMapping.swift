@@ -20,8 +20,8 @@ struct AssetAttributeMapping {
         }
     }
 
-    private func map(fromSubscribableKey subscribableKey: Subscribable<AssetInternalValue>) -> AssetInternalValue {
-        let mappedSubscribable = Subscribable<AssetInternalValue>(nil)
+    private func map(fromSubscribableKey subscribableKey: AlphaSubscribable<AssetInternalValue>) -> AssetInternalValue {
+        let mappedSubscribable = AlphaSubscribable<AssetInternalValue>(nil)
         subscribableKey.subscribe { value in
             guard let value = value else { return }
             guard let keyString = self.convertKeyToString(value) else { return }
