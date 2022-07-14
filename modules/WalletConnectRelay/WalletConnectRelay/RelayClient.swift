@@ -64,7 +64,7 @@ public final class RelayClient {
                             logger: ConsoleLogging = ConsoleLogger(loggingLevel: .off)) {
         let url = Self.makeRelayUrl(host: relayHost, projectId: projectId)
         var socketConnectionHandler: SocketConnectionHandler
-        let socket = WebSocket(url: url)
+        let socket = WebSocket(request: URLRequest(url: url))
         switch socketConnectionType {
         case .automatic:
             socketConnectionHandler = AutomaticSocketConnectionHandler(socket: socket)

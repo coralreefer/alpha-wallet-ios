@@ -140,5 +140,6 @@ Pod::Spec.new do |spec|
   # spec.dependency "JSONKit", "~> 1.4"
   spec.dependency "WalletConnectUtils"
   spec.dependency "WalletConnectKMS"
+  spec.dependency "Starscream"
   
 end

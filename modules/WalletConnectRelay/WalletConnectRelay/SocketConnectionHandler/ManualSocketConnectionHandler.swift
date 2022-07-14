@@ -3,9 +3,11 @@ import Starscream
 import Foundation
 
 class ManualSocketConnectionHandler: SocketConnectionHandler {
-    var socket: WebSocketConnecting
+    var isConnected: Bool = false
     
-    init(socket: WebSocketConnecting) {
+    var socket: WebSocket
+    
+    init(socket: WebSocket) {
         self.socket = socket
     }
 

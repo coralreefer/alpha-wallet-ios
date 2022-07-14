@@ -221,8 +221,7 @@ class WalletConnectV2Provider: WalletConnectServer {
 
         func reject(proposal: WalletConnectSign.Session.Proposal) {
             debugLog("[RESPONDER] WC: Did reject session proposal: \(proposal)")
-            //client.reject(proposal: proposal, reason: .disapprovedChains)
-            try? client.reject(proposalId: proposal.id, reason: .disapprovedChains)
+            client.reject(proposal: proposal, reason: .disapprovedChains)
             completion()
         }
 

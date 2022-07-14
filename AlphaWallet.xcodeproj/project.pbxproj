@@ -7967,7 +7967,7 @@
 					"\"$(PODS_ROOT)/libsodium/src/libsodium/include/sodium\"",
 					"\"$(PODS_ROOT)/libsodium/src/libsodium/include\"",
 				);
-				INFOPLIST_FILE = "$(ALPHAWALLET_INFO_PLIST_FILE)";
+				INFOPLIST_FILE = "$(SRCROOT)/AlphaWallet/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8007,7 +8007,7 @@
 					"\"$(PODS_ROOT)/libsodium/src/libsodium/include/sodium\"",
 					"\"$(PODS_ROOT)/libsodium/src/libsodium/include\"",
 				);
-				INFOPLIST_FILE = "$(ALPHAWALLET_INFO_PLIST_FILE)";
+				INFOPLIST_FILE = "$(SRCROOT)/AlphaWallet/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

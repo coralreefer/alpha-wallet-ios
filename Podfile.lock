@@ -120,6 +120,7 @@ PODS:
   - WalletConnectKMS (0.0.1):
     - WalletConnectUtils
   - WalletConnectRelay (0.0.1):
+    - Starscream
     - WalletConnectKMS
     - WalletConnectUtils
   - WalletConnectSign (0.0.1):
@@ -359,7 +360,7 @@ SPEC CHECKSUMS:
   TrustWalletCore: a92d85baa15932279cce925559e93695558cafdd
   WalletConnectCommons: c3077111ae98741ba3bd9ad7d3bbfed6776e6ea4
   WalletConnectKMS: b052197c139de3c2b82b1b8a0636a87600a80797
-  WalletConnectRelay: 6ba9bd307fe6535b68e4de15f172cb802331c35a
+  WalletConnectRelay: 44b502330cb227f228d7c426b90a0d80b68b44bf
   WalletConnectSign: 97c600e8d12aee8b060072e563fef98672980e5c
   WalletConnectSwift: 046ae74e8cb69445be9c94c66ef66f9cb019b68f
   WalletConnectUtils: 329e04543fb726c4fdaaddb4e858d3302f332a60
