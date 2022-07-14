@@ -43,6 +43,13 @@ target 'AlphaWallet' do
   pod 'MailchimpSDK'
   pod 'xcbeautify'
   pod 'FloatingPanel'
+  pod 'WalletConnectCommons', :path => 'modules/WalletConnectCommons'
+
+  #pod 'WalletConnectSwiftV2', { :path => '../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec' }
+#  pod 'WalletConnectSwiftV2/WalletConnectUtils', { :path => '../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec' }
+#  pod 'WalletConnectSwiftV2/WalletConnectKMS', { :path => '../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec' }
+#  pod 'WalletConnectSwiftV2/WalletConnectSign', { :path => '../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec' }
+
 
   target 'AlphaWalletTests' do
       inherit! :search_paths

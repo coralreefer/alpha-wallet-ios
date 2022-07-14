@@ -1060,7 +1060,6 @@
 		87BBF9992563DD7600FF4846 /* WalletConnectSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BBF9822563DD7500FF4846 /* WalletConnectSessionViewController.swift */; };
 		87BC890E26B7EDC6005482F4 /* WalletSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BC890D26B7EDC6005482F4 /* WalletSummaryView.swift */; };
 		87BC89B826B82288005482F4 /* UIBarButtonItem+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BC89B726B82287005482F4 /* UIBarButtonItem+Alpha.swift */; };
-		87BDF47028423DC30018DC68 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 87BDF46F28423DC30018DC68 /* WalletConnect */; };
 		87BE29B7283B7F8F001FC0CD /* TokenSwapperStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BE29B6283B7F8F001FC0CD /* TokenSwapperStore.swift */; };
 		87C10A6525ED1105008E9B1B /* SignatureConfirmationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C10A6425ED1105008E9B1B /* SignatureConfirmationDetailsViewController.swift */; };
 		87C237DC26DE5303003CA387 /* UIToolbar+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C237DB26DE5303003CA387 /* UIToolbar+Custom.swift */; };
@@ -2468,7 +2467,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				87FBF2B128056AC200616B7D /* FirebaseCrashlytics in Frameworks */,
-				87BDF47028423DC30018DC68 /* WalletConnect in Frameworks */,
 				DF8BDC72F8BC811F09438BE5 /* Pods_AlphaWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6003,7 +6001,6 @@
 			name = AlphaWallet;
 			packageProductDependencies = (
 				87FBF2B028056AC200616B7D /* FirebaseCrashlytics */,
-				87BDF46F28423DC30018DC68 /* WalletConnect */,
 			);
 			productName = etherwallet;
 			productReference = 2912CCF51F6A830700C6CBE3 /* AlphaWallet.app */;
@@ -6131,7 +6128,6 @@
 			mainGroup = 2912CCEC1F6A830700C6CBE3;
 			packageReferences = (
 				87FBF2AF28056AC200616B7D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				87BDF46E28423DC30018DC68 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */,
 			);
 			productRefGroup = 2912CCF61F6A830700C6CBE3 /* Products */;
 			projectDirPath = "";
@@ -8226,14 +8222,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		87BDF46E28423DC30018DC68 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WalletConnect/WalletConnectSwiftV2";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		87FBF2AF28056AC200616B7D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -8245,11 +8233,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		87BDF46F28423DC30018DC68 /* WalletConnect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 87BDF46E28423DC30018DC68 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
-			productName = WalletConnect;
-		};
 		87FBF2B028056AC200616B7D /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 87FBF2AF28056AC200616B7D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

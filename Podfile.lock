@@ -119,6 +119,15 @@ PODS:
   - WalletConnectSwift (1.6.2):
     - CryptoSwift (~> 1.4)
     - Starscream (~> 4.0.4)
+  - WalletConnectSwiftV2 (1.0.1):
+    - WalletConnectSwiftV2/Commons (= 1.0.1)
+    - WalletConnectSwiftV2/JSONRPC (= 1.0.1)
+    - WalletConnectSwiftV2/WalletConnectUtils (= 1.0.1)
+  - WalletConnectSwiftV2/Commons (1.0.1)
+  - WalletConnectSwiftV2/JSONRPC (1.0.1):
+    - WalletConnectSwiftV2/Commons
+  - WalletConnectSwiftV2/WalletConnectUtils (1.0.1):
+    - WalletConnectSwiftV2/Commons
   - web3swift (0.9.0):
     - Alamofire (~> 4.7)
     - Alamofire-Synchronous (~> 4.0)
@@ -169,6 +178,7 @@ DEPENDENCIES:
   - TrustKeystore (from `https://github.com/AlphaWallet/latest-keystore-snapshot`, commit `c0bdc4f6ffc117b103e19d17b83109d4f5a0e764`)
   - TrustWalletCore (= 2.6.34)
   - WalletConnectSwift (from `https://github.com/AlphaWallet/WalletConnectSwift.git`, commit `b6556058331f619e15482b82d7c6ab57d9711399`)
+  - WalletConnectSwiftV2 (from `../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec`)
   - web3swift (from `https://github.com/AlphaWallet/web3swift.git`, commit `183b97078b9f98dbc7e6029db08c0cd1247829fc`)
   - xcbeautify
 
@@ -247,6 +257,8 @@ EXTERNAL SOURCES:
   WalletConnectSwift:
     :commit: b6556058331f619e15482b82d7c6ab57d9711399
     :git: https://github.com/AlphaWallet/WalletConnectSwift.git
+  WalletConnectSwiftV2:
+    :path: "../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec"
   web3swift:
     :commit: 183b97078b9f98dbc7e6029db08c0cd1247829fc
     :git: https://github.com/AlphaWallet/web3swift.git
@@ -331,9 +343,10 @@ SPEC CHECKSUMS:
   TrustKeystore: 3d8b4571c66648fb985015c96b3185440bb837fe
   TrustWalletCore: a92d85baa15932279cce925559e93695558cafdd
   WalletConnectSwift: 046ae74e8cb69445be9c94c66ef66f9cb019b68f
+  WalletConnectSwiftV2: 34238d7d8d610a06f768dfba93a44e3851f982eb
   web3swift: 06118d4c4edc801444aaa995bbbddeda176b97ef
   xcbeautify: b2c6b50c9cab6414296898e94cd153e4ea879662
 
-PODFILE CHECKSUM: 52143efc7e4f68ff8804abb0cfe61dc1ed0d24b7
+PODFILE CHECKSUM: d2711198223f95933561f29adde939a2760b9683
 
 COCOAPODS: 1.11.2
