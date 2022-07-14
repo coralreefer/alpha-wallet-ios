@@ -46,6 +46,9 @@ target 'AlphaWallet' do
   pod 'WalletConnectCommons', :path => 'modules/WalletConnectCommons'
   pod 'WalletConnectUtils', :path => 'modules/WalletConnectUtils'
   pod 'WalletConnectKMS', :path => 'modules/WalletConnectKMS'
+  pod 'WalletConnectRelay', :path => 'modules/WalletConnectRelay'
+  pod 'WalletConnectSign', :path => 'modules/WalletConnectSign'
+
 
 
   #pod 'WalletConnectSwiftV2', { :path => '../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec' }

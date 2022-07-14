@@ -116,8 +116,15 @@ PODS:
     - TrustWalletCore/Types
   - TrustWalletCore/Types (2.6.34):
     - SwiftProtobuf
-  - WalletConnectCommons (0.0.2)
+  - WalletConnectCommons (0.0.1)
   - WalletConnectKMS (0.0.1):
+    - WalletConnectUtils
+  - WalletConnectRelay (0.0.1):
+    - WalletConnectKMS
+    - WalletConnectUtils
+  - WalletConnectSign (0.0.1):
+    - WalletConnectKMS
+    - WalletConnectRelay
     - WalletConnectUtils
   - WalletConnectSwift (1.6.2):
     - CryptoSwift (~> 1.4)
@@ -175,6 +182,8 @@ DEPENDENCIES:
   - TrustWalletCore (= 2.6.34)
   - WalletConnectCommons (from `modules/WalletConnectCommons`)
   - WalletConnectKMS (from `modules/WalletConnectKMS`)
+  - WalletConnectRelay (from `modules/WalletConnectRelay`)
+  - WalletConnectSign (from `modules/WalletConnectSign`)
   - WalletConnectSwift (from `https://github.com/AlphaWallet/WalletConnectSwift.git`, commit `b6556058331f619e15482b82d7c6ab57d9711399`)
   - WalletConnectUtils (from `modules/WalletConnectUtils`)
   - web3swift (from `https://github.com/AlphaWallet/web3swift.git`, commit `183b97078b9f98dbc7e6029db08c0cd1247829fc`)
@@ -256,6 +265,10 @@ EXTERNAL SOURCES:
     :path: modules/WalletConnectCommons
   WalletConnectKMS:
     :path: modules/WalletConnectKMS
+  WalletConnectRelay:
+    :path: modules/WalletConnectRelay
+  WalletConnectSign:
+    :path: modules/WalletConnectSign
   WalletConnectSwift:
     :commit: b6556058331f619e15482b82d7c6ab57d9711399
     :git: https://github.com/AlphaWallet/WalletConnectSwift.git
@@ -344,13 +357,15 @@ SPEC CHECKSUMS:
   TrezorCrypto: bfeea47a052dca2c77d4a39e1e183865e52de14d
   TrustKeystore: 3d8b4571c66648fb985015c96b3185440bb837fe
   TrustWalletCore: a92d85baa15932279cce925559e93695558cafdd
-  WalletConnectCommons: 2f89200d31c6eaab87a09f59778539fd9a542c57
-  WalletConnectKMS: aedf95ff65256756f3212912bf5dfc4794936c4a
+  WalletConnectCommons: c3077111ae98741ba3bd9ad7d3bbfed6776e6ea4
+  WalletConnectKMS: b052197c139de3c2b82b1b8a0636a87600a80797
+  WalletConnectRelay: 6ba9bd307fe6535b68e4de15f172cb802331c35a
+  WalletConnectSign: 97c600e8d12aee8b060072e563fef98672980e5c
   WalletConnectSwift: 046ae74e8cb69445be9c94c66ef66f9cb019b68f
-  WalletConnectUtils: 810c0dd14039604be8d16db42b5f956d5f36afaa
+  WalletConnectUtils: 329e04543fb726c4fdaaddb4e858d3302f332a60
   web3swift: 06118d4c4edc801444aaa995bbbddeda176b97ef
   xcbeautify: b2c6b50c9cab6414296898e94cd153e4ea879662
 
-PODFILE CHECKSUM: 827f37b5548df749e9def3f6b0faaa73f94934c3
+PODFILE CHECKSUM: 12455dbe95ece35f6587344dbedd16eb88729b29
 
 COCOAPODS: 1.11.2
