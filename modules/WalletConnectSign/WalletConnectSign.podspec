@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint WalletConnectCommons.podspec' to ensure this is a
+#  Be sure to run `pod spec lint WalletConnectSign.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see https://guides.cocoapods.org/syntax/podspec.html
@@ -15,9 +15,9 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = "WalletConnectCommons"
-  spec.version      = "0.0.2"
-  spec.summary      = "A short description of WalletConnectCommons."
+  spec.name         = "WalletConnectSign"
+  spec.version      = "0.0.1"
+  spec.summary      = "A short description of WalletConnectSign."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,10 +25,10 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  A short description of WalletConnectCommons.
+  A short description of WalletConnectSign.
                    DESC
 
-  spec.homepage         = "https://github.com/coralreefer/alpha-wallet-ios/tree/feature/framework/modules/WalletConnectCommons"
+  spec.homepage     = "https://github.com/coralreefer/alpha-wallet-ios/tree/feature/framework/modules/WalletConnectSign"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -38,6 +38,7 @@ Pod::Spec.new do |spec|
   #  CocoaPods will detect a license file if there is a named LICENSE*
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
+
   spec.license          = { :type => 'MIT', :file => 'LICENSE' }
   # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
@@ -79,7 +80,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  # spec.source       = { :git => "https://github.com/coralreefer/alpha-wallet-ios.git", :tag => "#{spec.version}" }
+  # spec.source       = { :git => "http://EXAMPLE/WalletConnectSign.git", :tag => "#{spec.version}" }
   spec.source       = { :git => "https://github.com/coralreefer/alpha-wallet-ios.git", :branch => "feature/framework" }
 
 
@@ -91,8 +92,8 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "WalletConnectCommons/**/*.{h,m,swift}"
-  #spec.exclude_files = "Classes/Exclude"
+  spec.source_files  = "WalletConnectSign/**/*.{h,m,swift}"
+  # spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
 
@@ -134,5 +135,8 @@ Pod::Spec.new do |spec|
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
-  
+  spec.dependency "WalletConnectUtils"
+  spec.dependency "WalletConnectRelay"
+  spec.dependency "WalletConnectKMS"
+
 end

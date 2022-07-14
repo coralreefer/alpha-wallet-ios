@@ -44,6 +44,9 @@ target 'AlphaWallet' do
   pod 'xcbeautify'
   pod 'FloatingPanel'
   pod 'WalletConnectCommons', :path => 'modules/WalletConnectCommons'
+  pod 'WalletConnectUtils', :path => 'modules/WalletConnectUtils'
+  pod 'WalletConnectKMS', :path => 'modules/WalletConnectKMS'
+
 
   #pod 'WalletConnectSwiftV2', { :path => '../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec' }
 #  pod 'WalletConnectSwiftV2/WalletConnectUtils', { :path => '../WalletConnectSwiftV2/WalletConnectSwiftV2.podspec' }

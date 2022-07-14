@@ -7,6 +7,7 @@
 
 import UIKit
 import WalletConnectSwift
+import WalletConnectCommons
 import PromiseKit
 import Result
 import Combine
