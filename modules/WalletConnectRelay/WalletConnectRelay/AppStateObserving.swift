@@ -1,22 +1,23 @@
+
 import Foundation
 #if os(iOS)
 import UIKit
 #endif
 
 protocol AppStateObserving {
-    var onWillEnterForeground: (() -> Void)? {get set}
-    var onWillEnterBackground: (() -> Void)? {get set}
+    var onWillEnterForeground: (()->())? {get set}
+    var onWillEnterBackground: (()->())? {get set}
 }
 
 class AppStateObserver: AppStateObserving {
-    @objc var onWillEnterForeground: (() -> Void)?
-
-    @objc var onWillEnterBackground: (() -> Void)?
-
+    @objc var onWillEnterForeground: (() -> ())?
+    
+    @objc var onWillEnterBackground: (() -> ())?
+    
     init() {
         subscribeNotificationCenter()
     }
-
+    
     private func subscribeNotificationCenter() {
 #if os(iOS)
         NotificationCenter.default.addObserver(
@@ -31,15 +32,17 @@ class AppStateObserver: AppStateObserving {
             object: nil)
 #endif
     }
-
+    
     @objc
     private func appWillEnterBackground() {
         onWillEnterBackground?()
     }
-
+    
     @objc
     private func appWillEnterForeground() {
         onWillEnterForeground?()
     }
-
+    
 }
+
+

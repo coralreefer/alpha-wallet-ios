@@ -1,3 +1,4 @@
+
 import Foundation
 
 public struct JSONRPCErrorResponse: Error, Equatable, Codable {
@@ -15,7 +16,7 @@ public struct JSONRPCErrorResponse: Error, Equatable, Codable {
         self.id = id
         self.error = error
     }
-
+    
     public struct Error: Codable, Equatable {
         public let code: Int
         public let message: String

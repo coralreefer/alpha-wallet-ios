@@ -1,3 +1,4 @@
+
 import Foundation
 import WalletConnectRelay
 import WalletConnectUtils
@@ -20,19 +21,18 @@ import UIKit
 ///     - delegate: The object that acts as the delegate of WalletConnect Client
 ///     - logger: An object for logging messages
 public final class SignClient {
-
     public weak var delegate: SignClientDelegate?
-
     public let logger: ConsoleLogging
+    private var publishers = [AnyCancellable]()
+    private let metadata: AppMetadata
     private let pairingEngine: PairingEngine
     private let pairEngine: PairEngine
     private let sessionEngine: SessionEngine
-    private let approveEngine: ApproveEngine
     private let nonControllerSessionStateMachine: NonControllerSessionStateMachine
     private let controllerSessionStateMachine: ControllerSessionStateMachine
+    private let networkingInteractor: NetworkInteracting
+    private let kms: KeyManagementService
     private let history: JsonRpcHistory
-    private let cleanupService: CleanupService
-    private var publishers = [AnyCancellable]()
 
     // MARK: - Initializers
 
@@ -41,42 +41,70 @@ public final class SignClient {
     /// - Parameters:
     ///   - metadata: describes your application and will define pairing appearance in a web browser.
     ///   - projectId: an optional parameter used to access the public WalletConnect infrastructure. Go to `www.walletconnect.com` for info.
-    ///   - relayHost: proxy server host that your application will use to connect to Iridium Network. If you register your project at `www.walletconnect.com` you can use `relay.walletconnect.com`
+    ///   - relayHost: proxy server host that your application will use to connect to Waku Network. If you register your project at `www.walletconnect.com` you can use `relay.walletconnect.com`
     ///   - keyValueStorage: by default WalletConnect SDK will store sequences in UserDefaults
     ///
     /// WalletConnect Client is not a singleton but once you create an instance, you should not deinitialize it. Usually only one instance of a client is required in the application.
-    public convenience init(metadata: AppMetadata, relayClient: RelayClient) {
-        let logger = ConsoleLogger(loggingLevel: .off)
-        let keyValueStorage = UserDefaults.standard
-        let keychainStorage = KeychainStorage(serviceIdentifier: "com.walletconnect.sdk")
-        self.init(
-            metadata: metadata,
-            logger: logger,
-            keyValueStorage: keyValueStorage,
-            keychainStorage: keychainStorage,
-            relayClient: relayClient
-        )
+    public convenience init(metadata: AppMetadata, projectId: String, relayHost: String, keyValueStorage: KeyValueStorage = UserDefaults.standard) {
+        self.init(metadata: metadata, projectId: projectId, relayHost: relayHost, logger: ConsoleLogger(loggingLevel: .off), kms: KeyManagementService(serviceIdentifier:  "com.walletconnect.sdk"), keyValueStorage: keyValueStorage)
     }
-
-    init(metadata: AppMetadata, logger: ConsoleLogging, keyValueStorage: KeyValueStorage, keychainStorage: KeychainStorageProtocol, relayClient: RelayClient) {
+    
+    init(metadata: AppMetadata, projectId: String, relayHost: String, logger: ConsoleLogging, kms: KeyManagementService, keyValueStorage: KeyValueStorage) {
+        self.metadata = metadata
         self.logger = logger
-        let kms = KeyManagementService(keychain: keychainStorage)
+//        try? keychain.deleteAll() // Use for cleanup while lifecycles are not handled yet, but FIXME whenever
+        self.kms = kms
+        let relayClient = RelayClient(relayHost: relayHost, projectId: projectId, keyValueStorage: keyValueStorage, logger: logger)
         let serializer = Serializer(kms: kms)
-        self.history = JsonRpcHistory(logger: logger, keyValueStore: CodableStore<JsonRpcRecord>(defaults: keyValueStorage, identifier: StorageDomainIdentifiers.jsonRpcHistory.rawValue))
-        let networkingInteractor = NetworkInteractor(relayClient: relayClient, serializer: serializer, logger: logger, jsonRpcHistory: history)
-        let pairingStore = PairingStorage(storage: SequenceStore<WCPairing>(store: .init(defaults: keyValueStorage, identifier: StorageDomainIdentifiers.pairings.rawValue)))
-        let sessionStore = SessionStorage(storage: SequenceStore<WCSession>(store: .init(defaults: keyValueStorage, identifier: StorageDomainIdentifiers.sessions.rawValue)))
-        let sessionToPairingTopic = CodableStore<String>(defaults: RuntimeKeyValueStorage(), identifier: StorageDomainIdentifiers.sessionToPairingTopic.rawValue)
-        let proposalPayloadsStore = CodableStore<WCRequestSubscriptionPayload>(defaults: RuntimeKeyValueStorage(), identifier: StorageDomainIdentifiers.proposals.rawValue)
-        self.pairingEngine = PairingEngine(networkingInteractor: networkingInteractor, kms: kms, pairingStore: pairingStore, metadata: metadata, logger: logger)
-        self.sessionEngine = SessionEngine(networkingInteractor: networkingInteractor, kms: kms, sessionStore: sessionStore, logger: logger)
+        self.history = JsonRpcHistory(logger: logger, keyValueStore: KeyValueStore<JsonRpcRecord>(defaults: keyValueStorage, identifier: StorageDomainIdentifiers.jsonRpcHistory.rawValue))
+        self.networkingInteractor = NetworkInteractor(relayClient: relayClient, serializer: serializer, logger: logger, jsonRpcHistory: history)
+        let pairingStore = PairingStorage(storage: SequenceStore<WCPairing>(storage: keyValueStorage, identifier: StorageDomainIdentifiers.pairings.rawValue))
+        let sessionStore = SessionStorage(storage: SequenceStore<WCSession>(storage: keyValueStorage, identifier: StorageDomainIdentifiers.sessions.rawValue))
+        let sessionToPairingTopic = KeyValueStore<String>(defaults: RuntimeKeyValueStorage(), identifier: StorageDomainIdentifiers.sessionToPairingTopic.rawValue)
+        self.pairingEngine = PairingEngine(networkingInteractor: networkingInteractor, kms: kms, pairingStore: pairingStore, sessionToPairingTopic: sessionToPairingTopic, metadata: metadata, logger: logger)
+        self.sessionEngine = SessionEngine(networkingInteractor: networkingInteractor, kms: kms, pairingStore: pairingStore, sessionStore: sessionStore, sessionToPairingTopic: sessionToPairingTopic, metadata: metadata, logger: logger)
         self.nonControllerSessionStateMachine = NonControllerSessionStateMachine(networkingInteractor: networkingInteractor, kms: kms, sessionStore: sessionStore, logger: logger)
         self.controllerSessionStateMachine = ControllerSessionStateMachine(networkingInteractor: networkingInteractor, kms: kms, sessionStore: sessionStore, logger: logger)
         self.pairEngine = PairEngine(networkingInteractor: networkingInteractor, kms: kms, pairingStore: pairingStore)
-        self.approveEngine = ApproveEngine(networkingInteractor: networkingInteractor, proposalPayloadsStore: proposalPayloadsStore, sessionToPairingTopic: sessionToPairingTopic, metadata: metadata, kms: kms, logger: logger, pairingStore: pairingStore, sessionStore: sessionStore)
-        self.cleanupService = CleanupService(pairingStore: pairingStore, sessionStore: sessionStore, kms: kms, sessionToPairingTopic: sessionToPairingTopic)
         setUpConnectionObserving(relayClient: relayClient)
         setUpEnginesCallbacks()
+    }
+    
+    /// Initializes and returns newly created WalletConnect Client Instance. Establishes a network connection with the relay
+    ///
+    /// - Parameters:
+    ///   - metadata: describes your application and will define pairing appearance in a web browser.
+    ///   - relayClient: RelayClient instance
+    ///   - keyValueStorage: by default WalletConnect SDK will store sequences in UserDefaults but if for some reasons you want to provide your own storage you can inject it here.
+    ///
+    /// WalletConnect Client is not a singleton but once you create an instance, you should not deinitialize it. Usually only one instance of a client is required in the application.
+    public convenience init(metadata: AppMetadata, relayClient: RelayClient, keyValueStorage: KeyValueStorage = UserDefaults.standard, kms: KeyManagementService = KeyManagementService(serviceIdentifier:  "com.walletconnect.sdk")) {
+        self.init(metadata: metadata, relayClient: relayClient, logger: ConsoleLogger(loggingLevel: .off), kms: kms, keyValueStorage: keyValueStorage)
+    }
+    
+    init(metadata: AppMetadata, relayClient: RelayClient, logger: ConsoleLogging, kms: KeyManagementService, keyValueStorage: KeyValueStorage) {
+        self.metadata = metadata
+        self.logger = logger
+        self.kms = kms
+        let serializer = Serializer(kms: kms)
+        self.history = JsonRpcHistory(logger: logger, keyValueStore: KeyValueStore<JsonRpcRecord>(defaults: keyValueStorage, identifier: StorageDomainIdentifiers.jsonRpcHistory.rawValue))
+        self.networkingInteractor = NetworkInteractor(relayClient: relayClient, serializer: serializer, logger: logger, jsonRpcHistory: history)
+        let pairingStore = PairingStorage(storage: SequenceStore<WCPairing>(storage: keyValueStorage, identifier: StorageDomainIdentifiers.pairings.rawValue))
+        let sessionStore = SessionStorage(storage: SequenceStore<WCSession>(storage: keyValueStorage, identifier: StorageDomainIdentifiers.sessions.rawValue))
+        let sessionToPairingTopic = KeyValueStore<String>(defaults: RuntimeKeyValueStorage(), identifier: StorageDomainIdentifiers.sessionToPairingTopic.rawValue)
+        self.pairingEngine = PairingEngine(networkingInteractor: networkingInteractor, kms: kms, pairingStore: pairingStore, sessionToPairingTopic: sessionToPairingTopic, metadata: metadata, logger: logger)
+        self.sessionEngine = SessionEngine(networkingInteractor: networkingInteractor, kms: kms, pairingStore: pairingStore, sessionStore: sessionStore, sessionToPairingTopic: sessionToPairingTopic, metadata: metadata, logger: logger)
+        self.nonControllerSessionStateMachine = NonControllerSessionStateMachine(networkingInteractor: networkingInteractor, kms: kms, sessionStore: sessionStore, logger: logger)
+        self.controllerSessionStateMachine = ControllerSessionStateMachine(networkingInteractor: networkingInteractor, kms: kms, sessionStore: sessionStore, logger: logger)
+        self.pairEngine = PairEngine(networkingInteractor: networkingInteractor, kms: kms, pairingStore: pairingStore)
+        setUpConnectionObserving(relayClient: relayClient)
+        setUpEnginesCallbacks()
+    }
+    
+    private func setUpConnectionObserving(relayClient: RelayClient) {
+        relayClient.socketConnectionStatusPublisher.sink { [weak self] status in
+            self?.delegate?.didChangeSocketConnectionStatus(status)
+        }.store(in: &publishers)
     }
 
     // MARK: - Public interface
@@ -97,11 +125,11 @@ public final class SignClient {
             return nil
         } else {
             let pairingURI = try await pairingEngine.create()
-            try await pairingEngine.propose(pairingTopic: pairingURI.topic, namespaces: requiredNamespaces, relay: pairingURI.relay)
+            try await pairingEngine.propose(pairingTopic: pairingURI.topic, namespaces: requiredNamespaces ,relay: pairingURI.relay)
             return pairingURI.absoluteString
         }
     }
-
+    
     /// For responder to receive a session proposal from a proposer
     /// Responder should call this function in order to accept peer's pairing proposal and be able to subscribe for future session proposals.
     /// - Parameter uri: Pairing URI that is commonly presented as a QR code by a dapp.
@@ -115,26 +143,30 @@ public final class SignClient {
         }
         try await pairEngine.pair(pairingURI)
     }
-
+    
     /// For the responder to approve a session proposal.
     /// - Parameters:
-    ///   - proposalId: Session Proposal Public key received from peer client in a WalletConnect delegate function: `didReceive(sessionProposal: Session.Proposal)`
+    ///   - proposal: Session Proposal received from peer client in a WalletConnect delegate function: `didReceive(sessionProposal: Session.Proposal)`
     ///   - accounts: A Set of accounts that the dapp will be allowed to request methods executions on.
     ///   - methods: A Set of methods that the dapp will be allowed to request.
     ///   - events: A Set of events
-    public func approve(proposalId: String, namespaces: [String: SessionNamespace]) async throws {
-        // TODO - accounts should be validated for matching namespaces BEFORE responding proposal
-        try await approveEngine.approveProposal(proposerPubKey: proposalId, validating: namespaces)
+    public func approve(
+        proposalId: String,
+        namespaces: [String: SessionNamespace]
+    ) throws {
+        //TODO - accounts should be validated for matching namespaces BEFORE responding proposal
+        guard let (sessionTopic, proposal) = pairingEngine.approveProposal(proposerPubKey: proposalId, validating: namespaces) else {return}
+        try sessionEngine.settle(topic: sessionTopic, proposal: proposal, namespaces: namespaces)
     }
-
+    
     /// For the responder to reject a session proposal.
     /// - Parameters:
-    ///   - proposalId: Session Proposal Public key received from peer client in a WalletConnect delegate.
+    ///   - proposal: Session Proposal received from peer client in a WalletConnect delegate.
     ///   - reason: Reason why the session proposal was rejected. Conforms to CAIP25.
-    public func reject(proposalId: String, reason: RejectionReason) async throws {
-        try await approveEngine.reject(proposerPubKey: proposalId, reason: reason.internalRepresentation())
+    public func reject(proposal: Session.Proposal, reason: RejectionReason) {
+        pairingEngine.reject(proposal: proposal.proposal, reason: reason.internalRepresentation())
     }
-
+    
     /// For the responder to update session namespaces
     /// - Parameters:
     ///   - topic: Topic of the session that is intended to be updated.
@@ -142,7 +174,7 @@ public final class SignClient {
     public func update(topic: String, namespaces: [String: SessionNamespace]) async throws {
         try await controllerSessionStateMachine.update(topic: topic, namespaces: namespaces)
     }
-
+    
     /// For controller to update expiry of a session
     /// - Parameters:
     ///   - topic: Topic of the Session, it can be a pairing or a session topic.
@@ -153,22 +185,22 @@ public final class SignClient {
             try await controllerSessionStateMachine.extend(topic: topic, by: ttl)
         }
     }
-
+    
     /// For the proposer to send JSON-RPC requests to responding peer.
     /// - Parameters:
     ///   - params: Parameters defining request and related session
     public func request(params: Request) async throws {
         try await sessionEngine.request(params)
     }
-
+    
     /// For the responder to respond on pending peer's session JSON-RPC Request
     /// - Parameters:
     ///   - topic: Topic of the session for which the request was received.
     ///   - response: Your JSON RPC response or an error.
-    public func respond(topic: String, response: JsonRpcResult) async throws {
-        try await sessionEngine.respondSessionRequest(topic: topic, response: response)
+    public func respond(topic: String, response: JsonRpcResult) {
+        sessionEngine.respondSessionRequest(topic: topic, response: response)
     }
-
+    
     /// Ping method allows to check if client's peer is online and is subscribing for your sequence topic
     ///
     ///  Should Error:
@@ -179,7 +211,7 @@ public final class SignClient {
     /// - Parameters:
     ///   - topic: Topic of the sequence, it can be a pairing or a session topic.
     ///   - completion: Result will be success on response or error on timeout. -- TODO: timeout
-    public func ping(topic: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
+    public func ping(topic: String, completion: @escaping ((Result<Void, Error>) -> ())) {
         if pairingEngine.hasPairing(for: topic) {
             pairingEngine.ping(topic: topic) { result in
                 completion(result)
@@ -190,7 +222,7 @@ public final class SignClient {
             }
         }
     }
-
+    
     /// For the proposer and responder to emits an event on the peer for an existing session
     ///
     /// When:  a client wants to emit an event to its peer client (eg. chain changed or tx replaced)
@@ -206,7 +238,7 @@ public final class SignClient {
     public func emit(topic: String, event: Session.Event, chainId: Blockchain) async throws {
         try await sessionEngine.emit(topic: topic, event: event.internalRepresentation(), chainId: chainId)
     }
-
+    
     /// For the proposer and responder to terminate a session
     ///
     /// Should Error:
@@ -218,33 +250,33 @@ public final class SignClient {
     public func disconnect(topic: String, reason: Reason) async throws {
         try await sessionEngine.delete(topic: topic, reason: reason)
     }
-
+    
     /// - Returns: All sessions
     public func getSessions() -> [Session] {
         sessionEngine.getSessions()
     }
-
+    
     /// - Returns: All settled pairings that are active
     public func getSettledPairings() -> [Pairing] {
         pairingEngine.getSettledPairings()
     }
-
+    
     /// - Returns: Pending requests received with wc_sessionRequest
     /// - Parameter topic: topic representing session for which you want to get pending requests. If nil, you will receive pending requests for all active sessions.
     public func getPendingRequests(topic: String? = nil) -> [Request] {
         let pendingRequests: [Request] = history.getPending()
-            .filter {$0.request.method == .sessionRequest}
+            .filter{$0.request.method == .sessionRequest}
             .compactMap {
                 guard case let .sessionRequest(payloadRequest) = $0.request.params else {return nil}
                 return Request(id: $0.id, topic: $0.topic, method: payloadRequest.request.method, params: payloadRequest.request.params, chainId: payloadRequest.chainId)
             }
         if let topic = topic {
-            return pendingRequests.filter {$0.topic == topic}
+            return pendingRequests.filter{$0.topic == topic}
         } else {
             return pendingRequests
         }
     }
-
+    
     /// - Parameter id: id of a wc_sessionRequest jsonrpc request
     /// - Returns: json rpc record object for given id or nil if record for give id does not exits
     public func getSessionRequestRecord(id: Int64) -> WalletConnectUtils.JsonRpcRecord? {
@@ -255,16 +287,16 @@ public final class SignClient {
     }
 
     // MARK: - Private
-
+    
     private func setUpEnginesCallbacks() {
-        approveEngine.onSessionProposal = { [unowned self] proposal in
+        sessionEngine.onSessionSettle = { [unowned self] settledSession in
+            delegate?.didSettle(session: settledSession)
+        }
+        pairingEngine.onSessionProposal = { [unowned self] proposal in
             delegate?.didReceive(sessionProposal: proposal)
         }
-        approveEngine.onSessionRejected = { [unowned self] proposal, reason in
+        pairingEngine.onSessionRejected = { [unowned self] proposal, reason in
             delegate?.didReject(proposal: proposal, reason: reason.publicRepresentation())
-        }
-        approveEngine.onSessionSettle = { [unowned self] settledSession in
-            delegate?.didSettle(session: settledSession)
         }
         sessionEngine.onSessionRequest = { [unowned self] sessionRequest in
             delegate?.didReceive(sessionRequest: sessionRequest)
@@ -290,20 +322,9 @@ public final class SignClient {
         sessionEngine.onSessionResponse = { [unowned self] response in
             delegate?.didReceive(sessionResponse: response)
         }
+        pairingEngine.onProposeResponse = { [unowned self] sessionTopic, proposal in
+            sessionEngine.settlingProposal = proposal
+            sessionEngine.setSubscription(topic: sessionTopic)
+        }
     }
-
-    private func setUpConnectionObserving(relayClient: RelayClient) {
-        relayClient.socketConnectionStatusPublisher.sink { [weak self] status in
-            self?.delegate?.didChangeSocketConnectionStatus(status)
-        }.store(in: &publishers)
-    }
-
-#if DEBUG
-    /// Delete all stored data sach as: pairings, sessions, keys
-    ///
-    /// - Note: Doesn't unsubscribe from topics
-    public func cleanup() throws {
-        try cleanupService.cleanup()
-    }
-#endif
 }

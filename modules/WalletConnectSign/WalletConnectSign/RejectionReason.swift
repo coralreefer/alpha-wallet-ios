@@ -1,3 +1,4 @@
+
 import Foundation
 
 /// https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-25.md

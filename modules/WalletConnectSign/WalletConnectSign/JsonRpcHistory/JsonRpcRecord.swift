@@ -1,3 +1,5 @@
+
+
 import Foundation
 import WalletConnectUtils
 
@@ -13,3 +15,4 @@ struct JsonRpcRecord: Codable {
         let params: WCRequest.Params
     }
 }
+

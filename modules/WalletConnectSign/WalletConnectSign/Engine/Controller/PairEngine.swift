@@ -1,3 +1,4 @@
+
 import Foundation
 import WalletConnectKMS
 
@@ -5,7 +6,7 @@ actor PairEngine {
     private let networkingInteractor: NetworkInteracting
     private let kms: KeyManagementServiceProtocol
     private let pairingStore: WCPairingStorage
-
+    
     init(networkingInteractor: NetworkInteracting,
          kms: KeyManagementServiceProtocol,
          pairingStore: WCPairingStorage) {
@@ -13,7 +14,7 @@ actor PairEngine {
         self.kms = kms
         self.pairingStore = pairingStore
     }
-
+    
     func pair(_ uri: WalletConnectURI) async throws {
         guard !hasPairing(for: uri.topic) else {
             throw WalletConnectError.pairingAlreadyExist
@@ -25,7 +26,7 @@ actor PairEngine {
         pairing.activate()
         pairingStore.setPairing(pairing)
     }
-
+    
     func hasPairing(for topic: String) -> Bool {
         return pairingStore.hasPairing(forTopic: topic)
     }

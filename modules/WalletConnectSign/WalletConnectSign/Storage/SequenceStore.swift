@@ -5,62 +5,66 @@ protocol Expirable {
     var expiryDate: Date { get }
 }
 
-protocol Entitled {
+protocol ExpirableSequence: Codable, Expirable {
     var topic: String { get }
 }
 
-typealias SequenceObject = Entitled & Expirable & Codable
-
-final class SequenceStore<T> where T: SequenceObject {
+// TODO: Find replacement for 'Sequence' prefix
+final class SequenceStore<T> where T: ExpirableSequence {
 
     var onSequenceExpiration: ((_ sequence: T) -> Void)?
-
-    private let store: CodableStore<T>
+    
+    private let storage: KeyValueStorage
     private let dateInitializer: () -> Date
+    private let identifier: String
 
-    init(store: CodableStore<T>, dateInitializer: @escaping () -> Date = Date.init) {
-        self.store = store
+    init(storage: KeyValueStorage, identifier: String, dateInitializer: @escaping () -> Date = Date.init) {
+        self.storage = storage
         self.dateInitializer = dateInitializer
+        self.identifier = identifier
     }
-
+    
     func hasSequence(forTopic topic: String) -> Bool {
         (try? getSequence(forTopic: topic)) != nil
     }
-
+    
+    //  This force-unwrap is safe because Expirable Sequances are JSON Encodable
     func setSequence(_ sequence: T) {
-        store.set(sequence, forKey: sequence.topic)
+        let encoded = try! JSONEncoder().encode(sequence)
+        storage.set(encoded, forKey: getKey(for: sequence.topic))
     }
 
     func getSequence(forTopic topic: String) throws -> T? {
-        guard let value = try store.get(key: topic) else { return nil }
-        return verifyExpiry(on: value)
+        guard let data = storage.object(forKey: getKey(for: topic)) as? Data else { return nil }
+        let sequence = try JSONDecoder().decode(T.self, from: data)
+        return verifyExpiry(on: sequence)
     }
 
     func getAll() -> [T] {
-        let values = store.getAll()
-        return values.compactMap { verifyExpiry(on: $0) }
+        return storage.dictionaryRepresentation().compactMap {
+            guard $0.key.hasPrefix(identifier) else {return nil}
+            if let data = $0.value as? Data, let sequence = try? JSONDecoder().decode(T.self, from: data) {
+                return verifyExpiry(on: sequence)
+            }
+            return nil
+        }
     }
 
     func delete(topic: String) {
-        store.delete(forKey: topic)
+        storage.removeObject(forKey: getKey(for: topic))
     }
-
-    func deleteAll() {
-        store.deleteAll()
-    }
-}
-
-// MARK: Privates
-
-private extension SequenceStore {
-
-    func verifyExpiry(on sequence: T) -> T? {
+    
+    private func verifyExpiry(on sequence: T) -> T? {
         let now = dateInitializer()
         if now >= sequence.expiryDate {
-            store.delete(forKey: sequence.topic)
+            storage.removeObject(forKey: getKey(for: sequence.topic))
             onSequenceExpiration?(sequence)
             return nil
         }
         return sequence
+    }
+    
+    private func getKey(for topic: String) -> String {
+        return "\(identifier).\(topic)"
     }
 }

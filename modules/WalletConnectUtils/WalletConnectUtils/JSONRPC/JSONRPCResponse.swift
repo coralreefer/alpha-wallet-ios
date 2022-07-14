@@ -1,3 +1,4 @@
+
 import Foundation
 
 public struct JSONRPCResponse<T: Codable&Equatable>: Codable, Equatable {
